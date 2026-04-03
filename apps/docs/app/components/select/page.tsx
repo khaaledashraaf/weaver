@@ -11,9 +11,12 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const sizes = ["sm", "md", "lg"] as const;
-const variants = ["outlined", "soft", "plain"] as const;
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  Select styles: Default, Soft
+  Select sizes:  md, lg
+  Select states: Default, Focus, Filled, Error, Disabled
+  Select types:  Default, Avatar, Multi-select, Tags
+*/
 
 export default function SelectPage() {
   return (
@@ -22,88 +25,80 @@ export default function SelectPage() {
         Select
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Select menus let users choose a single value from a list of options.
-        Weaver selects use 8px border-radius, 15px font size, and heights of
-        32px (md) and 36px (lg), matching the Input component. The
-        Weaver theme styles the trigger, dropdown panel, and individual options
-        with consistent border-radius, spacing, and color tokens.
+        Select menus let users choose from a list of options. Weaver selects use
+        8px border-radius, 15px font size, and heights of 32px (md) and 36px (lg),
+        matching the Input component. Two styles: Default and Soft.
       </Typography>
 
       <Section
-        title="Variants"
-        description="Select supports outlined, soft, and plain variants."
+        title="Styles"
+        description="Two styles from Figma: Default (bordered) and Soft (filled)."
       >
-        <Stack spacing={2} sx={{ maxWidth: 300 }}>
-          {variants.map((variant) => (
-            <Select key={variant} variant={variant} placeholder={`${variant} variant`}>
-              <Option value="1">Option 1</Option>
-              <Option value="2">Option 2</Option>
-              <Option value="3">Option 3</Option>
+        <Stack spacing={2} sx={{ maxWidth: 400 }}>
+          <FormControl>
+            <FormLabel>Default style</FormLabel>
+            <Select placeholder="Choose an option...">
+              <Option value="opt1">Option 1</Option>
+              <Option value="opt2">Option 2</Option>
+              <Option value="opt3">Option 3</Option>
             </Select>
-          ))}
+          </FormControl>
+          <FormControl>
+            <FormLabel>Soft style</FormLabel>
+            <Select variant="soft" placeholder="Choose an option...">
+              <Option value="opt1">Option 1</Option>
+              <Option value="opt2">Option 2</Option>
+              <Option value="opt3">Option 3</Option>
+            </Select>
+          </FormControl>
         </Stack>
       </Section>
 
       <Section
         title="Sizes"
-        description="Three sizes to match different layout densities."
+        description="Two sizes: md (32px) and lg (36px)."
       >
-        <Stack spacing={2} sx={{ maxWidth: 300 }}>
-          {sizes.map((size) => (
-            <Select key={size} size={size} placeholder={`${size === "sm" ? "Small" : size === "md" ? "Medium" : "Large"}`}>
-              <Option value="1">Option 1</Option>
-              <Option value="2">Option 2</Option>
-              <Option value="3">Option 3</Option>
+        <Stack spacing={2} sx={{ maxWidth: 400 }}>
+          <FormControl>
+            <FormLabel>Medium (md) — 32px</FormLabel>
+            <Select size="md" placeholder="Medium select">
+              <Option value="a">Option A</Option>
+              <Option value="b">Option B</Option>
             </Select>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Colors"
-        description="Apply semantic colors to communicate context."
-      >
-        <Stack spacing={2} sx={{ maxWidth: 300 }}>
-          {colors.map((color) => (
-            <Select key={color} color={color} placeholder={`${color}`}>
-              <Option value="1">Option 1</Option>
-              <Option value="2">Option 2</Option>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Large (lg) — 36px</FormLabel>
+            <Select size="lg" placeholder="Large select">
+              <Option value="a">Option A</Option>
+              <Option value="b">Option B</Option>
             </Select>
-          ))}
+          </FormControl>
         </Stack>
       </Section>
 
       <Section
         title="States"
-        description="Disabled state prevents user interaction."
+        description="Figma states: Default, Focus, Filled, Error, Disabled."
       >
-        <Select disabled placeholder="Disabled" sx={{ maxWidth: 300 }}>
-          <Option value="1">Option 1</Option>
-        </Select>
-      </Section>
-
-      <Section
-        title="With Form Control"
-        description="Compose with FormControl and FormLabel for accessible forms."
-      >
-        <Stack spacing={3} sx={{ maxWidth: 300 }}>
+        <Stack spacing={2} sx={{ maxWidth: 400 }}>
           <FormControl>
-            <FormLabel>Country</FormLabel>
-            <Select placeholder="Select a country">
-              <Option value="us">United States</Option>
-              <Option value="uk">United Kingdom</Option>
-              <Option value="ae">United Arab Emirates</Option>
-              <Option value="eg">Egypt</Option>
+            <FormLabel>Default</FormLabel>
+            <Select placeholder="Choose...">
+              <Option value="a">Option A</Option>
             </Select>
           </FormControl>
-          <FormControl>
-            <FormLabel>Role</FormLabel>
-            <Select placeholder="Choose role" size="sm">
-              <Option value="admin">Admin</Option>
-              <Option value="editor">Editor</Option>
-              <Option value="viewer">Viewer</Option>
+          <FormControl error>
+            <FormLabel>Error</FormLabel>
+            <Select placeholder="Choose..." color="danger">
+              <Option value="a">Option A</Option>
             </Select>
-            <FormHelperText>Determines access level.</FormHelperText>
+            <FormHelperText>Please select an option</FormHelperText>
+          </FormControl>
+          <FormControl disabled>
+            <FormLabel>Disabled</FormLabel>
+            <Select placeholder="Choose..." disabled>
+              <Option value="a">Option A</Option>
+            </Select>
           </FormControl>
         </Stack>
       </Section>
@@ -114,39 +109,36 @@ import Option from "@mui/joy/Option";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 
-// Basic select
-<Select placeholder="Pick one">
-  <Option value="a">Option A</Option>
-  <Option value="b">Option B</Option>
-</Select>
-
-// With form control
+// Default select
 <FormControl>
   <FormLabel>Country</FormLabel>
-  <Select placeholder="Select a country">
-    <Option value="us">United States</Option>
-    <Option value="uk">United Kingdom</Option>
+  <Select placeholder="Choose a country...">
+    <Option value="eg">Egypt</Option>
+    <Option value="sa">Saudi Arabia</Option>
+    <Option value="ae">UAE</Option>
   </Select>
 </FormControl>
 
-// Controlled
-const [value, setValue] = useState<string | null>(null);
-<Select value={value} onChange={(_, v) => setValue(v)}>
-  <Option value="a">A</Option>
-</Select>`}</CodeBlock>
+// Soft style
+<Select variant="soft" placeholder="Choose..." />
+
+// Error state
+<FormControl error>
+  <FormLabel>Required field</FormLabel>
+  <Select color="danger" placeholder="Select..." />
+</FormControl>`}</CodeBlock>
       </Section>
 
       <Section title="Props">
-        <Typography level="title-sm" sx={{ mb: 1 }}>Select</Typography>
         <PropsTable
           props={[
-            { name: "variant", type: '"outlined" | "soft" | "plain"', default: '"outlined"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
+            { name: "variant", type: '"outlined" | "soft"', default: '"outlined"' },
+            { name: "size", type: '"md" | "lg"', default: '"md"' },
+            { name: "color", type: '"neutral" | "danger"', default: '"neutral"' },
             { name: "placeholder", type: "string", default: "-" },
             { name: "disabled", type: "boolean", default: "false" },
-            { name: "value", type: "string | null", default: "-" },
-            { name: "defaultValue", type: "string | null", default: "-" },
+            { name: "defaultValue", type: "string", default: "-" },
+            { name: "value", type: "string", default: "-" },
             { name: "onChange", type: "(event, value) => void", default: "-" },
           ]}
         />

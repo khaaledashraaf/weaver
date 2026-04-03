@@ -8,6 +8,18 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
+/* ── Figma variants ──
+  Table item types: Avatar+text, Brand logo+text, Payment, Image, Only Avatar,
+                    File, Avatar stack, base(Regular), base(Leading), Subtle,
+                    Rating, checkbox, Progress, Toggle, Badges, Tags, Action, Action Group
+  Table item sizes: sm (48px row), lg (56px row)
+  Table header item types: Checkbox, Empty, Label
+  Table Example: type (Header/Row), state (Default/Hover/Selected)
+
+  Header: 44px, 14px/500 text, subtle bg
+  Cell padding: 8px
+*/
+
 const teamData = [
   { name: "Ahmed Hassan", role: "Designer", email: "ahmed@example.com", status: "Active" },
   { name: "Sara Ali", role: "Developer", email: "sara@example.com", status: "Active" },
@@ -23,15 +35,14 @@ export default function TablesPage() {
         Table
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Tables display sets of data organized in rows and columns. Wrap a Joy UI
-        Table in a Sheet for outlined borders and overflow handling. Weaver table
-        headers are 44px tall with 14px / 500 weight text and a subtle
-        background. Cell padding is 8px.
+        Tables display data in rows and columns. Weaver table headers are 44px
+        tall with 14px / 500 weight text and a subtle background. Two row
+        sizes from Figma: sm (48px) and lg (56px). Cell padding is 8px.
       </Typography>
 
       <Section
         title="Basic Table"
-        description="A simple data table with header and rows."
+        description="A data table with header and rows matching Figma Table Example component."
       >
         <Sheet variant="outlined" sx={{ borderRadius: "md", overflow: "auto" }}>
           <Table>
@@ -50,11 +61,7 @@ export default function TablesPage() {
                   <td>{row.role}</td>
                   <td>{row.email}</td>
                   <td>
-                    <Chip
-                      size="sm"
-                      variant="soft"
-                      color={row.status === "Active" ? "success" : "neutral"}
-                    >
+                    <Chip size="sm" color={row.status === "Active" ? "success" : "neutral"}>
                       {row.status}
                     </Chip>
                   </td>
@@ -67,7 +74,7 @@ export default function TablesPage() {
 
       <Section
         title="Striped Table"
-        description="Alternate row shading improves readability for large datasets."
+        description="Alternating row backgrounds for readability."
       >
         <Sheet variant="outlined" sx={{ borderRadius: "md", overflow: "auto" }}>
           <Table stripe="odd">
@@ -93,7 +100,7 @@ export default function TablesPage() {
 
       <Section
         title="Hover Effect"
-        description="Highlight rows on hover for interactive tables."
+        description="Figma Table Example includes a Hover state for rows."
       >
         <Sheet variant="outlined" sx={{ borderRadius: "md", overflow: "auto" }}>
           <Table hoverRow>
@@ -105,7 +112,7 @@ export default function TablesPage() {
               </tr>
             </thead>
             <tbody>
-              {teamData.map((row) => (
+              {teamData.slice(0, 3).map((row) => (
                 <tr key={row.email}>
                   <td>{row.name}</td>
                   <td>{row.role}</td>
@@ -117,112 +124,35 @@ export default function TablesPage() {
         </Sheet>
       </Section>
 
-      <Section
-        title="Sizes"
-        description="Tables support small, medium, and large sizes."
-      >
-        {(["sm", "md", "lg"] as const).map((size) => (
-          <Box key={size} sx={{ mb: 3 }}>
-            <Typography level="title-sm" sx={{ mb: 1 }}>
-              {size === "sm" ? "Small" : size === "md" ? "Medium" : "Large"}
-            </Typography>
-            <Sheet variant="outlined" sx={{ borderRadius: "md", overflow: "auto" }}>
-              <Table size={size}>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teamData.slice(0, 2).map((row) => (
-                    <tr key={row.email}>
-                      <td>{row.name}</td>
-                      <td>{row.role}</td>
-                      <td>{row.status}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Sheet>
-          </Box>
-        ))}
-      </Section>
-
-      <Section
-        title="Variants"
-        description="Tables can be wrapped in different Sheet variants."
-      >
-        {(["outlined", "soft", "plain"] as const).map((variant) => (
-          <Box key={variant} sx={{ mb: 3 }}>
-            <Typography level="title-sm" sx={{ mb: 1, textTransform: "capitalize" }}>
-              {variant} sheet
-            </Typography>
-            <Sheet variant={variant} sx={{ borderRadius: "md", overflow: "auto" }}>
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Role</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teamData.slice(0, 2).map((row) => (
-                    <tr key={row.email}>
-                      <td>{row.name}</td>
-                      <td>{row.role}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Sheet>
-          </Box>
-        ))}
-      </Section>
-
       <Section title="Usage">
         <CodeBlock>{`import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
 
-// Basic table
 <Sheet variant="outlined" sx={{ borderRadius: "md", overflow: "auto" }}>
   <Table>
     <thead>
       <tr>
         <th>Name</th>
-        <th>Email</th>
+        <th>Role</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Ahmed</td>
-        <td>ahmed@example.com</td>
+        <td>Designer</td>
       </tr>
     </tbody>
   </Table>
-</Sheet>
-
-// Striped
-<Table stripe="odd">...</Table>
-
-// Hover effect
-<Table hoverRow>...</Table>
-
-// Sizes
-<Table size="sm">...</Table>
-<Table size="lg">...</Table>`}</CodeBlock>
+</Sheet>`}</CodeBlock>
       </Section>
 
       <Section title="Props">
-        <Typography level="title-sm" sx={{ mb: 1 }}>Table</Typography>
         <PropsTable
           props={[
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
-            { name: "stripe", type: '"odd" | "even" | false', default: "false" },
+            { name: "stripe", type: '"odd" | "even"', default: "-" },
             { name: "hoverRow", type: "boolean", default: "false" },
-            { name: "stickyHeader", type: "boolean", default: "false" },
-            { name: "borderAxis", type: '"xBetween" | "x" | "y" | "both" | "none"', default: '"xBetween"' },
+            { name: "borderAxis", type: '"xBetween" | "yBetween" | "both" | "none"', default: '"xBetween"' },
+            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
           ]}
         />
       </Section>

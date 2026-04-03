@@ -8,6 +8,11 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
+/* ── Figma variants ──
+  Divider: Direction (Horizontal/Vertical), Type (Solid/Dotted)
+  Content Divider: Type (Text/Button), Border style (Solid/Dotted)
+*/
+
 export default function DividerPage() {
   return (
     <Box>
@@ -15,24 +20,27 @@ export default function DividerPage() {
         Divider
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Dividers separate content into clear groups. They support horizontal and
-        vertical orientations.
+        Dividers separate content. Figma defines two directions (Horizontal,
+        Vertical) and two types (Solid, Dotted). Content dividers can contain
+        text or buttons.
       </Typography>
 
       <Section
         title="Horizontal"
-        description="A horizontal line separating stacked content."
+        description="Solid and dotted horizontal dividers."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Typography>Content above</Typography>
+          <Typography level="body-sm">Solid divider</Typography>
           <Divider />
-          <Typography>Content below</Typography>
+          <Typography level="body-sm">Dotted divider</Typography>
+          <Divider sx={{ borderStyle: "dotted" }} />
+          <Typography level="body-sm">Content below</Typography>
         </Stack>
       </Section>
 
       <Section
         title="Vertical"
-        description="A vertical line separating inline content."
+        description="Vertical dividers separate inline content."
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ height: 40 }}>
           <Typography>Left</Typography>
@@ -44,8 +52,8 @@ export default function DividerPage() {
       </Section>
 
       <Section
-        title="With Content"
-        description="A divider can contain text or chips."
+        title="Content Divider"
+        description="Figma Content divider supports Text and Button types with Solid or Dotted border."
       >
         <Stack spacing={3} sx={{ maxWidth: 400 }}>
           <Divider>OR</Divider>
@@ -55,39 +63,26 @@ export default function DividerPage() {
         </Stack>
       </Section>
 
-      <Section
-        title="Inset"
-        description="Use inset to add indentation from either side."
-      >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Typography>Full width divider</Typography>
-          <Divider />
-          <Typography>Context inset divider</Typography>
-          <Divider inset="context" />
-        </Stack>
-      </Section>
-
       <Section title="Usage">
         <CodeBlock>{`import Divider from "@mui/joy/Divider";
 
 // Horizontal (default)
 <Divider />
 
+// Dotted
+<Divider sx={{ borderStyle: "dotted" }} />
+
 // Vertical
 <Divider orientation="vertical" />
 
-// With content
-<Divider>OR</Divider>
-
-// With inset
-<Divider inset="startContent" />`}</CodeBlock>
+// With content (Content divider)
+<Divider>OR</Divider>`}</CodeBlock>
       </Section>
 
       <Section title="Props">
         <PropsTable
           props={[
             { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"' },
-            { name: "inset", type: '"none" | "context" | "startDecorator" | "startContent"', default: '"none"' },
             { name: "children", type: "ReactNode", default: "-" },
           ]}
         />

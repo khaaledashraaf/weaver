@@ -8,8 +8,13 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const sizes = ["sm", "md", "lg"] as const;
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  Avatar types: Image, Initials, Icon
+  Avatar forms: Rounded, Circular
+  Avatar sizes: 2xs(16), xs(20), sm(24), md(32), lg(36), xl(40), 2xl(48), 3xl(56), 4xl(64)
+  Avatar group sizes: xs, 2xs, md, lg
+  Avatar Dot Status colors: Available, Away, Busy, Blocked, Offline
+*/
 
 export default function AvatarPage() {
   return (
@@ -18,68 +23,54 @@ export default function AvatarPage() {
         Avatar
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Avatars represent users or entities with images, initials, or icons.
-        Weaver sizes map to 32px (sm), 40px (md), and 48px (lg) with 600
-        font-weight for initials.
+        Avatars represent users or entities. Figma defines 9 sizes (16px to 64px),
+        three types (Image, Initials, Icon), and two forms (Rounded, Circular).
+        Initials use 600 font-weight. Joy UI maps sm=32px, md=40px, lg=48px.
       </Typography>
 
       <Section
+        title="Types"
+        description="Figma defines three avatar types: Image, Initials, and Icon."
+      >
+        <Stack direction="row" spacing={2} alignItems="center">
+          <Stack spacing={0.5} alignItems="center">
+            <Avatar src="https://i.pravatar.cc/150?img=3" alt="User" />
+            <Typography level="body-xs">Image</Typography>
+          </Stack>
+          <Stack spacing={0.5} alignItems="center">
+            <Avatar>JD</Avatar>
+            <Typography level="body-xs">Initials</Typography>
+          </Stack>
+          <Stack spacing={0.5} alignItems="center">
+            <Avatar>+</Avatar>
+            <Typography level="body-xs">Icon</Typography>
+          </Stack>
+        </Stack>
+      </Section>
+
+      <Section
         title="Sizes"
-        description="Three sizes matching Figma: sm (32px), md (40px), lg (48px)."
+        description="Joy UI exposes sm (32px), md (40px), lg (48px). Figma has 9 sizes from 16px to 64px."
       >
         <Stack direction="row" spacing={2} alignItems="center">
-          {sizes.map((size) => (
-            <Avatar key={size} size={size}>
-              {size.toUpperCase()}
-            </Avatar>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="With Image"
-        description="Pass a src prop to render an image avatar."
-      >
-        <Stack direction="row" spacing={2} alignItems="center">
-          {sizes.map((size) => (
-            <Avatar
-              key={size}
-              size={size}
-              src="https://i.pravatar.cc/150?img=3"
-              alt="User"
-            />
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Colors"
-        description="Avatars support all semantic color palettes."
-      >
-        <Stack direction="row" spacing={2} alignItems="center">
-          {colors.map((color) => (
-            <Avatar key={color} color={color}>
-              {color[0].toUpperCase()}
-            </Avatar>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Variants"
-        description="Four variant styles control the visual emphasis."
-      >
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Avatar variant="solid" color="primary">A</Avatar>
-          <Avatar variant="soft" color="primary">A</Avatar>
-          <Avatar variant="outlined" color="primary">A</Avatar>
-          <Avatar variant="plain" color="primary">A</Avatar>
+          <Stack spacing={0.5} alignItems="center">
+            <Avatar size="sm">SM</Avatar>
+            <Typography level="body-xs">sm (32)</Typography>
+          </Stack>
+          <Stack spacing={0.5} alignItems="center">
+            <Avatar size="md">MD</Avatar>
+            <Typography level="body-xs">md (40)</Typography>
+          </Stack>
+          <Stack spacing={0.5} alignItems="center">
+            <Avatar size="lg">LG</Avatar>
+            <Typography level="body-xs">lg (48)</Typography>
+          </Stack>
         </Stack>
       </Section>
 
       <Section
         title="Avatar Group"
-        description="Stack multiple avatars with overlapping layout."
+        description="Stacked avatars with overlap. Figma supports xs, 2xs, md, lg group sizes."
       >
         <AvatarGroup>
           <Avatar src="https://i.pravatar.cc/150?img=1" alt="User 1" />
@@ -93,16 +84,11 @@ export default function AvatarPage() {
         <CodeBlock>{`import Avatar from "@mui/joy/Avatar";
 import AvatarGroup from "@mui/joy/AvatarGroup";
 
-// Initials avatar
-<Avatar size="md">JD</Avatar>
-
 // Image avatar
 <Avatar src="/avatar.jpg" alt="Jane Doe" />
 
-// Icon avatar
-<Avatar color="primary">
-  <UserIcon />
-</Avatar>
+// Initials avatar
+<Avatar size="md">JD</Avatar>
 
 // Grouped avatars
 <AvatarGroup>
@@ -115,8 +101,6 @@ import AvatarGroup from "@mui/joy/AvatarGroup";
       <Section title="Props">
         <PropsTable
           props={[
-            { name: "variant", type: '"solid" | "soft" | "outlined" | "plain"', default: '"soft"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
             { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
             { name: "src", type: "string", default: "-" },
             { name: "alt", type: "string", default: "-" },

@@ -7,8 +7,11 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const variants = ["solid", "soft", "outlined"] as const;
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  Alert styles:   Solid, Light, Outline
+  Alert statuses: Danger, Success, Warning, Info, Neutral
+  isExpandable:   True, False
+*/
 
 export default function AlertsPage() {
   return (
@@ -17,90 +20,71 @@ export default function AlertsPage() {
         Alert
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Alerts display brief messages that communicate status, feedback, or
-        important information. Weaver alerts use 8px border-radius, 16px padding
-        on all sides, 12px gap, 15px / 500 weight text, and come in three styles:
-        Light, Outline, and Solid across five status colors.
+        Alerts display status messages. Weaver alerts use 8px border-radius,
+        16px padding, 12px gap, and 15px / 500 weight text. Three styles
+        (Solid, Light, Outline) across five statuses (Danger, Success, Warning,
+        Info, Neutral).
       </Typography>
 
       <Section
-        title="Colors"
-        description="Semantic colors communicate the nature of the alert."
+        title="Statuses"
+        description="Five status types from Figma: Danger, Success, Warning, Info, Neutral."
       >
-        <Stack spacing={2}>
-          {colors.map((color) => (
-            <Alert key={color} color={color}>
-              This is a {color} alert -- check it out!
-            </Alert>
-          ))}
+        <Stack spacing={1.5}>
+          <Alert color="danger">Danger — Something went wrong.</Alert>
+          <Alert color="success">Success — Operation completed.</Alert>
+          <Alert color="warning">Warning — Please review this.</Alert>
+          <Alert color="primary">Info — Here is some information.</Alert>
+          <Alert color="neutral">Neutral — General notice.</Alert>
         </Stack>
       </Section>
 
       <Section
-        title="Variants"
-        description="Three variants control the visual weight of alerts."
+        title="Styles"
+        description="Three visual styles from Figma: Solid (filled background), Light (tinted background with border), Outline (white background with border)."
       >
         <Stack spacing={2}>
-          {variants.map((variant) => (
-            <Alert key={variant} variant={variant} color="primary">
-              {variant.charAt(0).toUpperCase() + variant.slice(1)} alert variant
-            </Alert>
-          ))}
-        </Stack>
-      </Section>
+          <Typography level="title-sm">Solid</Typography>
+          <Stack spacing={1}>
+            <Alert variant="solid" color="danger">Solid Danger</Alert>
+            <Alert variant="solid" color="success">Solid Success</Alert>
+            <Alert variant="solid" color="warning">Solid Warning</Alert>
+          </Stack>
 
-      <Section
-        title="Variant x Color Matrix"
-        description="Every variant and color combination."
-      >
-        <Stack spacing={3}>
-          {variants.map((variant) => (
-            <Box key={variant}>
-              <Typography level="title-sm" sx={{ mb: 1, textTransform: "capitalize" }}>
-                {variant}
-              </Typography>
-              <Stack spacing={1}>
-                {colors.map((color) => (
-                  <Alert key={color} variant={variant} color={color}>
-                    {variant} / {color}
-                  </Alert>
-                ))}
-              </Stack>
-            </Box>
-          ))}
+          <Typography level="title-sm">Light (soft)</Typography>
+          <Stack spacing={1}>
+            <Alert variant="soft" color="danger">Light Danger</Alert>
+            <Alert variant="soft" color="success">Light Success</Alert>
+            <Alert variant="soft" color="warning">Light Warning</Alert>
+          </Stack>
+
+          <Typography level="title-sm">Outline</Typography>
+          <Stack spacing={1}>
+            <Alert variant="outlined" color="danger">Outline Danger</Alert>
+            <Alert variant="outlined" color="success">Outline Success</Alert>
+            <Alert variant="outlined" color="warning">Outline Warning</Alert>
+          </Stack>
         </Stack>
       </Section>
 
       <Section
         title="With Decorators"
-        description="Add icons or actions before and after the content."
+        description="Alerts support start and end decorator slots for icons and action buttons."
       >
-        <Stack spacing={2}>
-          <Alert
-            variant="soft"
-            color="success"
-            startDecorator="OK"
-          >
-            Operation completed successfully.
-          </Alert>
+        <Stack spacing={1.5}>
           <Alert
             variant="soft"
             color="danger"
-            startDecorator="X"
-          >
-            Something went wrong. Please try again.
-          </Alert>
-          <Alert
-            variant="soft"
-            color="warning"
-            startDecorator="!"
             endDecorator={
-              <Typography level="body-xs" sx={{ cursor: "pointer", textDecoration: "underline" }}>
-                Dismiss
+              <Typography level="body-sm" fontWeight={500} sx={{ cursor: "pointer" }}>
+                Action
               </Typography>
             }
           >
-            Your session will expire in 5 minutes.
+            Alert with action
+          </Alert>
+          <Alert variant="soft" color="success" startDecorator="✓">
+            Alert with icon
           </Alert>
         </Stack>
       </Section>
@@ -108,28 +92,21 @@ export default function AlertsPage() {
       <Section title="Usage">
         <CodeBlock>{`import Alert from "@mui/joy/Alert";
 
-// Basic alerts
-<Alert color="success">Operation completed.</Alert>
-<Alert color="danger">An error occurred.</Alert>
-<Alert color="warning">Heads up!</Alert>
+// Statuses
+<Alert color="danger">Error message</Alert>
+<Alert color="success">Success message</Alert>
+<Alert color="warning">Warning message</Alert>
+<Alert color="primary">Info message</Alert>
+<Alert color="neutral">Neutral message</Alert>
 
-// Variants
-<Alert variant="solid" color="primary">Solid</Alert>
-<Alert variant="soft" color="primary">Soft</Alert>
-<Alert variant="outlined" color="primary">Outlined</Alert>
+// Styles (Figma: Solid, Light, Outline)
+<Alert variant="solid" color="danger">Solid</Alert>
+<Alert variant="soft" color="danger">Light</Alert>
+<Alert variant="outlined" color="danger">Outline</Alert>
 
-// With decorators
-<Alert
-  variant="soft"
-  color="success"
-  startDecorator={<CheckIcon />}
-  endDecorator={
-    <Button size="sm" variant="soft" color="success">
-      Dismiss
-    </Button>
-  }
->
-  File uploaded successfully.
+// With action
+<Alert endDecorator={<Button size="sm">Undo</Button>}>
+  Item deleted
 </Alert>`}</CodeBlock>
       </Section>
 
@@ -138,7 +115,6 @@ export default function AlertsPage() {
           props={[
             { name: "variant", type: '"solid" | "soft" | "outlined"', default: '"soft"' },
             { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
             { name: "startDecorator", type: "ReactNode", default: "-" },
             { name: "endDecorator", type: "ReactNode", default: "-" },
           ]}

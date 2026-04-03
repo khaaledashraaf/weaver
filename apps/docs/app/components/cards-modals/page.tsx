@@ -19,7 +19,20 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const cardVariants = ["outlined", "soft", "plain", "solid"] as const;
+/* ── Figma variants ──
+  Cards:
+    Card Vertical types: Leading image, Full Image
+    Card Horizontal types: Leading image, Trailing image
+    Card profile types: Cover, Default, Horizontal, Shape, Pattern
+    16px border-radius, 1px border, no shadow
+
+  Modal:
+    Sizes: Small (440px), Default (560px), Large
+    Header types: Simple, With icon, Icon Center
+    Footer types: Stretch, Buttons Full Vertical, Basic, Button (Center)
+    Danger: True, False
+    12px border-radius
+*/
 
 export default function CardsModalsPage() {
   const [basicOpen, setBasicOpen] = React.useState(false);
@@ -31,118 +44,58 @@ export default function CardsModalsPage() {
         Cards & Modals
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Cards are surfaces that display content and actions about a single
-        subject. Weaver cards use 16px border-radius with a 1px border and no
-        shadow. Modals use 12px border-radius with section-based padding (20px
-        per section). Both provide consistent, Figma-matched styling.
+        Weaver cards use 16px border-radius with a 1px border and no shadow.
+        Modals use 12px border-radius with section-based padding (20px per
+        section). Modal sizes: Small (440px), Default (560px), Large.
       </Typography>
 
-      {/* Card sections */}
       <Section
-        title="Card Variants"
-        description="Cards support outlined, soft, plain, and solid variants."
+        title="Card"
+        description="Basic card with 16px border-radius and border. Figma card types include Vertical, Horizontal, and Profile."
       >
         <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-          {cardVariants.map((variant) => (
-            <Card key={variant} variant={variant} sx={{ width: 240 }}>
-              <CardContent>
-                <Typography level="title-md" sx={{ textTransform: "capitalize" }}>
-                  {variant} Card
-                </Typography>
-                <Typography level="body-sm">
-                  This card uses the {variant} variant with Weaver theme styling.
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Card with Actions"
-        description="Cards can include action buttons."
-      >
-        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-          <Card sx={{ width: 280 }}>
+          <Card sx={{ width: 300 }}>
             <CardContent>
-              <Typography level="title-md">Project Alpha</Typography>
+              <Typography level="title-md">Card Title</Typography>
               <Typography level="body-sm">
-                A brief description of the project with relevant details for the
-                team.
+                Card content goes here. This matches the Figma card component
+                with 16px radius and border styling.
               </Typography>
             </CardContent>
-            <CardActions>
-              <Button variant="solid" size="sm">
-                View
-              </Button>
-              <Button variant="outlined" size="sm" color="neutral">
-                Edit
-              </Button>
-            </CardActions>
           </Card>
-          <Card variant="soft" sx={{ width: 280 }}>
+          <Card sx={{ width: 300 }}>
             <CardContent>
-              <Typography level="title-md">Team Update</Typography>
+              <Typography level="title-md">Card with Actions</Typography>
               <Typography level="body-sm">
-                Weekly sync summary with action items and next steps.
+                Cards can include action buttons in the footer area.
               </Typography>
             </CardContent>
             <CardActions>
-              <Button variant="soft" size="sm" color="primary">
-                Read More
+              <Button variant="solid" color="primary" size="sm">
+                Action
+              </Button>
+              <Button variant="outlined" color="neutral" size="sm">
+                Cancel
               </Button>
             </CardActions>
           </Card>
         </Stack>
       </Section>
 
-      <Section
-        title="Card Colors"
-        description="Cards with solid variant support color themes."
-      >
-        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-          <Card variant="solid" color="primary" sx={{ width: 200 }}>
-            <CardContent>
-              <Typography level="title-sm">Primary</Typography>
-              <Typography level="body-xs">Solid primary card.</Typography>
-            </CardContent>
-          </Card>
-          <Card variant="solid" color="success" sx={{ width: 200 }}>
-            <CardContent>
-              <Typography level="title-sm">Success</Typography>
-              <Typography level="body-xs">Solid success card.</Typography>
-            </CardContent>
-          </Card>
-          <Card variant="solid" color="danger" sx={{ width: 200 }}>
-            <CardContent>
-              <Typography level="title-sm">Danger</Typography>
-              <Typography level="body-xs">Solid danger card.</Typography>
-            </CardContent>
-          </Card>
-          <Card variant="solid" color="warning" sx={{ width: 200 }}>
-            <CardContent>
-              <Typography level="title-sm">Warning</Typography>
-              <Typography level="body-xs">Solid warning card.</Typography>
-            </CardContent>
-          </Card>
-        </Stack>
-      </Section>
-
-      {/* Modal sections */}
       <Section
         title="Basic Modal"
-        description="A simple modal dialog with title, content, and actions."
+        description="Figma modal with Simple header type and Basic footer. Default size is 560px wide."
       >
-        <Button onClick={() => setBasicOpen(true)}>Open Modal</Button>
+        <Button variant="outlined" color="neutral" onClick={() => setBasicOpen(true)}>
+          Open Modal
+        </Button>
         <Modal open={basicOpen} onClose={() => setBasicOpen(false)}>
           <ModalDialog>
             <ModalClose />
             <DialogTitle>Modal Title</DialogTitle>
-            <Divider />
             <DialogContent>
-              This is a modal dialog styled by the Weaver theme. It
-              demonstrates the ModalDialog, DialogTitle, DialogContent, and
-              DialogActions composition.
+              Are you sure you want to proceed with this action? Please review
+              your choices before confirming.
             </DialogContent>
             <DialogActions>
               <Button variant="solid" color="primary" onClick={() => setBasicOpen(false)}>
@@ -157,25 +110,26 @@ export default function CardsModalsPage() {
       </Section>
 
       <Section
-        title="Confirmation Modal"
-        description="Use modals for destructive or important actions."
+        title="Danger Modal"
+        description="Figma supports a Danger variant (Danger=True) for destructive confirmations."
       >
-        <Button color="danger" onClick={() => setConfirmOpen(true)}>
+        <Button variant="solid" color="danger" onClick={() => setConfirmOpen(true)}>
           Delete Item
         </Button>
         <Modal open={confirmOpen} onClose={() => setConfirmOpen(false)}>
-          <ModalDialog variant="outlined" color="danger">
-            <DialogTitle>Confirm Deletion</DialogTitle>
+          <ModalDialog>
+            <ModalClose />
+            <DialogTitle>Delete item?</DialogTitle>
             <Divider />
             <DialogContent>
-              Are you sure you want to delete this item? This action cannot be
-              undone.
+              This action cannot be undone. The item and all associated data will
+              be permanently removed.
             </DialogContent>
             <DialogActions>
               <Button variant="solid" color="danger" onClick={() => setConfirmOpen(false)}>
                 Delete
               </Button>
-              <Button variant="plain" color="neutral" onClick={() => setConfirmOpen(false)}>
+              <Button variant="outlined" color="neutral" onClick={() => setConfirmOpen(false)}>
                 Cancel
               </Button>
             </DialogActions>
@@ -186,35 +140,29 @@ export default function CardsModalsPage() {
       <Section title="Usage">
         <CodeBlock>{`import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
-import CardActions from "@mui/joy/CardActions";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
-import ModalClose from "@mui/joy/ModalClose";
 import DialogTitle from "@mui/joy/DialogTitle";
 import DialogContent from "@mui/joy/DialogContent";
 import DialogActions from "@mui/joy/DialogActions";
 
-// Card
-<Card variant="outlined">
+// Card (16px radius, border, no shadow)
+<Card>
   <CardContent>
     <Typography level="title-md">Title</Typography>
-    <Typography level="body-sm">Description</Typography>
+    <Typography level="body-sm">Content</Typography>
   </CardContent>
-  <CardActions>
-    <Button size="sm">Action</Button>
-  </CardActions>
 </Card>
 
-// Modal
-const [open, setOpen] = useState(false);
-<Button onClick={() => setOpen(true)}>Open</Button>
-<Modal open={open} onClose={() => setOpen(false)}>
+// Modal (12px radius)
+<Modal open={open} onClose={handleClose}>
   <ModalDialog>
     <ModalClose />
     <DialogTitle>Title</DialogTitle>
-    <DialogContent>Content here.</DialogContent>
+    <DialogContent>Body text</DialogContent>
     <DialogActions>
-      <Button onClick={() => setOpen(false)}>OK</Button>
+      <Button onClick={handleClose}>Confirm</Button>
+      <Button variant="outlined" onClick={handleClose}>Cancel</Button>
     </DialogActions>
   </ModalDialog>
 </Modal>`}</CodeBlock>
@@ -224,26 +172,16 @@ const [open, setOpen] = useState(false);
         <Typography level="title-sm" sx={{ mb: 1 }}>Card</Typography>
         <PropsTable
           props={[
-            { name: "variant", type: '"outlined" | "soft" | "plain" | "solid"', default: '"outlined"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
-            { name: "orientation", type: '"vertical" | "horizontal"', default: '"vertical"' },
-          ]}
-        />
-        <Typography level="title-sm" sx={{ mt: 3, mb: 1 }}>Modal</Typography>
-        <PropsTable
-          props={[
-            { name: "open", type: "boolean", default: "false" },
-            { name: "onClose", type: "(event, reason) => void", default: "-" },
+            { name: "children", type: "ReactNode", default: "-" },
+            { name: "sx", type: "SxProps", default: "-" },
           ]}
         />
         <Typography level="title-sm" sx={{ mt: 3, mb: 1 }}>ModalDialog</Typography>
         <PropsTable
           props={[
-            { name: "variant", type: '"outlined" | "soft" | "plain" | "solid"', default: '"outlined"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
             { name: "layout", type: '"center" | "fullscreen"', default: '"center"' },
+            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
+            { name: "children", type: "ReactNode", default: "-" },
           ]}
         />
       </Section>

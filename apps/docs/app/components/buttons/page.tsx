@@ -8,8 +8,16 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const variants = ["solid", "soft", "outlined", "plain"] as const;
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  Button styles: Primary, Secondary, Soft, Outline, Ghost, Ghost Primary, Danger, Soft Danger, White, Dashed
+  Button sizes:  xs (32), sm (36), md (40), lg (48)
+  Button states: Default, Hover, Pressed, Focused, Disabled
+
+  IconButton styles: Primary, Soft, Secondary, Outline, Ghost, Ghost Primary, Danger, Danger Ghost
+  IconButton sizes:  2xs (28), xs (32), sm (36), md (40), lg (48)
+  IconButton forms:  Default, Pill
+*/
+
 const sizes = ["sm", "md", "lg"] as const;
 
 export default function ButtonsPage() {
@@ -19,42 +27,40 @@ export default function ButtonsPage() {
         Button
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Buttons allow users to take actions and make choices with a single tap.
-        Weaver buttons use 8px border-radius, 15px font size across all sizes,
-        and heights of 36px (sm), 40px (md), and 48px (lg). Disabled opacity
-        is 0.4.
+        Buttons trigger actions. Weaver buttons use 8px border-radius, 15px font
+        size across all sizes, and heights of 36px (sm), 40px (md), and 48px (lg).
+        Figma defines 10 button styles and 4 sizes.
       </Typography>
 
       <Section
-        title="Variants"
-        description="Buttons come in four variants that communicate different levels of emphasis."
+        title="Styles"
+        description="The Figma design system defines 10 button styles. These map to Joy UI variant + color combinations."
       >
         <Stack spacing={2}>
-          {variants.map((variant) => (
-            <Box key={variant}>
-              <Typography level="title-sm" sx={{ mb: 1, textTransform: "capitalize" }}>
-                {variant}
-              </Typography>
-              <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-                {colors.map((color) => (
-                  <Button key={color} variant={variant} color={color}>
-                    {color}
-                  </Button>
-                ))}
-              </Stack>
-            </Box>
-          ))}
+          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+            <Button variant="solid" color="primary">Primary</Button>
+            <Button variant="outlined" color="neutral">Secondary</Button>
+            <Button variant="soft" color="neutral">Soft</Button>
+            <Button variant="outlined" color="neutral">Outline</Button>
+            <Button variant="plain" color="neutral">Ghost</Button>
+          </Stack>
+          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+            <Button variant="plain" color="primary">Ghost Primary</Button>
+            <Button variant="solid" color="danger">Danger</Button>
+            <Button variant="soft" color="danger">Soft Danger</Button>
+            <Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed" }}>Dashed</Button>
+          </Stack>
         </Stack>
       </Section>
 
       <Section
         title="Sizes"
-        description="Three sizes are available to fit different layout densities."
+        description="Four sizes: xs (32px), sm (36px), md (40px), lg (48px)."
       >
         <Stack direction="row" spacing={1.5} alignItems="center">
           {sizes.map((size) => (
             <Button key={size} size={size}>
-              {size === "sm" ? "Small" : size === "md" ? "Medium" : "Large"}
+              {size === "sm" ? "Small 36" : size === "md" ? "Medium 40" : "Large 48"}
             </Button>
           ))}
         </Stack>
@@ -62,44 +68,51 @@ export default function ButtonsPage() {
 
       <Section
         title="States"
-        description="Buttons support disabled and loading states."
+        description="Figma states: Default, Hover, Pressed, Focused, Disabled. Disabled uses 0.4 opacity."
       >
-        <Stack spacing={2}>
-          <Typography level="title-sm">Disabled</Typography>
-          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-            <Button disabled variant="solid">Disabled Solid</Button>
-            <Button disabled variant="soft">Disabled Soft</Button>
-            <Button disabled variant="outlined">Disabled Outlined</Button>
-            <Button disabled variant="plain">Disabled Plain</Button>
-          </Stack>
-          <Typography level="title-sm">Loading</Typography>
-          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-            <Button loading variant="solid">Loading</Button>
-            <Button loading variant="soft">Loading</Button>
-            <Button loading variant="outlined">Loading</Button>
-          </Stack>
+        <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+          <Button>Default</Button>
+          <Button disabled>Disabled</Button>
+          <Button variant="outlined" color="neutral" disabled>Disabled Secondary</Button>
+          <Button variant="solid" color="danger" disabled>Disabled Danger</Button>
         </Stack>
       </Section>
 
       <Section
         title="Icon Buttons"
-        description="Use IconButton for actions represented by a single icon."
+        description="Icon buttons come in Default (8px radius) and Pill (full round) forms. Sizes: 2xs (28), xs (32), sm (36), md (40), lg (48)."
       >
-        <Stack direction="row" spacing={1.5} alignItems="center">
-          {sizes.map((size) => (
-            <IconButton key={size} size={size} variant="outlined" color="neutral">
-              +
-            </IconButton>
-          ))}
-          <IconButton variant="solid" color="primary">+</IconButton>
-          <IconButton variant="soft" color="danger">X</IconButton>
-          <IconButton variant="plain" color="success">!</IconButton>
+        <Stack spacing={2}>
+          <Typography level="title-sm">Default form</Typography>
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            {sizes.map((size) => (
+              <IconButton key={size} size={size} variant="outlined" color="neutral">
+                +
+              </IconButton>
+            ))}
+          </Stack>
+          <Typography level="title-sm">Pill form</Typography>
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            {sizes.map((size) => (
+              <IconButton key={size} size={size} variant="outlined" color="neutral" sx={{ borderRadius: "9999px" }}>
+                +
+              </IconButton>
+            ))}
+          </Stack>
+          <Typography level="title-sm">Icon button styles</Typography>
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <IconButton variant="solid" color="primary">+</IconButton>
+            <IconButton variant="soft" color="neutral">+</IconButton>
+            <IconButton variant="outlined" color="neutral">+</IconButton>
+            <IconButton variant="plain" color="neutral">+</IconButton>
+            <IconButton variant="solid" color="danger">+</IconButton>
+          </Stack>
         </Stack>
       </Section>
 
       <Section
         title="With Decorators"
-        description="Add icons or elements before and after the label."
+        description="Buttons support leading and trailing icon slots."
       >
         <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
           <Button startDecorator="+" variant="solid" color="primary">
@@ -108,85 +121,45 @@ export default function ButtonsPage() {
           <Button endDecorator=">" variant="outlined" color="neutral">
             Next
           </Button>
-          <Button startDecorator="<" endDecorator=">" variant="soft" color="neutral">
-            Navigate
-          </Button>
         </Stack>
-      </Section>
-
-      <Section
-        title="Variant x Color Matrix"
-        description="A comprehensive grid showing every variant and color combination."
-      >
-        <Box sx={{ overflowX: "auto" }}>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "80px repeat(5, 1fr)",
-              gap: 1.5,
-              minWidth: 600,
-              alignItems: "center",
-            }}
-          >
-            <Box />
-            {colors.map((color) => (
-              <Typography key={color} level="body-xs" fontFamily="monospace" textAlign="center">
-                {color}
-              </Typography>
-            ))}
-            {variants.map((variant) => (
-              <Box key={variant} sx={{ display: "contents" }}>
-                <Typography level="body-xs" fontFamily="monospace">
-                  {variant}
-                </Typography>
-                {colors.map((color) => (
-                  <Button key={color} variant={variant} color={color} size="sm">
-                    Label
-                  </Button>
-                ))}
-              </Box>
-            ))}
-          </Box>
-        </Box>
       </Section>
 
       <Section title="Usage">
         <CodeBlock>{`import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
 
-// Basic button
-<Button variant="solid" color="primary">
-  Save Changes
-</Button>
+// Primary button
+<Button variant="solid" color="primary">Save</Button>
 
-// With decorators
-<Button startDecorator={<AddIcon />} variant="soft">
-  Add Item
-</Button>
+// Secondary button
+<Button variant="outlined" color="neutral">Cancel</Button>
 
-// Icon button
+// Danger button
+<Button variant="solid" color="danger">Delete</Button>
+
+// Ghost button
+<Button variant="plain" color="neutral">Skip</Button>
+
+// Icon button (default form)
 <IconButton variant="outlined" color="neutral">
-  <SettingsIcon />
+  <AddIcon />
 </IconButton>
 
-// Disabled
-<Button disabled>Cannot Click</Button>
-
-// Loading
-<Button loading>Submitting...</Button>`}</CodeBlock>
+// Icon button (pill form)
+<IconButton variant="outlined" sx={{ borderRadius: "9999px" }}>
+  <AddIcon />
+</IconButton>`}</CodeBlock>
       </Section>
 
       <Section title="Props">
         <PropsTable
           props={[
             { name: "variant", type: '"solid" | "soft" | "outlined" | "plain"', default: '"solid"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"primary"' },
+            { name: "color", type: '"primary" | "neutral" | "danger"', default: '"primary"' },
             { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
             { name: "disabled", type: "boolean", default: "false" },
-            { name: "loading", type: "boolean", default: "false" },
             { name: "startDecorator", type: "ReactNode", default: "-" },
             { name: "endDecorator", type: "ReactNode", default: "-" },
-            { name: "fullWidth", type: "boolean", default: "false" },
           ]}
         />
       </Section>

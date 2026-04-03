@@ -11,9 +11,13 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const variants = ["outlined", "soft", "plain"] as const;
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
-const sizes = ["sm", "md", "lg"] as const;
+/* ── Figma variants ──
+  Input styles: Default, Soft
+  Input sizes:  md, lg
+  Input states: Default, Focus, Error, Disabled, Filled
+  Input types:  Default, ShortCut, Add-on, Inline Add-on, Tags, Inline Tags,
+                Trailing Dropdown, Leading Dropdown, Quantity, Trailing Button, Leading Button
+*/
 
 export default function InputsPage() {
   return (
@@ -24,95 +28,101 @@ export default function InputsPage() {
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Input fields let users enter and edit text. Weaver inputs use 8px
         border-radius, 15px font size, and heights of 32px (md) and 36px (lg).
-        The theme customizes
-        border-radius, focus rings, and color tokens for a cohesive look. Pair
-        with FormControl, FormLabel, and FormHelperText for complete form fields.
+        Two styles: Default (bordered) and Soft (filled background).
       </Typography>
 
       <Section
-        title="Variants"
-        description="Inputs support outlined, soft, and plain variants."
+        title="Styles"
+        description="Figma defines two input styles: Default (with border) and Soft (filled background, no visible border)."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          {variants.map((variant) => (
-            <Input key={variant} variant={variant} placeholder={`${variant} variant`} />
-          ))}
+          <FormControl>
+            <FormLabel>Default style</FormLabel>
+            <Input placeholder="Placeholder" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Soft style</FormLabel>
+            <Input placeholder="Placeholder" variant="soft" />
+          </FormControl>
         </Stack>
       </Section>
 
       <Section
         title="Sizes"
-        description="Three sizes to match the density of your layout."
+        description="Two sizes from Figma: md (32px height) and lg (36px height)."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          {sizes.map((size) => (
-            <Input key={size} size={size} placeholder={`${size === "sm" ? "Small" : size === "md" ? "Medium" : "Large"} input`} />
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Colors"
-        description="Apply semantic colors to communicate context."
-      >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          {colors.map((color) => (
-            <Input key={color} color={color} placeholder={`${color} color`} />
-          ))}
+          <FormControl>
+            <FormLabel>Medium (md) — 32px</FormLabel>
+            <Input size="md" placeholder="Medium input" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Large (lg) — 36px</FormLabel>
+            <Input size="lg" placeholder="Large input" />
+          </FormControl>
         </Stack>
       </Section>
 
       <Section
         title="States"
-        description="Disabled and read-only states prevent user interaction."
+        description="Figma states: Default, Focus, Error, Disabled, Filled."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Input disabled placeholder="Disabled input" />
-          <Input readOnly value="Read-only value" />
+          <FormControl>
+            <FormLabel>Default</FormLabel>
+            <Input placeholder="Default state" />
+          </FormControl>
+          <FormControl error>
+            <FormLabel>Error</FormLabel>
+            <Input placeholder="Error state" color="danger" />
+            <FormHelperText>This is a hint text</FormHelperText>
+          </FormControl>
+          <FormControl disabled>
+            <FormLabel>Disabled</FormLabel>
+            <Input placeholder="Disabled state" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Filled</FormLabel>
+            <Input defaultValue="Filled value" />
+          </FormControl>
         </Stack>
       </Section>
 
       <Section
         title="With Form Control"
-        description="Compose Input with FormControl, FormLabel, and FormHelperText for accessible forms."
+        description="Inputs are typically used with FormLabel and FormHelperText, separated by 6px gap."
       >
         <Stack spacing={3} sx={{ maxWidth: 400 }}>
           <FormControl>
-            <FormLabel>Email</FormLabel>
-            <Input placeholder="you@example.com" />
-            <FormHelperText>We will never share your email.</FormHelperText>
+            <FormLabel>Label</FormLabel>
+            <Input placeholder="Placeholder" />
+            <FormHelperText>This is a hint text</FormHelperText>
           </FormControl>
           <FormControl error>
-            <FormLabel>Password</FormLabel>
-            <Input type="password" color="danger" placeholder="Required" />
-            <FormHelperText>Password is required.</FormHelperText>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Search</FormLabel>
-            <Input startDecorator="Q" placeholder="Search..." />
+            <FormLabel>Label</FormLabel>
+            <Input placeholder="Placeholder" color="danger" />
+            <FormHelperText>Error message</FormHelperText>
           </FormControl>
         </Stack>
       </Section>
 
       <Section
         title="With Decorators"
-        description="Prefix or suffix content inside the input."
+        description="Leading and trailing icon slots."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Input startDecorator="$" placeholder="0.00" />
-          <Input endDecorator="kg" placeholder="Weight" />
-          <Input startDecorator="https://" endDecorator=".com" placeholder="domain" />
+          <Input startDecorator="@" placeholder="Username" />
+          <Input endDecorator="$" placeholder="Amount" />
         </Stack>
       </Section>
 
       <Section
         title="Textarea"
-        description="Multi-line text input for longer content."
+        description="Multi-line text input. Same 8px border-radius and 15px font as Input."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Textarea minRows={3} placeholder="Write something..." />
-          <Textarea minRows={3} variant="soft" placeholder="Soft textarea" />
-          <Textarea minRows={3} disabled placeholder="Disabled textarea" />
+          <Textarea minRows={3} placeholder="Enter your message..." />
+          <Textarea minRows={3} variant="soft" placeholder="Soft style textarea" />
         </Stack>
       </Section>
 
@@ -123,49 +133,47 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
 
-// Basic input
-<Input placeholder="Enter text..." />
-
-// With form control
+// Default input with form control
 <FormControl>
-  <FormLabel>Email</FormLabel>
-  <Input placeholder="you@example.com" />
-  <FormHelperText>We won't share your email.</FormHelperText>
+  <FormLabel>Label</FormLabel>
+  <Input placeholder="Placeholder" />
+  <FormHelperText>This is a hint text</FormHelperText>
 </FormControl>
+
+// Soft style
+<Input variant="soft" placeholder="Soft input" />
 
 // Error state
 <FormControl error>
-  <FormLabel>Password</FormLabel>
-  <Input type="password" color="danger" />
-  <FormHelperText>Password is required.</FormHelperText>
+  <FormLabel>Email</FormLabel>
+  <Input color="danger" placeholder="Email" />
+  <FormHelperText>Invalid email address</FormHelperText>
 </FormControl>
 
 // Textarea
-<Textarea minRows={3} placeholder="Long text..." />`}</CodeBlock>
+<Textarea minRows={3} placeholder="Message" />`}</CodeBlock>
       </Section>
 
       <Section title="Props">
         <Typography level="title-sm" sx={{ mb: 1 }}>Input</Typography>
         <PropsTable
           props={[
-            { name: "variant", type: '"outlined" | "soft" | "plain"', default: '"outlined"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
+            { name: "variant", type: '"outlined" | "soft"', default: '"outlined"' },
+            { name: "size", type: '"md" | "lg"', default: '"md"' },
+            { name: "color", type: '"neutral" | "danger"', default: '"neutral"' },
+            { name: "placeholder", type: "string", default: "-" },
             { name: "disabled", type: "boolean", default: "false" },
-            { name: "readOnly", type: "boolean", default: "false" },
             { name: "startDecorator", type: "ReactNode", default: "-" },
             { name: "endDecorator", type: "ReactNode", default: "-" },
-            { name: "placeholder", type: "string", default: "-" },
           ]}
         />
         <Typography level="title-sm" sx={{ mt: 3, mb: 1 }}>Textarea</Typography>
         <PropsTable
           props={[
-            { name: "variant", type: '"outlined" | "soft" | "plain"', default: '"outlined"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"neutral"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
-            { name: "minRows", type: "number", default: "1" },
+            { name: "variant", type: '"outlined" | "soft"', default: '"outlined"' },
+            { name: "minRows", type: "number", default: "-" },
             { name: "maxRows", type: "number", default: "-" },
+            { name: "placeholder", type: "string", default: "-" },
             { name: "disabled", type: "boolean", default: "false" },
           ]}
         />

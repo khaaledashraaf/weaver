@@ -2,13 +2,17 @@
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import LinearProgress from "@mui/joy/LinearProgress";
-import CircularProgress from "@mui/joy/CircularProgress";
 import Stack from "@mui/joy/Stack";
 import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  Progress bar: Progress (0-100%), Size (lg/sm)
+  _Progress line colors: Default, Green, Golden, Amber, Red, Purple, Sky, Neutral
+  Progress + Label types: Top Label, Bottom Label, Only Helper Text, Inline indicator
+  _Progress Indicator types: Loading, Completed, Error, Custom icon
+*/
 
 export default function ProgressPage() {
   return (
@@ -17,134 +21,82 @@ export default function ProgressPage() {
         Progress
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Progress indicators inform users about the status of ongoing processes
-        such as loading, submitting, or uploading.
+        Progress bars show the status of ongoing processes. Figma defines two
+        sizes (sm and lg), 8 line colors, and label placement options (Top, Bottom,
+        Inline, Helper text only).
       </Typography>
 
       <Section
-        title="Linear Progress"
-        description="A horizontal bar showing determinate or indeterminate progress."
+        title="Basic Progress"
+        description="Determinate progress at various values."
       >
-        <Stack spacing={3} sx={{ maxWidth: 400 }}>
-          <LinearProgress determinate value={40} />
-          <LinearProgress determinate value={70} />
+        <Stack spacing={2} sx={{ maxWidth: 400 }}>
+          <LinearProgress determinate value={20} />
+          <LinearProgress determinate value={50} />
+          <LinearProgress determinate value={80} />
+          <LinearProgress determinate value={100} />
+        </Stack>
+      </Section>
+
+      <Section
+        title="Indeterminate"
+        description="Loading indicator when progress is unknown."
+      >
+        <Box sx={{ maxWidth: 400 }}>
           <LinearProgress />
-        </Stack>
+        </Box>
       </Section>
 
       <Section
-        title="Linear Colors"
-        description="Linear progress supports all semantic colors."
+        title="Sizes"
+        description="Figma defines two sizes: sm and lg."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          {colors.map((color) => (
-            <Box key={color}>
-              <Typography level="body-xs" sx={{ mb: 0.5, textTransform: "capitalize" }}>
-                {color}
-              </Typography>
-              <LinearProgress determinate value={60} color={color} />
-            </Box>
-          ))}
+          <Box>
+            <Typography level="body-xs" sx={{ mb: 0.5 }}>sm</Typography>
+            <LinearProgress determinate value={60} size="sm" />
+          </Box>
+          <Box>
+            <Typography level="body-xs" sx={{ mb: 0.5 }}>lg</Typography>
+            <LinearProgress determinate value={60} size="lg" />
+          </Box>
         </Stack>
       </Section>
 
       <Section
-        title="Linear Sizes"
-        description="Two thickness options for linear progress."
+        title="Colors"
+        description="Figma defines 8 progress line colors: Default, Green, Golden, Amber, Red, Purple, Sky, Neutral."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          {(["sm", "md", "lg"] as const).map((size) => (
-            <Box key={size}>
-              <Typography level="body-xs" sx={{ mb: 0.5 }}>{size}</Typography>
-              <LinearProgress determinate value={50} size={size} />
-            </Box>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Linear Variants"
-        description="Different visual styles for the progress bar."
-      >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          {(["solid", "soft", "outlined", "plain"] as const).map((variant) => (
-            <Box key={variant}>
-              <Typography level="body-xs" sx={{ mb: 0.5 }}>{variant}</Typography>
-              <LinearProgress determinate value={50} variant={variant} />
-            </Box>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Circular Progress"
-        description="A circular indicator for loading states."
-      >
-        <Stack direction="row" spacing={3} alignItems="center">
-          <CircularProgress size="sm" />
-          <CircularProgress size="md" />
-          <CircularProgress size="lg" />
-        </Stack>
-      </Section>
-
-      <Section
-        title="Circular Determinate"
-        description="Circular progress with specific values."
-      >
-        <Stack direction="row" spacing={3} alignItems="center">
-          <CircularProgress determinate value={25} size="lg" />
-          <CircularProgress determinate value={50} size="lg" />
-          <CircularProgress determinate value={75} size="lg" />
-          <CircularProgress determinate value={100} size="lg" color="success" />
-        </Stack>
-      </Section>
-
-      <Section
-        title="Circular Colors"
-        description="Circular progress supports all semantic colors."
-      >
-        <Stack direction="row" spacing={3} alignItems="center">
-          {colors.map((color) => (
-            <CircularProgress key={color} color={color} />
-          ))}
+          <LinearProgress determinate value={60} color="primary" />
+          <LinearProgress determinate value={60} color="success" />
+          <LinearProgress determinate value={60} color="warning" />
+          <LinearProgress determinate value={60} color="danger" />
+          <LinearProgress determinate value={60} color="neutral" />
         </Stack>
       </Section>
 
       <Section title="Usage">
         <CodeBlock>{`import LinearProgress from "@mui/joy/LinearProgress";
-import CircularProgress from "@mui/joy/CircularProgress";
 
-// Indeterminate (loading spinner)
-<LinearProgress />
-<CircularProgress />
-
-// Determinate (specific value)
+// Determinate
 <LinearProgress determinate value={60} />
-<CircularProgress determinate value={75} />
 
-// With color
-<LinearProgress color="success" determinate value={100} />`}</CodeBlock>
+// Indeterminate (loading)
+<LinearProgress />
+
+// With size
+<LinearProgress determinate value={60} size="sm" />
+<LinearProgress determinate value={60} size="lg" />`}</CodeBlock>
       </Section>
 
       <Section title="Props">
-        <Typography level="title-sm" sx={{ mb: 1 }}>LinearProgress</Typography>
         <PropsTable
           props={[
             { name: "determinate", type: "boolean", default: "false" },
             { name: "value", type: "number (0-100)", default: "-" },
-            { name: "variant", type: '"solid" | "soft" | "outlined" | "plain"', default: '"soft"' },
+            { name: "size", type: '"sm" | "lg"', default: '"md"' },
             { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"primary"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
-          ]}
-        />
-        <Typography level="title-sm" sx={{ mt: 3, mb: 1 }}>CircularProgress</Typography>
-        <PropsTable
-          props={[
-            { name: "determinate", type: "boolean", default: "false" },
-            { name: "value", type: "number (0-100)", default: "-" },
-            { name: "variant", type: '"solid" | "soft" | "outlined" | "plain"', default: '"soft"' },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"primary"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
           ]}
         />
       </Section>

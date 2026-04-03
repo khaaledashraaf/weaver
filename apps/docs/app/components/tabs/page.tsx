@@ -10,7 +10,16 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  Tab Item styles: Underline, Segment, Rounded, Grey bill, Brand bill
+  Tab Item states: Active, Default, Hover
+  Tab Item sizes:  Default, xs, sm
+
+  Tabs container:
+    Styles: Segment, Rounded, Underline
+    Sizes: md, xs, sm
+    Full Width: True, False
+*/
 
 export default function TabsPage() {
   return (
@@ -19,14 +28,15 @@ export default function TabsPage() {
         Tabs
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Tabs organize content into separate views where only one view is visible
-        at a time. Weaver tabs use 15px font size, 500 font-weight, and 8px
-        border-radius.
+        Tabs organize content into views. Figma defines five tab styles
+        (Underline, Segment, Rounded, Grey bill, Brand bill), three sizes
+        (Default/md, sm, xs), and a full-width option. Active tabs use 500
+        font-weight, inactive use 400.
       </Typography>
 
       <Section
         title="Basic Tabs"
-        description="A simple tab group with panel content."
+        description="Default tab style with panel content."
       >
         <Tabs defaultValue={0}>
           <TabList>
@@ -41,14 +51,24 @@ export default function TabsPage() {
       </Section>
 
       <Section
-        title="Variants"
-        description="Tabs support different visual styles via the TabList variant."
+        title="Tab Styles"
+        description="Figma defines Underline, Segment, and Rounded styles. Joy UI maps these via TabList variant."
       >
         <Stack spacing={3}>
           <Box>
-            <Typography level="title-sm" sx={{ mb: 1 }}>Plain</Typography>
+            <Typography level="title-sm" sx={{ mb: 1 }}>Underline (plain)</Typography>
             <Tabs defaultValue={0}>
               <TabList variant="plain">
+                <Tab>Tab 1</Tab>
+                <Tab>Tab 2</Tab>
+                <Tab>Tab 3</Tab>
+              </TabList>
+            </Tabs>
+          </Box>
+          <Box>
+            <Typography level="title-sm" sx={{ mb: 1 }}>Segment (soft)</Typography>
+            <Tabs defaultValue={0}>
+              <TabList variant="soft">
                 <Tab>Tab 1</Tab>
                 <Tab>Tab 2</Tab>
                 <Tab>Tab 3</Tab>
@@ -65,49 +85,25 @@ export default function TabsPage() {
               </TabList>
             </Tabs>
           </Box>
-          <Box>
-            <Typography level="title-sm" sx={{ mb: 1 }}>Soft</Typography>
-            <Tabs defaultValue={0}>
-              <TabList variant="soft">
-                <Tab>Tab 1</Tab>
-                <Tab>Tab 2</Tab>
-                <Tab>Tab 3</Tab>
-              </TabList>
-            </Tabs>
-          </Box>
-        </Stack>
-      </Section>
-
-      <Section
-        title="Colors"
-        description="Tabs can use any semantic color."
-      >
-        <Stack spacing={2}>
-          {colors.map((color) => (
-            <Tabs key={color} defaultValue={0}>
-              <TabList color={color} variant="soft">
-                <Tab>{color}</Tab>
-                <Tab>Tab 2</Tab>
-                <Tab>Tab 3</Tab>
-              </TabList>
-            </Tabs>
-          ))}
         </Stack>
       </Section>
 
       <Section
         title="Sizes"
-        description="Three size options control the tab height and text."
+        description="Figma sizes: Default (md), sm, xs."
       >
         <Stack spacing={2}>
           {(["sm", "md", "lg"] as const).map((size) => (
-            <Tabs key={size} defaultValue={0} size={size}>
-              <TabList>
-                <Tab>{size}</Tab>
-                <Tab>Tab 2</Tab>
-                <Tab>Tab 3</Tab>
-              </TabList>
-            </Tabs>
+            <Box key={size}>
+              <Typography level="body-xs" sx={{ mb: 0.5 }}>{size}</Typography>
+              <Tabs defaultValue={0} size={size}>
+                <TabList>
+                  <Tab>Tab 1</Tab>
+                  <Tab>Tab 2</Tab>
+                  <Tab>Tab 3</Tab>
+                </TabList>
+              </Tabs>
+            </Box>
           ))}
         </Stack>
       </Section>
@@ -148,7 +144,6 @@ import TabPanel from "@mui/joy/TabPanel";
             { name: "value", type: "number | string", default: "-" },
             { name: "onChange", type: "(event, value) => void", default: "-" },
             { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
-            { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"' },
           ]}
         />
       </Section>

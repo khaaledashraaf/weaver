@@ -7,7 +7,12 @@ import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
-const colors = ["primary", "neutral", "danger", "success", "warning"] as const;
+/* ── Figma variants ──
+  _Slider Handle: state (Default/Hover/Focus), indicator (None/Lower Text/Upper Text/Upper Tooltip/Lower Tooltip)
+  Single node slider: Type (Only line/Lower Text/Upper Text/Lower Tooltip/Upper Tooltip), Progress (0-100%)
+  Double node slider: Type (Only Line/Lower Text/Upper Text/Lower Tooltip/Upper Tooltip)
+  Track: 4px, Thumb: 24px
+*/
 
 export default function SliderPage() {
   return (
@@ -16,13 +21,14 @@ export default function SliderPage() {
         Slider
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Sliders allow users to select a value from a continuous range. Weaver
-        uses a 4px track and 24px thumb with subtle shadow.
+        Sliders select a value from a continuous range. Weaver uses a 4px track
+        and 24px thumb. Figma defines single and double node variants with
+        optional text or tooltip indicators.
       </Typography>
 
       <Section
-        title="Basic"
-        description="A simple slider with default settings."
+        title="Single Node"
+        description="Figma Single node slider — basic track with one handle."
       >
         <Box sx={{ px: 2, maxWidth: 400 }}>
           <Slider defaultValue={40} />
@@ -30,8 +36,8 @@ export default function SliderPage() {
       </Section>
 
       <Section
-        title="Range"
-        description="Select a range by providing an array value."
+        title="Double Node (Range)"
+        description="Figma Double node slider — two handles for selecting a range."
       >
         <Box sx={{ px: 2, maxWidth: 400 }}>
           <Slider defaultValue={[20, 60]} />
@@ -39,73 +45,41 @@ export default function SliderPage() {
       </Section>
 
       <Section
-        title="Colors"
-        description="Sliders support all semantic colors."
-      >
-        <Stack spacing={3} sx={{ px: 2, maxWidth: 400 }}>
-          {colors.map((color) => (
-            <Box key={color}>
-              <Typography level="body-xs" sx={{ mb: 1, textTransform: "capitalize" }}>
-                {color}
-              </Typography>
-              <Slider defaultValue={50} color={color} />
-            </Box>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
-        title="Sizes"
-        description="Three size options."
-      >
-        <Stack spacing={3} sx={{ px: 2, maxWidth: 400 }}>
-          {(["sm", "md", "lg"] as const).map((size) => (
-            <Box key={size}>
-              <Typography level="body-xs" sx={{ mb: 1 }}>{size}</Typography>
-              <Slider defaultValue={50} size={size} />
-            </Box>
-          ))}
-        </Stack>
-      </Section>
-
-      <Section
         title="With Marks"
         description="Display tick marks along the track."
       >
         <Box sx={{ px: 2, maxWidth: 400 }}>
-          <Slider
-            defaultValue={30}
-            step={10}
-            marks
-            min={0}
-            max={100}
-          />
+          <Slider defaultValue={30} step={10} marks min={0} max={100} />
         </Box>
       </Section>
 
       <Section
-        title="Disabled"
-        description="A disabled slider cannot be interacted with."
+        title="States"
+        description="Figma handle states: Default, Hover, Focus."
       >
-        <Box sx={{ px: 2, maxWidth: 400 }}>
-          <Slider defaultValue={40} disabled />
-        </Box>
+        <Stack spacing={3} sx={{ px: 2, maxWidth: 400 }}>
+          <Box>
+            <Typography level="body-xs" sx={{ mb: 1 }}>Default</Typography>
+            <Slider defaultValue={50} />
+          </Box>
+          <Box>
+            <Typography level="body-xs" sx={{ mb: 1 }}>Disabled</Typography>
+            <Slider defaultValue={50} disabled />
+          </Box>
+        </Stack>
       </Section>
 
       <Section title="Usage">
         <CodeBlock>{`import Slider from "@mui/joy/Slider";
 
-// Basic slider
+// Single node
 <Slider defaultValue={50} />
 
-// Range slider
+// Double node (range)
 <Slider defaultValue={[20, 60]} />
 
-// With marks and steps
-<Slider step={10} marks min={0} max={100} />
-
-// Controlled
-<Slider value={value} onChange={(e, val) => setValue(val)} />`}</CodeBlock>
+// With marks
+<Slider step={10} marks min={0} max={100} />`}</CodeBlock>
       </Section>
 
       <Section title="Props">
@@ -119,8 +93,6 @@ export default function SliderPage() {
             { name: "step", type: "number", default: "1" },
             { name: "marks", type: "boolean", default: "false" },
             { name: "disabled", type: "boolean", default: "false" },
-            { name: "color", type: '"primary" | "neutral" | "danger" | "success" | "warning"', default: '"primary"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
           ]}
         />
       </Section>
