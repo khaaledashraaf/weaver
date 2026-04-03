@@ -1,0 +1,88 @@
+{
+  "name": "Pagination",
+  "description": "Page navigation control for paginated content. Supports simple prev/next, numeric page buttons, and summary display.",
+
+  "base": {
+    "display": "flex",
+    "alignItems": "center",
+    "gap": "{spacing.xs}"
+  },
+
+  "variants": {
+    "ghost": {
+      "itemBg": "transparent",
+      "itemText": "{alias.content-default}",
+      "activeItemBg": "{alias.interactive-ghost-hover}",
+      "activeItemText": "{alias.content-default}",
+      "hover": { "itemBg": "{alias.interactive-ghost-hover}" }
+    },
+    "soft": {
+      "itemBg": "transparent",
+      "itemText": "{alias.content-default}",
+      "activeItemBg": "{alias.interactive-soft-default}",
+      "activeItemText": "{alias.content-brand-default}",
+      "hover": { "itemBg": "{alias.interactive-soft-hover}" }
+    }
+  },
+
+  "sizes": {
+    "default": { "itemSize": "36px", "fontSize": "14px", "borderRadius": "{radius.sm}", "iconSize": "18px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "type": "simple" },
+      "apply": { "showPageNumbers": false }
+    },
+    {
+      "when": { "type": "summary" },
+      "apply": { "showSummaryText": true }
+    }
+  ],
+
+  "props": {
+    "type": { "type": "enum", "values": ["simple", "numeric", "summary"], "default": "numeric" },
+    "style": { "type": "enum", "values": ["ghost", "soft"], "default": "ghost" },
+    "page": { "type": "number", "description": "Current page number." },
+    "totalPages": { "type": "number", "description": "Total number of pages." },
+    "totalItems": { "type": "number", "description": "Total items for summary display." },
+    "pageSize": { "type": "number", "default": 10, "description": "Items per page." },
+    "onChange": { "type": "function", "description": "Callback when page changes." }
+  },
+
+  "slots": {
+    "prevButton": {
+      "element": "IconButton",
+      "description": "Previous page navigation button."
+    },
+    "nextButton": {
+      "element": "IconButton",
+      "description": "Next page navigation button."
+    },
+    "pageItem": {
+      "element": "Button",
+      "description": "Individual page number button."
+    },
+    "ellipsis": {
+      "element": "Text",
+      "description": "Ellipsis indicator for truncated page ranges."
+    },
+    "summary": {
+      "element": "Text",
+      "description": "Summary text showing current range (e.g. '1-10 of 100')."
+    }
+  },
+
+  "defaults": { "type": "numeric", "style": "ghost", "pageSize": 10 },
+
+  "accessibility": {
+    "role": "navigation",
+    "notes": "Wrap in nav with aria-label='Pagination'. Current page button uses aria-current=page. Disabled buttons use aria-disabled. Provide aria-label on prev/next buttons."
+  }
+}

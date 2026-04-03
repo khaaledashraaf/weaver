@@ -1,0 +1,104 @@
+{
+  "name": "Banner",
+  "description": "Promotional or informational bar displayed at the top of a page or section. Supports multiple layout types, sizing modes, and color themes.",
+
+  "base": {
+    "display": "flex",
+    "alignItems": "center",
+    "width": "100%",
+    "gap": "{spacing.md}",
+    "fontSize": "14px",
+    "lineHeight": "20px"
+  },
+
+  "variants": {
+    "brand": {
+      "bg": "{alias.interactive-brand-default}",
+      "text": "{alias.content-on-color}"
+    },
+    "brand-light": {
+      "bg": "{alias.bg-brand-subtle}",
+      "text": "{alias.content-brand-default}"
+    },
+    "grey": {
+      "bg": "{alias.bg-subtle}",
+      "text": "{alias.content-default}"
+    },
+    "black": {
+      "bg": "{alias.bg-inverted}",
+      "text": "{alias.content-on-color}"
+    }
+  },
+
+  "sizes": {
+    "full-width": { "borderRadius": "0", "paddingX": "{spacing.xl}", "paddingY": "{spacing.md}" },
+    "floating": { "borderRadius": "{radius.md}", "paddingX": "{spacing.lg}", "paddingY": "{spacing.md}", "shadow": "{shadow.md}" }
+  },
+
+  "states": {
+    "disabled": {},
+    "focus": {},
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "type": "slim" },
+      "apply": { "paddingY": "{spacing.sm}", "justifyContent": "center" }
+    },
+    {
+      "when": { "type": "input" },
+      "apply": { "gap": "{spacing.lg}" }
+    },
+    {
+      "when": { "type": "single-action-inline" },
+      "apply": { "justifyContent": "space-between" }
+    }
+  ],
+
+  "props": {
+    "type": { "type": "enum", "values": ["slim", "input", "single-action", "single-action-inline"], "default": "slim" },
+    "sizing": { "type": "enum", "values": ["full-width", "floating"], "default": "full-width" },
+    "color": { "type": "enum", "values": ["brand", "brand-light", "grey", "black"], "default": "brand" },
+    "content": { "type": "enum", "values": ["title", "title-description"], "default": "title" },
+    "title": { "type": "string", "description": "Banner title text." },
+    "description": { "type": "string", "description": "Banner description text." },
+    "onDismiss": { "type": "function", "description": "Callback to dismiss the banner." }
+  },
+
+  "slots": {
+    "title": {
+      "element": "Text",
+      "description": "Banner title text."
+    },
+    "description": {
+      "element": "Text",
+      "description": "Optional description text below the title."
+    },
+    "action": {
+      "element": "Button",
+      "description": "Primary action button."
+    },
+    "input": {
+      "element": "Input",
+      "description": "Input field for input-type banners."
+    },
+    "closeButton": {
+      "position": "end",
+      "element": "IconButton",
+      "description": "Dismiss button."
+    },
+    "icon": {
+      "position": "start",
+      "element": "Icon",
+      "description": "Optional leading icon."
+    }
+  },
+
+  "defaults": { "type": "slim", "sizing": "full-width", "color": "brand", "content": "title" },
+
+  "accessibility": {
+    "role": "banner",
+    "notes": "Use role=banner or role=complementary. Dismissible banners need accessible close button with aria-label. Important announcements should use aria-live=polite."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "name": "Progress",
+  "description": "Linear progress bar indicating completion percentage. Supports multiple color themes and two sizes.",
+
+  "base": {
+    "display": "flex",
+    "width": "100%",
+    "overflow": "hidden",
+    "borderRadius": "{radius.full}"
+  },
+
+  "variants": {
+    "default": {
+      "track": { "bg": "{alias.bg-subtle}" },
+      "fill": { "bg": "{alias.interactive-brand-default}" }
+    },
+    "green": {
+      "track": { "bg": "{brand.green-100}" },
+      "fill": { "bg": "{brand.green-600}" }
+    },
+    "golden": {
+      "track": { "bg": "{brand.yellow-100}" },
+      "fill": { "bg": "{brand.yellow-600}" }
+    },
+    "red": {
+      "track": { "bg": "{brand.red-100}" },
+      "fill": { "bg": "{brand.red-600}" }
+    },
+    "purple": {
+      "track": { "bg": "{brand.purple-100}" },
+      "fill": { "bg": "{brand.purple-600}" }
+    },
+    "sky": {
+      "track": { "bg": "{brand.sky-100}" },
+      "fill": { "bg": "{brand.sky-600}" }
+    },
+    "neutral": {
+      "track": { "bg": "{alias.bg-subtle}" },
+      "fill": { "bg": "{brand.slate-600}" }
+    },
+    "amber": {
+      "track": { "bg": "{brand.amber-100}" },
+      "fill": { "bg": "{brand.amber-600}" }
+    }
+  },
+
+  "sizes": {
+    "lg": { "height": "8px" },
+    "sm": { "height": "4px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4 },
+    "focus": {},
+    "error": {}
+  },
+
+  "compoundVariants": [],
+
+  "props": {
+    "color": { "type": "enum", "values": ["default", "green", "golden", "red", "purple", "sky", "neutral", "amber"], "default": "default" },
+    "size": { "type": "enum", "values": ["lg", "sm"], "default": "sm" },
+    "value": { "type": "number", "description": "Current progress value (0-100)." },
+    "max": { "type": "number", "default": 100 },
+    "indeterminate": { "type": "boolean", "default": false, "description": "Show indeterminate loading animation." }
+  },
+
+  "slots": {
+    "track": {
+      "element": "Box",
+      "description": "The background track bar."
+    },
+    "fill": {
+      "element": "Box",
+      "description": "The filled progress indicator.",
+      "styles": { "transition": "width 300ms ease" }
+    },
+    "label": {
+      "element": "Text",
+      "description": "Optional percentage or status label."
+    }
+  },
+
+  "defaults": { "color": "default", "size": "sm" },
+
+  "accessibility": {
+    "role": "progressbar",
+    "notes": "Use aria-valuenow, aria-valuemin=0, aria-valuemax. For indeterminate state, omit aria-valuenow. Provide aria-label describing what is loading."
+  }
+}

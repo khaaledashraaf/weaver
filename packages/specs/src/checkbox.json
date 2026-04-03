@@ -1,0 +1,84 @@
+{
+  "name": "Checkbox",
+  "description": "Binary or indeterminate selection control. Supports leading/trailing label placement and optional support text.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "flex-start",
+    "gap": "{spacing.sm}",
+    "cursor": "pointer",
+    "transition": "background-color 150ms ease, border-color 150ms ease"
+  },
+
+  "variants": {
+    "checked": {
+      "bg": "{alias.interactive-brand-default}",
+      "border": { "width": "2px", "color": "{alias.interactive-brand-default}" },
+      "icon": "{alias.content-on-color}",
+      "hover": { "bg": "{alias.interactive-brand-hover}", "borderColor": "{alias.interactive-brand-hover}" }
+    },
+    "unchecked": {
+      "bg": "transparent",
+      "border": { "width": "2px", "color": "{alias.border-default}" },
+      "hover": { "bg": "{alias.interactive-ghost-hover}", "borderColor": "{alias.border-hover}" }
+    },
+    "indeterminate": {
+      "bg": "{alias.interactive-brand-default}",
+      "border": { "width": "2px", "color": "{alias.interactive-brand-default}" },
+      "icon": "{alias.content-on-color}",
+      "hover": { "bg": "{alias.interactive-brand-hover}", "borderColor": "{alias.interactive-brand-hover}" }
+    }
+  },
+
+  "sizes": {
+    "default": { "boxSize": "20px", "borderRadius": "{radius.xs}", "iconSize": "14px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": { "borderColor": "{alias.border-focus-danger}" }
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "checkLocation": "trailing" },
+      "apply": { "flexDirection": "row-reverse" }
+    }
+  ],
+
+  "props": {
+    "checked": { "type": "boolean", "default": false },
+    "indeterminate": { "type": "boolean", "default": false },
+    "disabled": { "type": "boolean", "default": false },
+    "checkLocation": { "type": "enum", "values": ["leading", "trailing"], "default": "leading" },
+    "label": { "type": "string", "description": "Checkbox label text." },
+    "supportText": { "type": "string", "description": "Additional description text below the label." }
+  },
+
+  "slots": {
+    "control": {
+      "element": "Box",
+      "description": "The checkbox indicator box."
+    },
+    "icon": {
+      "element": "Icon",
+      "description": "Check or minus icon inside the indicator."
+    },
+    "label": {
+      "element": "Label",
+      "description": "Text label for the checkbox."
+    },
+    "supportText": {
+      "element": "Text",
+      "description": "Support text displayed below the label."
+    }
+  },
+
+  "defaults": { "checked": false, "indeterminate": false, "checkLocation": "leading" },
+
+  "accessibility": {
+    "role": "checkbox",
+    "notes": "Use aria-checked with true/false/mixed for indeterminate. Associate label via htmlFor. Group related checkboxes with role=group."
+  }
+}

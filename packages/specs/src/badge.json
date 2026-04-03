@@ -1,0 +1,92 @@
+{
+  "name": "Badge",
+  "description": "Small label for status, counts, and categorization. Supports multiple colors, styles, and visual types including dot, icon, and flag.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "center",
+    "justifyContent": "center",
+    "fontWeight": 500,
+    "flexShrink": 0,
+    "whiteSpace": "nowrap"
+  },
+
+  "variants": {
+    "neutral-light": { "bg": "{alias.bg-subtle}", "text": "{alias.content-default}" },
+    "neutral-outline": { "bg": "transparent", "text": "{alias.content-default}", "border": { "width": "1px", "color": "{alias.border-default}" } },
+    "neutral-solid": { "bg": "{brand.slate-600}", "text": "{alias.content-on-color}" },
+    "blue-light": { "bg": "{brand.blue-50}", "text": "{brand.blue-700}" },
+    "blue-outline": { "bg": "transparent", "text": "{brand.blue-700}", "border": { "width": "1px", "color": "{brand.blue-300}" } },
+    "blue-solid": { "bg": "{brand.blue-600}", "text": "{alias.content-on-color}" },
+    "green-light": { "bg": "{brand.green-50}", "text": "{brand.green-700}" },
+    "green-outline": { "bg": "transparent", "text": "{brand.green-700}", "border": { "width": "1px", "color": "{brand.green-300}" } },
+    "green-solid": { "bg": "{brand.green-600}", "text": "{alias.content-on-color}" },
+    "danger-light": { "bg": "{brand.red-50}", "text": "{brand.red-700}" },
+    "danger-outline": { "bg": "transparent", "text": "{brand.red-700}", "border": { "width": "1px", "color": "{brand.red-300}" } },
+    "danger-solid": { "bg": "{brand.red-600}", "text": "{alias.content-on-color}" },
+    "purple-light": { "bg": "{brand.purple-50}", "text": "{brand.purple-700}" },
+    "purple-outline": { "bg": "transparent", "text": "{brand.purple-700}", "border": { "width": "1px", "color": "{brand.purple-300}" } },
+    "purple-solid": { "bg": "{brand.purple-600}", "text": "{alias.content-on-color}" },
+    "fuchsia-light": { "bg": "{brand.fuchsia-50}", "text": "{brand.fuchsia-700}" },
+    "fuchsia-outline": { "bg": "transparent", "text": "{brand.fuchsia-700}", "border": { "width": "1px", "color": "{brand.fuchsia-300}" } },
+    "fuchsia-solid": { "bg": "{brand.fuchsia-600}", "text": "{alias.content-on-color}" },
+    "rose-light": { "bg": "{brand.rose-50}", "text": "{brand.rose-700}" },
+    "rose-outline": { "bg": "transparent", "text": "{brand.rose-700}", "border": { "width": "1px", "color": "{brand.rose-300}" } },
+    "rose-solid": { "bg": "{brand.rose-600}", "text": "{alias.content-on-color}" },
+    "sky-light": { "bg": "{brand.sky-50}", "text": "{brand.sky-700}" },
+    "sky-outline": { "bg": "transparent", "text": "{brand.sky-700}", "border": { "width": "1px", "color": "{brand.sky-300}" } },
+    "sky-solid": { "bg": "{brand.sky-600}", "text": "{alias.content-on-color}" },
+    "golden-light": { "bg": "{brand.yellow-50}", "text": "{brand.yellow-700}" },
+    "golden-outline": { "bg": "transparent", "text": "{brand.yellow-700}", "border": { "width": "1px", "color": "{brand.yellow-300}" } },
+    "golden-solid": { "bg": "{brand.yellow-600}", "text": "{alias.content-on-color}" },
+    "amber-light": { "bg": "{brand.amber-50}", "text": "{brand.amber-700}" },
+    "amber-outline": { "bg": "transparent", "text": "{brand.amber-700}", "border": { "width": "1px", "color": "{brand.amber-300}" } },
+    "amber-solid": { "bg": "{brand.amber-600}", "text": "{alias.content-on-color}" }
+  },
+
+  "sizes": {
+    "sm": { "height": "22px", "paddingX": "{spacing.sm}", "gap": "4px", "fontSize": "12px", "borderRadius": "{radius.full}" },
+    "lg": { "height": "28px", "paddingX": "{spacing.md}", "gap": "4px", "fontSize": "13px", "borderRadius": "{radius.full}" }
+  },
+
+  "states": {
+    "disabled": {},
+    "focus": {},
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "type": "dot" },
+      "apply": { "dotSize": "6px" }
+    },
+    {
+      "when": { "showNumber": true },
+      "apply": { "minWidth": "=height", "justifyContent": "center" }
+    }
+  ],
+
+  "props": {
+    "type": { "type": "enum", "values": ["default", "leading-icon", "trailing-icon", "dot", "flag"], "default": "default" },
+    "style": { "type": "enum", "values": ["light", "outline", "solid"], "default": "light" },
+    "size": { "type": "enum", "values": ["sm", "lg"], "default": "sm" },
+    "color": { "type": "enum", "values": ["neutral", "blue", "green", "danger", "purple", "fuchsia", "rose", "sky", "golden", "amber"], "default": "neutral" },
+    "label": { "type": "string", "description": "Badge text content." },
+    "showNumber": { "type": "boolean", "default": false, "description": "Display a numeric count." },
+    "icon": { "type": "string", "description": "Icon name for icon types." },
+    "flagCode": { "type": "string", "description": "Country code for flag type." }
+  },
+
+  "slots": {
+    "label": { "element": "Text", "description": "Badge text label." },
+    "leadingVisual": { "position": "start", "element": "Icon | Dot | Flag", "description": "Leading visual element." },
+    "trailingVisual": { "position": "end", "element": "Icon", "description": "Trailing visual element." }
+  },
+
+  "defaults": { "type": "default", "style": "light", "size": "sm", "color": "neutral" },
+
+  "accessibility": {
+    "role": "status",
+    "notes": "Purely decorative badges should use aria-hidden. Badges conveying important status should use appropriate aria-label."
+  }
+}

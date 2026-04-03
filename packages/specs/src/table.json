@@ -1,0 +1,103 @@
+{
+  "name": "Table",
+  "description": "Data table component supporting sortable columns, selectable rows, and various cell content types including avatars, badges, and actions.",
+
+  "base": {
+    "display": "table",
+    "width": "100%",
+    "borderCollapse": "collapse",
+    "fontSize": "14px",
+    "lineHeight": "20px"
+  },
+
+  "variants": {
+    "default": {
+      "bg": "{alias.bg-default}",
+      "text": "{alias.content-default}",
+      "headerBg": "{alias.bg-subtle}",
+      "headerText": "{alias.content-secondary}",
+      "borderBottom": { "width": "1px", "color": "{alias.border-default}" }
+    }
+  },
+
+  "sizes": {
+    "lg": { "cellPaddingY": "{spacing.lg}", "cellPaddingX": "{spacing.lg}", "fontSize": "14px" },
+    "sm": { "cellPaddingY": "{spacing.sm}", "cellPaddingX": "{spacing.md}", "fontSize": "13px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "rowState": "hover" },
+      "apply": { "rowBg": "{alias.bg-subtle}" }
+    },
+    {
+      "when": { "rowState": "selected" },
+      "apply": { "rowBg": "{alias.bg-brand-subtle}" }
+    }
+  ],
+
+  "props": {
+    "size": { "type": "enum", "values": ["lg", "sm"], "default": "lg" },
+    "selectable": { "type": "boolean", "default": false, "description": "Enable row selection via checkboxes." },
+    "sortable": { "type": "boolean", "default": false, "description": "Enable column sorting." },
+    "striped": { "type": "boolean", "default": false, "description": "Alternate row background colors." },
+    "data": { "type": "array", "description": "Table data rows." },
+    "columns": { "type": "array", "description": "Column definitions with key, label, width, and render config." }
+  },
+
+  "slots": {
+    "header": {
+      "element": "thead",
+      "description": "Table header row."
+    },
+    "headerCell": {
+      "element": "th",
+      "description": "Individual header cell with sort controls."
+    },
+    "body": {
+      "element": "tbody",
+      "description": "Table body containing data rows."
+    },
+    "row": {
+      "element": "tr",
+      "description": "Individual table row."
+    },
+    "cell": {
+      "element": "td",
+      "description": "Individual table cell."
+    },
+    "checkbox": {
+      "element": "Checkbox",
+      "description": "Selection checkbox in the first column."
+    },
+    "avatar": {
+      "element": "Avatar",
+      "description": "Avatar cell content for user rows."
+    },
+    "badge": {
+      "element": "Badge",
+      "description": "Badge cell content for status columns."
+    },
+    "action": {
+      "element": "IconButton",
+      "description": "Action button cell for row operations."
+    },
+    "sortIcon": {
+      "element": "Icon",
+      "description": "Sort direction indicator icon in header cells."
+    }
+  },
+
+  "defaults": { "size": "lg", "selectable": false, "sortable": false },
+
+  "accessibility": {
+    "role": "table",
+    "notes": "Use proper thead/tbody/th/td semantics. Sortable columns need aria-sort. Selectable rows need aria-selected. Use caption or aria-label for table description."
+  }
+}

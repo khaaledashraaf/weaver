@@ -1,0 +1,83 @@
+{
+  "name": "Accordion",
+  "description": "Vertically stacked expandable/collapsible content sections. Supports default and boxed visual styles.",
+
+  "base": {
+    "display": "flex",
+    "flexDirection": "column",
+    "width": "100%"
+  },
+
+  "variants": {
+    "default": {
+      "bg": "transparent",
+      "border": { "width": "0 0 1px 0", "color": "{alias.border-default}" },
+      "header": { "paddingY": "{spacing.md}" }
+    },
+    "boxed": {
+      "bg": "{alias.bg-default}",
+      "border": { "width": "1px", "color": "{alias.border-default}" },
+      "borderRadius": "{radius.md}",
+      "header": { "padding": "{spacing.md} {spacing.lg}" },
+      "shadow": "{shadow.xs}"
+    }
+  },
+
+  "sizes": {},
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "expanded": true },
+      "apply": { "iconRotation": "180deg" }
+    },
+    {
+      "when": { "style": "boxed", "state": "hover" },
+      "apply": { "bg": "{alias.bg-subtle}" }
+    },
+    {
+      "when": { "style": "default", "state": "hover" },
+      "apply": { "bg": "{alias.bg-subtle}" }
+    }
+  ],
+
+  "props": {
+    "style": { "type": "enum", "values": ["default", "boxed"], "default": "default" },
+    "expanded": { "type": "boolean", "default": false, "description": "Control the expanded state of the accordion item." },
+    "defaultExpanded": { "type": "boolean", "default": false, "description": "Initial expanded state for uncontrolled mode." },
+    "disabled": { "type": "boolean", "default": false },
+    "allowMultiple": { "type": "boolean", "default": false, "description": "Allow multiple items to be expanded simultaneously." }
+  },
+
+  "slots": {
+    "header": {
+      "element": "Button",
+      "description": "The clickable trigger that expands/collapses content."
+    },
+    "title": {
+      "element": "Text",
+      "description": "Accordion item title text."
+    },
+    "content": {
+      "element": "Box",
+      "description": "The collapsible content area."
+    },
+    "expandIcon": {
+      "position": "end",
+      "element": "Icon",
+      "description": "Chevron icon indicating expand/collapse state."
+    }
+  },
+
+  "defaults": { "style": "default", "expanded": false },
+
+  "accessibility": {
+    "role": "region",
+    "notes": "Header triggers should use role=button with aria-expanded. Content regions should be linked via aria-controls/aria-labelledby. Support keyboard navigation with Enter/Space to toggle."
+  }
+}

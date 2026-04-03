@@ -1,0 +1,98 @@
+{
+  "name": "Modal",
+  "description": "Overlay dialog for focused interactions. Supports multiple sizes, header configurations, and footer button layouts.",
+
+  "base": {
+    "display": "flex",
+    "flexDirection": "column",
+    "bg": "{alias.bg-default}",
+    "border": { "width": "1px", "color": "{alias.border-default}" },
+    "shadow": "{shadow.xl}",
+    "borderRadius": "{radius.lg}",
+    "maxHeight": "90vh",
+    "overflow": "hidden",
+    "zIndex": 50
+  },
+
+  "variants": {
+    "default": {},
+    "danger": {
+      "headerIcon": { "color": "{alias.content-danger-default}", "bg": "{alias.bg-danger-subtle}" }
+    }
+  },
+
+  "sizes": {
+    "small": { "width": "400px", "padding": "{spacing.xl}" },
+    "default": { "width": "520px", "padding": "{spacing.xl}" },
+    "large": { "width": "640px", "padding": "{spacing.2xl}" }
+  },
+
+  "states": {
+    "disabled": {},
+    "focus": { "outline": "none" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "headerType": "icon-center" },
+      "apply": { "headerAlign": "center", "textAlign": "center" }
+    }
+  ],
+
+  "props": {
+    "size": { "type": "enum", "values": ["small", "default", "large"], "default": "default" },
+    "headerType": { "type": "enum", "values": ["simple", "with-icon", "icon-center"], "default": "simple" },
+    "footerType": { "type": "enum", "values": ["buttons-full-vertical", "button-center", "stretch", "basic"], "default": "basic" },
+    "danger": { "type": "boolean", "default": false, "description": "Apply danger styling to the modal icon and primary action." },
+    "title": { "type": "string", "description": "Modal header title." },
+    "description": { "type": "string", "description": "Modal header description text." },
+    "open": { "type": "boolean", "default": false },
+    "onClose": { "type": "function", "description": "Callback when the modal is closed." }
+  },
+
+  "slots": {
+    "overlay": {
+      "element": "Box",
+      "description": "Background overlay behind the modal.",
+      "styles": { "bg": "{alias.bg-overlay}", "position": "fixed", "inset": "0" }
+    },
+    "header": {
+      "element": "Box",
+      "description": "Modal header containing title, description, and optional icon."
+    },
+    "headerIcon": {
+      "element": "Icon",
+      "description": "Optional icon displayed in the header."
+    },
+    "title": {
+      "element": "Text",
+      "description": "Modal title text."
+    },
+    "description": {
+      "element": "Text",
+      "description": "Modal description text."
+    },
+    "body": {
+      "element": "Box",
+      "description": "Scrollable main content area.",
+      "styles": { "overflowY": "auto", "flex": "1" }
+    },
+    "footer": {
+      "element": "Box",
+      "description": "Footer area containing action buttons."
+    },
+    "closeButton": {
+      "position": "end",
+      "element": "IconButton",
+      "description": "Close button in the top-right corner."
+    }
+  },
+
+  "defaults": { "size": "default", "headerType": "simple", "footerType": "basic", "danger": false },
+
+  "accessibility": {
+    "role": "dialog",
+    "notes": "Use aria-modal=true and aria-labelledby linking to title. Trap focus inside the modal. Close on Escape key. Return focus to trigger on close."
+  }
+}

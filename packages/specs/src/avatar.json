@@ -1,0 +1,91 @@
+{
+  "name": "Avatar",
+  "description": "Visual representation of a user or entity via image, initials, or icon. Supports circular and rounded shapes across nine sizes.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "center",
+    "justifyContent": "center",
+    "flexShrink": 0,
+    "overflow": "hidden",
+    "bg": "{alias.bg-brand-subtle}",
+    "text": "{alias.content-brand-default}",
+    "fontWeight": 600
+  },
+
+  "variants": {
+    "image": {
+      "objectFit": "cover"
+    },
+    "initials": {
+      "bg": "{alias.bg-brand-subtle}",
+      "text": "{alias.content-brand-default}"
+    },
+    "icon": {
+      "bg": "{alias.bg-subtle}",
+      "text": "{alias.content-secondary}"
+    }
+  },
+
+  "sizes": {
+    "2xs": { "width": "16px", "height": "16px", "fontSize": "8px", "iconSize": "10px", "borderRadius": "{radius.xs}" },
+    "xs": { "width": "20px", "height": "20px", "fontSize": "9px", "iconSize": "12px", "borderRadius": "{radius.xs}" },
+    "sm": { "width": "24px", "height": "24px", "fontSize": "10px", "iconSize": "14px", "borderRadius": "{radius.sm}" },
+    "md": { "width": "32px", "height": "32px", "fontSize": "12px", "iconSize": "16px", "borderRadius": "{radius.sm}" },
+    "lg": { "width": "36px", "height": "36px", "fontSize": "13px", "iconSize": "18px", "borderRadius": "{radius.md}" },
+    "xl": { "width": "40px", "height": "40px", "fontSize": "14px", "iconSize": "20px", "borderRadius": "{radius.md}" },
+    "2xl": { "width": "48px", "height": "48px", "fontSize": "16px", "iconSize": "24px", "borderRadius": "{radius.md}" },
+    "3xl": { "width": "56px", "height": "56px", "fontSize": "18px", "iconSize": "28px", "borderRadius": "{radius.lg}" },
+    "4xl": { "width": "64px", "height": "64px", "fontSize": "20px", "iconSize": "32px", "borderRadius": "{radius.lg}" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4 },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "form": "circular" },
+      "apply": { "borderRadius": "{radius.full}" }
+    }
+  ],
+
+  "props": {
+    "type": { "type": "enum", "values": ["image", "initials", "icon"], "default": "initials" },
+    "form": { "type": "enum", "values": ["circular", "rounded"], "default": "circular" },
+    "size": { "type": "enum", "values": ["2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"], "default": "md" },
+    "src": { "type": "string", "description": "Image URL for image type." },
+    "alt": { "type": "string", "description": "Alt text for the avatar image." },
+    "initials": { "type": "string", "description": "One or two character initials." },
+    "icon": { "type": "string", "description": "Icon name for icon type." }
+  },
+
+  "slots": {
+    "image": {
+      "element": "img",
+      "description": "The avatar image element."
+    },
+    "initials": {
+      "element": "Text",
+      "description": "Text element showing user initials."
+    },
+    "icon": {
+      "element": "Icon",
+      "description": "Fallback icon when no image or initials provided."
+    },
+    "badge": {
+      "element": "Box",
+      "description": "Optional status badge positioned at the corner.",
+      "position": "bottom-right"
+    }
+  },
+
+  "defaults": { "type": "initials", "form": "circular", "size": "md" },
+
+  "accessibility": {
+    "role": "img",
+    "notes": "Image avatars require alt text. Initials and icon avatars should have aria-label describing the user. Decorative avatars use aria-hidden=true."
+  }
+}

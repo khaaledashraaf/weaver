@@ -1,0 +1,106 @@
+{
+  "name": "Select",
+  "description": "Dropdown selection input supporting single select, multi-select, avatar, and tag-based selection modes.",
+
+  "base": {
+    "display": "flex",
+    "alignItems": "center",
+    "width": "100%",
+    "fontWeight": 400,
+    "cursor": "pointer",
+    "transition": "border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease"
+  },
+
+  "variants": {
+    "default": {
+      "bg": "{alias.interactive-input-default}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-input}" },
+      "placeholder": "{alias.content-placeholder}"
+    },
+    "soft": {
+      "bg": "{alias.interactive-input-soft}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "transparent" },
+      "placeholder": "{alias.content-placeholder}"
+    }
+  },
+
+  "sizes": {
+    "lg": { "height": "48px", "paddingX": "{spacing.lg}", "gap": "8px", "fontSize": "16px", "borderRadius": "{radius.md}" },
+    "md": { "height": "40px", "paddingX": "{spacing.md}", "gap": "6px", "fontSize": "14px", "borderRadius": "{radius.md}" }
+  },
+
+  "states": {
+    "disabled": { "bg": "{alias.interactive-input-disabled}", "opacity": 0.5, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "borderColor": "{alias.border-focus}", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "0px" },
+    "error": { "borderColor": "{alias.border-focus-danger}", "ring": "2px", "ringColor": "{alias.border-focus-danger}" }
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "type": "multi-select" },
+      "apply": { "minHeight": "=height", "height": "auto", "flexWrap": "wrap", "paddingY": "{spacing.xs}" }
+    },
+    {
+      "when": { "type": "tags" },
+      "apply": { "minHeight": "=height", "height": "auto", "flexWrap": "wrap", "paddingY": "{spacing.xs}" }
+    },
+    {
+      "when": { "style": "soft", "state": "focus" },
+      "apply": { "borderColor": "{alias.border-focus}" }
+    }
+  ],
+
+  "props": {
+    "type": { "type": "enum", "values": ["default", "avatar", "multi-select", "tags"], "default": "default" },
+    "style": { "type": "enum", "values": ["default", "soft"], "default": "default" },
+    "size": { "type": "enum", "values": ["lg", "md"], "default": "md" },
+    "placeholder": { "type": "string", "description": "Placeholder text when no option is selected." },
+    "value": { "type": "string | string[]", "description": "Controlled selection value." },
+    "disabled": { "type": "boolean", "default": false },
+    "error": { "type": "boolean", "default": false },
+    "label": { "type": "string", "description": "Associated label text." },
+    "helperText": { "type": "string", "description": "Helper or error message below the select." }
+  },
+
+  "slots": {
+    "trigger": {
+      "element": "Button",
+      "description": "The select trigger that opens the dropdown."
+    },
+    "trailingIcon": {
+      "position": "end",
+      "element": "Icon",
+      "description": "Chevron or indicator icon on the trailing side."
+    },
+    "avatar": {
+      "position": "start",
+      "element": "Avatar",
+      "description": "Avatar displayed for avatar-type select."
+    },
+    "tag": {
+      "element": "Tag",
+      "description": "Tag chips for multi-select and tags modes."
+    },
+    "dropdown": {
+      "element": "Menu",
+      "description": "The dropdown options list."
+    },
+    "label": {
+      "element": "Label",
+      "description": "Form label for the select."
+    },
+    "helperText": {
+      "element": "Text",
+      "description": "Helper or error text below the select."
+    }
+  },
+
+  "defaults": { "type": "default", "style": "default", "size": "md" },
+
+  "accessibility": {
+    "role": "combobox",
+    "notes": "Use aria-expanded to indicate open state. Multi-select should use aria-multiselectable. Connect label via aria-labelledby."
+  }
+}

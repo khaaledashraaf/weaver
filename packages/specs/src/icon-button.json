@@ -1,0 +1,113 @@
+{
+  "name": "IconButton",
+  "description": "A button that renders only an icon without a text label. Used for compact actions in toolbars, table rows, and card headers.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "center",
+    "justifyContent": "center",
+    "fontWeight": 500,
+    "cursor": "pointer",
+    "flexShrink": 0,
+    "aspectRatio": "1",
+    "transition": "background-color 150ms ease, color 150ms ease, border-color 150ms ease"
+  },
+
+  "variants": {
+    "primary": {
+      "bg": "{alias.interactive-brand-default}",
+      "text": "{alias.content-on-color}",
+      "hover": { "bg": "{alias.interactive-brand-hover}" },
+      "active": { "bg": "{alias.interactive-brand-pressed}" }
+    },
+    "secondary": {
+      "bg": "{alias.interactive-secondary-default}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-default}" },
+      "shadow": "{shadow.xs}",
+      "hover": { "bg": "{alias.interactive-secondary-hover}" },
+      "active": { "bg": "{alias.interactive-secondary-pressed}" }
+    },
+    "soft": {
+      "bg": "{alias.interactive-soft-default}",
+      "text": "{alias.content-brand-default}",
+      "hover": { "bg": "{alias.interactive-soft-hover}" },
+      "active": { "bg": "{alias.interactive-soft-pressed}" }
+    },
+    "outline": {
+      "bg": "transparent",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-default}" },
+      "hover": { "bg": "{alias.interactive-outlined-hover}" },
+      "active": { "bg": "{alias.interactive-outlined-pressed}" }
+    },
+    "ghost": {
+      "bg": "transparent",
+      "text": "{alias.content-default}",
+      "hover": { "bg": "{alias.interactive-ghost-hover}" },
+      "active": { "bg": "{alias.interactive-ghost-pressed}" }
+    },
+    "danger": {
+      "bg": "{alias.interactive-danger-default}",
+      "text": "{alias.content-on-color}",
+      "hover": { "bg": "{alias.interactive-danger-hover}" },
+      "active": { "bg": "{alias.interactive-danger-pressed}" }
+    },
+    "danger-ghost": {
+      "bg": "transparent",
+      "text": "{alias.content-danger-default}",
+      "hover": { "bg": "{alias.interactive-danger-soft-hover}" },
+      "active": { "bg": "{alias.interactive-danger-soft-pressed}" }
+    },
+    "ghost-primary": {
+      "bg": "transparent",
+      "text": "{alias.content-brand-default}",
+      "hover": { "bg": "{alias.interactive-ghost-hover}" },
+      "active": { "bg": "{alias.interactive-ghost-pressed}" }
+    }
+  },
+
+  "sizes": {
+    "lg": { "height": "48px", "width": "48px", "iconSize": "24px", "borderRadius": "{radius.md}" },
+    "md": { "height": "40px", "width": "40px", "iconSize": "20px", "borderRadius": "{radius.md}" },
+    "sm": { "height": "36px", "width": "36px", "iconSize": "20px", "borderRadius": "{radius.sm}" },
+    "xs": { "height": "32px", "width": "32px", "iconSize": "18px", "borderRadius": "{radius.sm}" },
+    "2xs": { "height": "28px", "width": "28px", "iconSize": "16px", "borderRadius": "{radius.sm}" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "form": "pill" },
+      "apply": { "borderRadius": "{radius.full}" }
+    }
+  ],
+
+  "props": {
+    "variant": { "type": "enum", "values": ["primary", "secondary", "soft", "outline", "ghost", "danger", "danger-ghost", "ghost-primary"], "default": "primary" },
+    "size": { "type": "enum", "values": ["lg", "md", "sm", "xs", "2xs"], "default": "md" },
+    "form": { "type": "enum", "values": ["default", "pill"], "default": "default" },
+    "icon": { "type": "string", "description": "Icon name to render." },
+    "disabled": { "type": "boolean", "default": false },
+    "asChild": { "type": "boolean", "default": false }
+  },
+
+  "slots": {
+    "icon": {
+      "element": "Icon",
+      "description": "The single icon rendered inside the button."
+    }
+  },
+
+  "defaults": { "variant": "primary", "size": "md", "form": "default" },
+
+  "accessibility": {
+    "role": "button",
+    "notes": "aria-label is always required since there is no visible text label."
+  }
+}

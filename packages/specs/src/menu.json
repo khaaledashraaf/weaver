@@ -1,0 +1,115 @@
+{
+  "name": "Menu",
+  "description": "Dropdown menu for presenting a list of actions or options. Supports various item types including multi-line, progress, dividers, and captions.",
+
+  "base": {
+    "display": "flex",
+    "flexDirection": "column",
+    "bg": "{alias.bg-default}",
+    "border": { "width": "1px", "color": "{alias.border-default}" },
+    "borderRadius": "{radius.md}",
+    "shadow": "{shadow.lg}",
+    "padding": "{spacing.xs}",
+    "minWidth": "200px",
+    "zIndex": 50,
+    "overflow": "auto",
+    "maxHeight": "320px"
+  },
+
+  "variants": {
+    "default": {
+      "itemBg": "transparent",
+      "itemText": "{alias.content-default}",
+      "itemHover": { "bg": "{alias.interactive-ghost-hover}" }
+    }
+  },
+
+  "sizes": {
+    "default": { "itemHeight": "36px", "itemPaddingX": "{spacing.md}", "fontSize": "14px", "iconSize": "18px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "itemType": "divider" },
+      "apply": { "height": "1px", "bg": "{alias.border-default}", "margin": "{spacing.xs} 0" }
+    },
+    {
+      "when": { "itemType": "label" },
+      "apply": { "fontSize": "12px", "fontWeight": 600, "text": "{alias.content-secondary}", "pointerEvents": "none" }
+    },
+    {
+      "when": { "itemType": "caption" },
+      "apply": { "fontSize": "12px", "text": "{alias.content-tertiary}", "pointerEvents": "none" }
+    },
+    {
+      "when": { "itemType": "multi-line" },
+      "apply": { "itemHeight": "auto", "paddingY": "{spacing.sm}" }
+    }
+  ],
+
+  "props": {
+    "items": { "type": "array", "description": "Array of menu items with type, label, icon, and action." },
+    "open": { "type": "boolean", "default": false },
+    "onClose": { "type": "function", "description": "Callback when the menu is closed." },
+    "anchorEl": { "type": "element", "description": "Element the menu is anchored to." }
+  },
+
+  "slots": {
+    "item": {
+      "element": "Button",
+      "description": "Standard menu item.",
+      "role": "menuitem"
+    },
+    "multiLineItem": {
+      "element": "Box",
+      "description": "Multi-line menu item with title and description."
+    },
+    "ctaItem": {
+      "element": "Button",
+      "description": "Call-to-action menu item, visually emphasized."
+    },
+    "progressItem": {
+      "element": "Box",
+      "description": "Menu item displaying a progress indicator."
+    },
+    "divider": {
+      "element": "Box",
+      "description": "Visual separator between groups."
+    },
+    "label": {
+      "element": "Text",
+      "description": "Section label/heading within the menu."
+    },
+    "caption": {
+      "element": "Text",
+      "description": "Descriptive caption text."
+    },
+    "buttonItem": {
+      "element": "Button",
+      "description": "Full-width button item at the bottom of the menu."
+    },
+    "leadingIcon": {
+      "position": "start",
+      "element": "Icon",
+      "description": "Icon at the start of a menu item."
+    },
+    "trailingIcon": {
+      "position": "end",
+      "element": "Icon",
+      "description": "Icon at the end of a menu item."
+    }
+  },
+
+  "defaults": { "open": false },
+
+  "accessibility": {
+    "role": "menu",
+    "notes": "Use role=menu on container, role=menuitem on items. Support arrow key navigation. Focus first item on open. Close on Escape and return focus to trigger."
+  }
+}

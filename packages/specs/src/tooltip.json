@@ -1,0 +1,71 @@
+{
+  "name": "Tooltip",
+  "description": "Contextual information popup triggered on hover or focus. Supports pointer positioning and two visual styles.",
+
+  "base": {
+    "display": "inline-flex",
+    "flexDirection": "column",
+    "maxWidth": "320px",
+    "fontWeight": 400,
+    "zIndex": 50,
+    "pointerEvents": "none",
+    "transition": "opacity 150ms ease, transform 150ms ease"
+  },
+
+  "variants": {
+    "dark": {
+      "bg": "{alias.bg-inverted}",
+      "text": "{alias.content-on-color}",
+      "shadow": "{shadow.md}"
+    },
+    "default": {
+      "bg": "{alias.bg-default}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-default}" },
+      "shadow": "{shadow.md}"
+    }
+  },
+
+  "sizes": {
+    "small": { "padding": "{spacing.sm} {spacing.md}", "fontSize": "12px", "lineHeight": "16px", "borderRadius": "{radius.sm}" },
+    "large": { "padding": "{spacing.md} {spacing.lg}", "fontSize": "14px", "lineHeight": "20px", "borderRadius": "{radius.md}" }
+  },
+
+  "states": {
+    "disabled": {},
+    "focus": {},
+    "error": {}
+  },
+
+  "compoundVariants": [],
+
+  "props": {
+    "style": { "type": "enum", "values": ["dark", "default"], "default": "dark" },
+    "size": { "type": "enum", "values": ["small", "large"], "default": "small" },
+    "pointerPosition": { "type": "enum", "values": ["none", "top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right", "center-right", "center-left"], "default": "none" },
+    "content": { "type": "string", "description": "Tooltip text content." },
+    "delayMs": { "type": "number", "default": 300, "description": "Delay in milliseconds before showing the tooltip." }
+  },
+
+  "slots": {
+    "trigger": {
+      "element": "Box",
+      "description": "The element that triggers the tooltip on hover/focus."
+    },
+    "content": {
+      "element": "Text",
+      "description": "The tooltip content area."
+    },
+    "pointer": {
+      "element": "Box",
+      "description": "The arrow/pointer element indicating direction."
+    }
+  },
+
+  "defaults": { "style": "dark", "size": "small", "pointerPosition": "none" },
+
+  "accessibility": {
+    "role": "tooltip",
+    "notes": "Use aria-describedby on the trigger to link to the tooltip content. Tooltip should be dismissable via Escape key."
+  }
+}

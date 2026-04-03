@@ -1,0 +1,100 @@
+{
+  "name": "Tabs",
+  "description": "Horizontal navigation tabs for switching between content panels. Supports underline, segment, rounded, and bill styles.",
+
+  "base": {
+    "display": "flex",
+    "alignItems": "center",
+    "gap": "0",
+    "width": "auto"
+  },
+
+  "variants": {
+    "underline": {
+      "bg": "transparent",
+      "text": "{alias.content-secondary}",
+      "borderBottom": { "width": "2px", "color": "{alias.border-default}" },
+      "activeTab": { "text": "{alias.content-brand-default}", "borderBottomColor": "{alias.border-brand}" },
+      "hover": { "text": "{alias.content-default}" }
+    },
+    "segment": {
+      "bg": "{alias.bg-subtle}",
+      "text": "{alias.content-secondary}",
+      "borderRadius": "{radius.md}",
+      "padding": "{spacing.xs}",
+      "activeTab": { "bg": "{alias.bg-default}", "text": "{alias.content-default}", "shadow": "{shadow.xs}", "borderRadius": "{radius.sm}" },
+      "hover": { "text": "{alias.content-default}" }
+    },
+    "rounded": {
+      "bg": "transparent",
+      "text": "{alias.content-secondary}",
+      "activeTab": { "bg": "{alias.interactive-brand-default}", "text": "{alias.content-on-color}", "borderRadius": "{radius.full}" },
+      "hover": { "bg": "{alias.interactive-ghost-hover}" }
+    },
+    "grey-bill": {
+      "bg": "transparent",
+      "text": "{alias.content-secondary}",
+      "activeTab": { "bg": "{alias.bg-subtle}", "text": "{alias.content-default}", "borderRadius": "{radius.sm}" },
+      "hover": { "bg": "{alias.bg-subtle}" }
+    },
+    "brand-bill": {
+      "bg": "transparent",
+      "text": "{alias.content-secondary}",
+      "activeTab": { "bg": "{alias.bg-brand-subtle}", "text": "{alias.content-brand-default}", "borderRadius": "{radius.sm}" },
+      "hover": { "bg": "{alias.bg-brand-subtle}" }
+    }
+  },
+
+  "sizes": {
+    "default": { "height": "40px", "paddingX": "{spacing.lg}", "fontSize": "14px" },
+    "sm": { "height": "36px", "paddingX": "{spacing.md}", "fontSize": "13px" },
+    "xs": { "height": "32px", "paddingX": "{spacing.md}", "fontSize": "12px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "fullWidth": true },
+      "apply": { "width": "100%", "tabFlex": "1" }
+    }
+  ],
+
+  "props": {
+    "style": { "type": "enum", "values": ["underline", "segment", "rounded", "grey-bill", "brand-bill"], "default": "underline" },
+    "size": { "type": "enum", "values": ["default", "xs", "sm"], "default": "default" },
+    "fullWidth": { "type": "boolean", "default": false, "description": "Stretch tabs to fill the container width." },
+    "value": { "type": "string", "description": "Controlled active tab value." },
+    "defaultValue": { "type": "string", "description": "Initial active tab for uncontrolled mode." },
+    "onChange": { "type": "function", "description": "Callback when the active tab changes." }
+  },
+
+  "slots": {
+    "tabList": {
+      "element": "Box",
+      "description": "Container for the tab triggers.",
+      "role": "tablist"
+    },
+    "tab": {
+      "element": "Button",
+      "description": "Individual tab trigger.",
+      "role": "tab"
+    },
+    "tabPanel": {
+      "element": "Box",
+      "description": "Content panel associated with a tab.",
+      "role": "tabpanel"
+    }
+  },
+
+  "defaults": { "style": "underline", "size": "default", "fullWidth": false },
+
+  "accessibility": {
+    "role": "tablist",
+    "notes": "Use role=tablist on container, role=tab on triggers, role=tabpanel on panels. Link tabs to panels via aria-controls/aria-labelledby. Arrow keys navigate between tabs."
+  }
+}

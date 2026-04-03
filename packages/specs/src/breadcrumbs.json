@@ -1,0 +1,86 @@
+{
+  "name": "Breadcrumbs",
+  "description": "Hierarchical navigation trail showing the current page location. Supports text, icon, avatar items and configurable separators.",
+
+  "base": {
+    "display": "flex",
+    "alignItems": "center",
+    "flexWrap": "wrap",
+    "gap": "{spacing.xs}",
+    "fontSize": "14px",
+    "lineHeight": "20px"
+  },
+
+  "variants": {
+    "default": {
+      "bg": "transparent",
+      "text": "{alias.content-secondary}",
+      "activeText": "{alias.content-default}"
+    },
+    "raised": {
+      "bg": "{alias.bg-default}",
+      "text": "{alias.content-secondary}",
+      "activeText": "{alias.content-default}",
+      "padding": "{spacing.sm} {spacing.md}",
+      "borderRadius": "{radius.md}",
+      "border": { "width": "1px", "color": "{alias.border-default}" },
+      "shadow": "{shadow.xs}"
+    }
+  },
+
+  "sizes": {},
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px", "borderRadius": "{radius.xs}" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "itemType": "overflow" },
+      "apply": { "cursor": "pointer" }
+    }
+  ],
+
+  "props": {
+    "style": { "type": "enum", "values": ["default", "raised"], "default": "default" },
+    "separator": { "type": "enum", "values": ["chevron", "slash"], "default": "chevron" },
+    "items": { "type": "array", "description": "Array of breadcrumb items with label, href, and optional icon/avatar." },
+    "maxItems": { "type": "number", "description": "Maximum visible items before overflow collapse." }
+  },
+
+  "slots": {
+    "item": {
+      "element": "Link",
+      "description": "Individual breadcrumb item link."
+    },
+    "activeItem": {
+      "element": "Text",
+      "description": "The current/active breadcrumb item (non-interactive)."
+    },
+    "separator": {
+      "element": "Icon | Text",
+      "description": "Separator between breadcrumb items."
+    },
+    "overflow": {
+      "element": "Button",
+      "description": "Overflow trigger showing collapsed items."
+    },
+    "icon": {
+      "element": "Icon",
+      "description": "Icon shown alongside or instead of text."
+    },
+    "avatar": {
+      "element": "Avatar",
+      "description": "Avatar shown in avatar-type breadcrumb items."
+    }
+  },
+
+  "defaults": { "style": "default", "separator": "chevron" },
+
+  "accessibility": {
+    "role": "navigation",
+    "notes": "Wrap in nav element with aria-label='Breadcrumb'. Current page uses aria-current=page. Overflow menu should be accessible via keyboard."
+  }
+}

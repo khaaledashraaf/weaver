@@ -1,0 +1,78 @@
+{
+  "name": "Radio",
+  "description": "Single-selection control within a group. Supports leading/trailing label placement and optional support text.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "flex-start",
+    "gap": "{spacing.sm}",
+    "cursor": "pointer",
+    "transition": "background-color 150ms ease, border-color 150ms ease"
+  },
+
+  "variants": {
+    "active": {
+      "bg": "{alias.interactive-brand-default}",
+      "border": { "width": "2px", "color": "{alias.interactive-brand-default}" },
+      "innerDot": "{alias.content-on-color}",
+      "hover": { "bg": "{alias.interactive-brand-hover}", "borderColor": "{alias.interactive-brand-hover}" }
+    },
+    "inactive": {
+      "bg": "transparent",
+      "border": { "width": "2px", "color": "{alias.border-default}" },
+      "hover": { "borderColor": "{alias.border-hover}" }
+    }
+  },
+
+  "sizes": {
+    "default": { "boxSize": "20px", "borderRadius": "{radius.full}", "innerDotSize": "8px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "radioLocation": "trailing" },
+      "apply": { "flexDirection": "row-reverse" }
+    }
+  ],
+
+  "props": {
+    "isActive": { "type": "boolean", "default": false },
+    "disabled": { "type": "boolean", "default": false },
+    "radioLocation": { "type": "enum", "values": ["leading", "trailing"], "default": "leading" },
+    "label": { "type": "string", "description": "Radio label text." },
+    "supportText": { "type": "string", "description": "Additional description text below the label." },
+    "value": { "type": "string", "description": "Value submitted with the form." }
+  },
+
+  "slots": {
+    "control": {
+      "element": "Box",
+      "description": "The circular radio indicator."
+    },
+    "innerDot": {
+      "element": "Box",
+      "description": "The inner dot rendered when active."
+    },
+    "label": {
+      "element": "Label",
+      "description": "Text label for the radio."
+    },
+    "supportText": {
+      "element": "Text",
+      "description": "Support text displayed below the label."
+    }
+  },
+
+  "defaults": { "isActive": false, "radioLocation": "leading" },
+
+  "accessibility": {
+    "role": "radio",
+    "notes": "Must be inside a group with role=radiogroup. Use aria-checked for selection state. Navigate within group via arrow keys."
+  }
+}

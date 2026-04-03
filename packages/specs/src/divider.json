@@ -1,0 +1,53 @@
+{
+  "name": "Divider",
+  "description": "Visual separator for dividing content sections. Supports horizontal and vertical orientation with solid or dotted styles.",
+
+  "base": {
+    "flexShrink": 0,
+    "border": "none"
+  },
+
+  "variants": {
+    "solid": {
+      "borderStyle": "solid",
+      "borderColor": "{alias.border-default}"
+    },
+    "dotted": {
+      "borderStyle": "dotted",
+      "borderColor": "{alias.border-default}"
+    }
+  },
+
+  "sizes": {},
+
+  "states": {
+    "disabled": {},
+    "focus": {},
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "direction": "horizontal" },
+      "apply": { "width": "100%", "borderBottomWidth": "1px", "height": "0" }
+    },
+    {
+      "when": { "direction": "vertical" },
+      "apply": { "height": "100%", "borderLeftWidth": "1px", "width": "0", "alignSelf": "stretch" }
+    }
+  ],
+
+  "props": {
+    "direction": { "type": "enum", "values": ["horizontal", "vertical"], "default": "horizontal" },
+    "type": { "type": "enum", "values": ["solid", "dotted"], "default": "solid" }
+  },
+
+  "slots": {},
+
+  "defaults": { "direction": "horizontal", "type": "solid" },
+
+  "accessibility": {
+    "role": "separator",
+    "notes": "Use role=separator. For vertical dividers, set aria-orientation=vertical. Purely decorative dividers can use aria-hidden=true."
+  }
+}

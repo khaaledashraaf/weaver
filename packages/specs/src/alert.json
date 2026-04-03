@@ -1,0 +1,155 @@
+{
+  "name": "Alert",
+  "description": "Contextual feedback banner for conveying status messages. Supports light, outline, and solid styles with expandable content.",
+
+  "base": {
+    "display": "flex",
+    "alignItems": "flex-start",
+    "width": "100%",
+    "gap": "{spacing.md}",
+    "padding": "{spacing.md} {spacing.lg}",
+    "borderRadius": "{radius.md}",
+    "fontSize": "14px",
+    "lineHeight": "20px",
+    "fontWeight": 400
+  },
+
+  "variants": {
+    "danger-light": {
+      "bg": "{alias.bg-danger-subtle}",
+      "text": "{alias.content-danger-default}",
+      "icon": "{alias.content-danger-default}"
+    },
+    "danger-outline": {
+      "bg": "transparent",
+      "text": "{alias.content-danger-default}",
+      "border": { "width": "1px", "color": "{alias.border-danger}" },
+      "icon": "{alias.content-danger-default}"
+    },
+    "danger-solid": {
+      "bg": "{brand.red-600}",
+      "text": "{alias.content-on-color}",
+      "icon": "{alias.content-on-color}"
+    },
+    "success-light": {
+      "bg": "{alias.bg-success-subtle}",
+      "text": "{alias.content-success-default}",
+      "icon": "{alias.content-success-default}"
+    },
+    "success-outline": {
+      "bg": "transparent",
+      "text": "{alias.content-success-default}",
+      "border": { "width": "1px", "color": "{alias.border-success}" },
+      "icon": "{alias.content-success-default}"
+    },
+    "success-solid": {
+      "bg": "{brand.green-600}",
+      "text": "{alias.content-on-color}",
+      "icon": "{alias.content-on-color}"
+    },
+    "warning-light": {
+      "bg": "{alias.bg-warning-subtle}",
+      "text": "{alias.content-warning-default}",
+      "icon": "{alias.content-warning-default}"
+    },
+    "warning-outline": {
+      "bg": "transparent",
+      "text": "{alias.content-warning-default}",
+      "border": { "width": "1px", "color": "{alias.border-warning}" },
+      "icon": "{alias.content-warning-default}"
+    },
+    "warning-solid": {
+      "bg": "{brand.amber-600}",
+      "text": "{alias.content-on-color}",
+      "icon": "{alias.content-on-color}"
+    },
+    "info-light": {
+      "bg": "{alias.bg-info-subtle}",
+      "text": "{alias.content-info-default}",
+      "icon": "{alias.content-info-default}"
+    },
+    "info-outline": {
+      "bg": "transparent",
+      "text": "{alias.content-info-default}",
+      "border": { "width": "1px", "color": "{alias.border-info}" },
+      "icon": "{alias.content-info-default}"
+    },
+    "info-solid": {
+      "bg": "{brand.blue-600}",
+      "text": "{alias.content-on-color}",
+      "icon": "{alias.content-on-color}"
+    },
+    "neutral-light": {
+      "bg": "{alias.bg-subtle}",
+      "text": "{alias.content-default}",
+      "icon": "{alias.content-default}"
+    },
+    "neutral-outline": {
+      "bg": "transparent",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-default}" },
+      "icon": "{alias.content-default}"
+    },
+    "neutral-solid": {
+      "bg": "{brand.slate-800}",
+      "text": "{alias.content-on-color}",
+      "icon": "{alias.content-on-color}"
+    }
+  },
+
+  "sizes": {},
+
+  "states": {
+    "disabled": {},
+    "focus": {},
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "isExpandable": true },
+      "apply": { "cursor": "pointer" }
+    }
+  ],
+
+  "props": {
+    "status": { "type": "enum", "values": ["danger", "info", "neutral", "success", "warning"], "default": "info" },
+    "style": { "type": "enum", "values": ["light", "outline", "solid"], "default": "light" },
+    "title": { "type": "string", "description": "Alert title text." },
+    "description": { "type": "string", "description": "Alert body text." },
+    "isExpandable": { "type": "boolean", "default": false, "description": "Allow content to be collapsed/expanded." },
+    "onDismiss": { "type": "function", "description": "Callback to dismiss the alert." }
+  },
+
+  "slots": {
+    "icon": {
+      "position": "start",
+      "element": "Icon",
+      "description": "Status icon at the start of the alert."
+    },
+    "title": {
+      "element": "Text",
+      "description": "Alert title."
+    },
+    "description": {
+      "element": "Text",
+      "description": "Alert description body."
+    },
+    "closeButton": {
+      "position": "end",
+      "element": "IconButton",
+      "description": "Optional dismiss button."
+    },
+    "expandToggle": {
+      "element": "IconButton",
+      "description": "Expand/collapse toggle for expandable alerts."
+    }
+  },
+
+  "defaults": { "status": "info", "style": "light", "isExpandable": false },
+
+  "accessibility": {
+    "role": "alert",
+    "notes": "Use role=alert for important messages. Expandable content should use aria-expanded. Dismiss button needs aria-label."
+  }
+}

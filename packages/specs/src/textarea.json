@@ -1,0 +1,81 @@
+{
+  "name": "Textarea",
+  "description": "Multi-line text input for longer form content. Supports tags mode and error state.",
+
+  "base": {
+    "display": "flex",
+    "flexDirection": "column",
+    "width": "100%",
+    "fontWeight": 400,
+    "fontFamily": "inherit",
+    "resize": "vertical",
+    "minHeight": "80px",
+    "transition": "border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease"
+  },
+
+  "variants": {
+    "default": {
+      "bg": "{alias.interactive-input-default}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-input}" },
+      "placeholder": "{alias.content-placeholder}"
+    },
+    "tags": {
+      "bg": "{alias.interactive-input-default}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-input}" },
+      "placeholder": "{alias.content-placeholder}",
+      "flexWrap": "wrap",
+      "gap": "{spacing.xs}"
+    }
+  },
+
+  "sizes": {
+    "default": { "padding": "{spacing.md}", "fontSize": "14px", "lineHeight": "20px", "borderRadius": "{radius.md}" }
+  },
+
+  "states": {
+    "disabled": { "bg": "{alias.interactive-input-disabled}", "opacity": 0.5, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "borderColor": "{alias.border-focus}", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "0px" },
+    "error": { "borderColor": "{alias.border-focus-danger}", "ring": "2px", "ringColor": "{alias.border-focus-danger}" }
+  },
+
+  "compoundVariants": [],
+
+  "props": {
+    "type": { "type": "enum", "values": ["default", "tags"], "default": "default" },
+    "placeholder": { "type": "string", "description": "Placeholder text when textarea is empty." },
+    "value": { "type": "string", "description": "Controlled textarea value." },
+    "disabled": { "type": "boolean", "default": false },
+    "error": { "type": "boolean", "default": false, "description": "Show error state with danger border." },
+    "label": { "type": "string", "description": "Associated label text." },
+    "helperText": { "type": "string", "description": "Helper or error message below the textarea." },
+    "rows": { "type": "number", "default": 3, "description": "Number of visible text rows." }
+  },
+
+  "slots": {
+    "textarea": {
+      "element": "textarea",
+      "description": "The native textarea element."
+    },
+    "tag": {
+      "element": "Tag",
+      "description": "Tag chips rendered inside the tags variant."
+    },
+    "label": {
+      "element": "Label",
+      "description": "Form label for the textarea."
+    },
+    "helperText": {
+      "element": "Text",
+      "description": "Helper or error text below the textarea."
+    }
+  },
+
+  "defaults": { "type": "default" },
+
+  "accessibility": {
+    "role": "textbox",
+    "notes": "Set aria-multiline=true. Associate label via htmlFor/id. Error state should set aria-invalid=true."
+  }
+}

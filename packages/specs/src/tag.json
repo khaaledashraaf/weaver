@@ -1,0 +1,100 @@
+{
+  "name": "Tag",
+  "description": "Compact label element used for categorization, filtering, and status indication. Supports icons, dots, flags, avatars, and a close action.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "center",
+    "fontWeight": 500,
+    "flexShrink": 0,
+    "cursor": "default",
+    "transition": "background-color 150ms ease, border-color 150ms ease, color 150ms ease"
+  },
+
+  "variants": {
+    "neutral": {
+      "bg": "{alias.bg-subtle}",
+      "text": "{alias.content-default}",
+      "border": { "width": "1px", "color": "{alias.border-default}" }
+    },
+    "brand": {
+      "bg": "{alias.bg-brand-subtle}",
+      "text": "{alias.content-brand-default}",
+      "border": { "width": "1px", "color": "{alias.border-brand}" }
+    },
+    "danger": {
+      "bg": "{alias.bg-danger-subtle}",
+      "text": "{alias.content-danger-default}",
+      "border": { "width": "1px", "color": "{alias.border-danger}" }
+    },
+    "success": {
+      "bg": "{alias.bg-success-subtle}",
+      "text": "{alias.content-success-default}",
+      "border": { "width": "1px", "color": "{alias.border-success}" }
+    },
+    "warning": {
+      "bg": "{alias.bg-warning-subtle}",
+      "text": "{alias.content-warning-default}",
+      "border": { "width": "1px", "color": "{alias.border-warning}" }
+    }
+  },
+
+  "sizes": {
+    "lg": { "height": "32px", "paddingX": "{spacing.md}", "gap": "6px", "fontSize": "14px", "borderRadius": "{radius.md}" },
+    "md": { "height": "28px", "paddingX": "{spacing.sm}", "gap": "4px", "fontSize": "13px", "borderRadius": "{radius.sm}" },
+    "xs": { "height": "24px", "paddingX": "{spacing.sm}", "gap": "4px", "fontSize": "12px", "borderRadius": "{radius.sm}" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "state": "active" },
+      "apply": { "borderWidth": "2px", "borderColor": "{alias.border-brand}" }
+    },
+    {
+      "when": { "type": "dot" },
+      "apply": { "dotSize": "8px" }
+    }
+  ],
+
+  "props": {
+    "type": { "type": "enum", "values": ["simple", "dot", "flag", "avatar", "icon"], "default": "simple" },
+    "variant": { "type": "enum", "values": ["neutral", "brand", "danger", "success", "warning"], "default": "neutral" },
+    "size": { "type": "enum", "values": ["xs", "md", "lg"], "default": "md" },
+    "label": { "type": "string", "description": "Tag text content." },
+    "showCloseButton": { "type": "boolean", "default": false, "description": "Show close/remove button." },
+    "disabled": { "type": "boolean", "default": false },
+    "icon": { "type": "string", "description": "Icon name for icon type." },
+    "avatar": { "type": "string", "description": "Avatar image URL for avatar type." },
+    "flagCode": { "type": "string", "description": "Country code for flag type." }
+  },
+
+  "slots": {
+    "label": {
+      "element": "Text",
+      "description": "Tag text label."
+    },
+    "leadingVisual": {
+      "position": "start",
+      "element": "Icon | Avatar | Dot | Flag",
+      "description": "Visual indicator at the start of the tag."
+    },
+    "closeButton": {
+      "position": "end",
+      "element": "IconButton",
+      "description": "Close/remove button at the end of the tag."
+    }
+  },
+
+  "defaults": { "type": "simple", "variant": "neutral", "size": "md", "showCloseButton": false },
+
+  "accessibility": {
+    "role": "status",
+    "notes": "Removable tags should have aria-label describing the close action. Interactive tags should use role=button."
+  }
+}

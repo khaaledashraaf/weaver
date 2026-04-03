@@ -1,0 +1,80 @@
+{
+  "name": "LinkButton",
+  "description": "A text-styled button that resembles a hyperlink. Used for low-emphasis actions or inline navigation.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "center",
+    "justifyContent": "center",
+    "fontWeight": 500,
+    "cursor": "pointer",
+    "background": "transparent",
+    "border": "none",
+    "padding": "0",
+    "transition": "color 150ms ease, text-decoration 150ms ease"
+  },
+
+  "variants": {
+    "primary": {
+      "text": "{alias.content-brand-default}",
+      "hover": { "text": "{alias.content-brand-hover}" },
+      "active": { "text": "{alias.content-brand-pressed}" }
+    },
+    "danger": {
+      "text": "{alias.content-danger-default}",
+      "hover": { "text": "{alias.content-danger-hover}" },
+      "active": { "text": "{alias.content-danger-pressed}" }
+    },
+    "neutral": {
+      "text": "{alias.content-default}",
+      "hover": { "text": "{alias.content-hover}" },
+      "active": { "text": "{alias.content-pressed}" }
+    },
+    "white": {
+      "text": "{alias.content-on-color}",
+      "hover": { "text": "{alias.content-on-color}", "opacity": 0.8 },
+      "active": { "text": "{alias.content-on-color}", "opacity": 0.7 }
+    }
+  },
+
+  "sizes": {
+    "lg": { "fontSize": "16px", "lineHeight": "24px", "gap": "6px" },
+    "md": { "fontSize": "14px", "lineHeight": "20px", "gap": "4px" },
+    "sm": { "fontSize": "13px", "lineHeight": "18px", "gap": "4px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px", "borderRadius": "{radius.xs}" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "underline": true },
+      "apply": { "textDecoration": "underline", "textUnderlineOffset": "4px" }
+    }
+  ],
+
+  "props": {
+    "variant": { "type": "enum", "values": ["primary", "danger", "neutral", "white"], "default": "primary" },
+    "size": { "type": "enum", "values": ["lg", "md", "sm"], "default": "md" },
+    "underline": { "type": "boolean", "default": false, "description": "Show underline decoration on the link text." },
+    "disabled": { "type": "boolean", "default": false },
+    "asChild": { "type": "boolean", "default": false }
+  },
+
+  "slots": {
+    "label": {
+      "element": "Text",
+      "description": "Link button text content."
+    }
+  },
+
+  "defaults": { "variant": "primary", "size": "md", "underline": false },
+
+  "accessibility": {
+    "role": "button",
+    "notes": "If used for navigation, render as an anchor element via asChild. Ensure sufficient color contrast for all variants."
+  }
+}

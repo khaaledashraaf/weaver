@@ -1,0 +1,17 @@
+{
+  "name": "weaver-ds",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:joyui": "npm run build --workspace=weaver-ui-joyui"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.0.0"
+  }
+}

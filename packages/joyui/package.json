@@ -1,0 +1,48 @@
+{
+  "name": "weaver-ui-joyui",
+  "version": "0.1.0",
+  "description": "Weaver Design System theme for Joy UI",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./css/tokens.css": "./dist/css/tokens.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "joy-ui",
+    "mui-joy",
+    "theme",
+    "design-system",
+    "weaver",
+    "react",
+    "typescript"
+  ],
+  "license": "ISC",
+  "peerDependencies": {
+    "@mui/joy": "^5.0.0-beta.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@mui/joy": "^5.0.0-beta.48",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.0.0"
+  }
+}

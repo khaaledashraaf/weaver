@@ -1,0 +1,9 @@
+{
+  "name": "@weaver/tokens",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/tokens.json",
+  "exports": {
+    ".": "./src/tokens.json"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Slider",
+  "description": "Range input control for selecting a value within a defined range. Supports tooltips and text indicators.",
+
+  "base": {
+    "display": "flex",
+    "flexDirection": "column",
+    "width": "100%",
+    "gap": "{spacing.sm}"
+  },
+
+  "variants": {
+    "default": {
+      "track": { "bg": "{alias.bg-subtle}", "height": "4px", "borderRadius": "{radius.full}" },
+      "filledTrack": { "bg": "{alias.interactive-brand-default}" },
+      "handle": { "bg": "{alias.interactive-brand-default}", "border": { "width": "2px", "color": "{alias.content-on-color}" }, "shadow": "{shadow.sm}" }
+    }
+  },
+
+  "sizes": {
+    "default": { "handleSize": "20px", "trackHeight": "4px" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "handle": { "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" } },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "handleState": "hover" },
+      "apply": { "handle": { "bg": "{alias.interactive-brand-hover}", "transform": "scale(1.1)" } }
+    },
+    {
+      "when": { "indicatorType": "lower-tooltip" },
+      "apply": { "tooltipPosition": "bottom" }
+    },
+    {
+      "when": { "indicatorType": "upper-tooltip" },
+      "apply": { "tooltipPosition": "top" }
+    }
+  ],
+
+  "props": {
+    "min": { "type": "number", "default": 0 },
+    "max": { "type": "number", "default": 100 },
+    "step": { "type": "number", "default": 1 },
+    "value": { "type": "number", "description": "Controlled slider value." },
+    "defaultValue": { "type": "number", "description": "Initial value for uncontrolled mode." },
+    "disabled": { "type": "boolean", "default": false },
+    "indicatorType": { "type": "enum", "values": ["none", "lower-text", "upper-text", "lower-tooltip", "upper-tooltip"], "default": "none" },
+    "onChange": { "type": "function", "description": "Callback when value changes." }
+  },
+
+  "slots": {
+    "track": {
+      "element": "Box",
+      "description": "The full track bar."
+    },
+    "filledTrack": {
+      "element": "Box",
+      "description": "The filled portion of the track."
+    },
+    "handle": {
+      "element": "Box",
+      "description": "The draggable thumb/handle."
+    },
+    "indicator": {
+      "element": "Text | Tooltip",
+      "description": "Value indicator displayed as text or tooltip near the handle."
+    }
+  },
+
+  "defaults": { "min": 0, "max": 100, "step": 1, "indicatorType": "none" },
+
+  "accessibility": {
+    "role": "slider",
+    "notes": "Use aria-valuemin, aria-valuemax, aria-valuenow, and aria-valuetext. Ensure keyboard control via arrow keys with proper step increments."
+  }
+}

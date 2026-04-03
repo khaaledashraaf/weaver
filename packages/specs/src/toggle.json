@@ -1,0 +1,76 @@
+{
+  "name": "Toggle",
+  "description": "On/off switch control for binary settings. Supports optional icon inside the handle.",
+
+  "base": {
+    "display": "inline-flex",
+    "alignItems": "center",
+    "cursor": "pointer",
+    "flexShrink": 0,
+    "transition": "background-color 200ms ease"
+  },
+
+  "variants": {
+    "inactive": {
+      "track": { "bg": "{alias.interactive-switch-default}" },
+      "handle": { "bg": "{alias.interactive-switch-handle}" },
+      "hover": { "track": { "bg": "{alias.interactive-switch-hover}" } }
+    },
+    "active": {
+      "track": { "bg": "{alias.interactive-switch-active}" },
+      "handle": { "bg": "{alias.interactive-switch-handle}" },
+      "hover": { "track": { "bg": "{alias.interactive-switch-active-hover}" } }
+    }
+  },
+
+  "sizes": {
+    "md": { "trackWidth": "44px", "trackHeight": "24px", "handleSize": "20px", "trackBorderRadius": "{radius.full}", "handleBorderRadius": "{radius.full}" },
+    "sm": { "trackWidth": "36px", "trackHeight": "20px", "handleSize": "16px", "trackBorderRadius": "{radius.full}", "handleBorderRadius": "{radius.full}" }
+  },
+
+  "states": {
+    "disabled": { "opacity": 0.4, "pointerEvents": "none", "cursor": "not-allowed" },
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}", "ringOffset": "2px" },
+    "error": {}
+  },
+
+  "compoundVariants": [
+    {
+      "when": { "hasIcon": true, "size": "md" },
+      "apply": { "handleIconSize": "14px" }
+    },
+    {
+      "when": { "hasIcon": true, "size": "sm" },
+      "apply": { "handleIconSize": "12px" }
+    }
+  ],
+
+  "props": {
+    "active": { "type": "boolean", "default": false },
+    "size": { "type": "enum", "values": ["sm", "md"], "default": "md" },
+    "disabled": { "type": "boolean", "default": false },
+    "hasIcon": { "type": "boolean", "default": false, "description": "Show icon inside the handle." }
+  },
+
+  "slots": {
+    "track": {
+      "element": "Box",
+      "description": "The background track of the toggle."
+    },
+    "handle": {
+      "element": "Box",
+      "description": "The sliding handle/thumb."
+    },
+    "icon": {
+      "element": "Icon",
+      "description": "Optional icon rendered inside the handle."
+    }
+  },
+
+  "defaults": { "active": false, "size": "md", "hasIcon": false },
+
+  "accessibility": {
+    "role": "switch",
+    "notes": "Use aria-checked for on/off state. Ensure the switch is keyboard operable via Space key."
+  }
+}
