@@ -1,4 +1,4 @@
-import { tokens } from "../tokens";
+import { tokens, resolve } from "../tokens";
 
 export const JoyButton = {
   styleOverrides: {
@@ -27,31 +27,31 @@ export const JoyButton = {
       ...(ownerState.variant === "solid" &&
         ownerState.color === "primary" && {
           "&:active": {
-            backgroundColor: tokens.alias["interactive-brand-pressed"],
+            backgroundColor: resolve("{alias.interactive-brand-pressed}"),
           },
         }),
       ...(ownerState.variant === "solid" &&
         ownerState.color === "danger" && {
           "&:active": {
-            backgroundColor: tokens.alias["interactive-danger-pressed"],
+            backgroundColor: resolve("{alias.interactive-danger-pressed}"),
           },
         }),
       ...(ownerState.variant === "outlined" &&
         ownerState.color === "neutral" && {
           boxShadow: tokens.shadow.xs,
           "&:active": {
-            backgroundColor: tokens.alias["interactive-outlined-pressed"],
+            backgroundColor: resolve("{alias.interactive-outlined-pressed}"),
           },
         }),
       ...(ownerState.variant === "plain" &&
         ownerState.color === "neutral" && {
           "&:active": {
-            backgroundColor: tokens.alias["interactive-ghost-pressed"],
+            backgroundColor: resolve("{alias.interactive-ghost-pressed}"),
           },
         }),
       "&:focus-visible": {
         outlineOffset: 2,
-        outline: `2px solid ${tokens.alias["border-focus"]}`,
+        outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
         opacity: 0.5,
@@ -70,7 +70,7 @@ export const JoyIconButton = {
       ...(ownerState.size === "lg" && { width: 44, height: 44 }),
       "&:focus-visible": {
         outlineOffset: 2,
-        outline: `2px solid ${tokens.alias["border-focus"]}`,
+        outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
         opacity: 0.5,

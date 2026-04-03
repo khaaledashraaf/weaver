@@ -1,4 +1,4 @@
-import { tokens } from "../tokens";
+import { tokens, resolve } from "../tokens";
 
 export const JoySelect = {
   styleOverrides: {
@@ -19,7 +19,7 @@ export const JoySelect = {
       }),
       "&:focus-visible, &.Joy-focusVisible": {
         outlineOffset: 2,
-        outline: `2px solid ${tokens.alias["border-focus"]}`,
+        outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
         opacity: 0.5,

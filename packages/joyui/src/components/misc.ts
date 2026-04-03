@@ -1,4 +1,4 @@
-import { tokens } from "../tokens";
+import { tokens, resolve } from "../tokens";
 
 export const JoyLink = {
   styleOverrides: {
@@ -35,11 +35,11 @@ export const JoyTab = {
 export const JoyTable = {
   styleOverrides: {
     root: {
-      "--TableCell-headBackground": tokens.alias["interactive-table-header"],
+      "--TableCell-headBackground": resolve("{alias.interactive-table-header}"),
       "& thead th": {
         fontWeight: 600,
         fontSize: "0.8125rem",
-        color: tokens.alias["content-subtle"],
+        color: resolve("{alias.content-subtle}"),
       },
     },
   },
@@ -94,7 +94,7 @@ export const JoyListSubheader = {
       fontWeight: 600,
       textTransform: "uppercase" as const,
       letterSpacing: "0.05em",
-      color: tokens.alias["content-muted"],
+      color: resolve("{alias.content-muted}"),
     },
   },
 };
