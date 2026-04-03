@@ -4,6 +4,7 @@ import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
 import Stack from "@mui/joy/Stack";
+import { RiAddLine, RiArrowRightLine, RiDeleteBinLine, RiSettings3Line, RiSearchLine, RiCloseLine, RiEditLine, RiDownloadLine } from "@remixicon/react";
 import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
@@ -87,7 +88,7 @@ export default function ButtonsPage() {
           <Stack direction="row" spacing={1.5} alignItems="center">
             {sizes.map((size) => (
               <IconButton key={size} size={size} variant="outlined" color="neutral">
-                +
+                <RiAddLine size={20} />
               </IconButton>
             ))}
           </Stack>
@@ -95,17 +96,17 @@ export default function ButtonsPage() {
           <Stack direction="row" spacing={1.5} alignItems="center">
             {sizes.map((size) => (
               <IconButton key={size} size={size} variant="outlined" color="neutral" sx={{ borderRadius: "9999px" }}>
-                +
+                <RiAddLine size={20} />
               </IconButton>
             ))}
           </Stack>
           <Typography level="title-sm">Icon button styles</Typography>
           <Stack direction="row" spacing={1.5} alignItems="center">
-            <IconButton variant="solid" color="primary">+</IconButton>
-            <IconButton variant="soft" color="neutral">+</IconButton>
-            <IconButton variant="outlined" color="neutral">+</IconButton>
-            <IconButton variant="plain" color="neutral">+</IconButton>
-            <IconButton variant="solid" color="danger">+</IconButton>
+            <IconButton variant="solid" color="primary"><RiAddLine size={20} /></IconButton>
+            <IconButton variant="soft" color="neutral"><RiSettings3Line size={20} /></IconButton>
+            <IconButton variant="outlined" color="neutral"><RiSearchLine size={20} /></IconButton>
+            <IconButton variant="plain" color="neutral"><RiEditLine size={20} /></IconButton>
+            <IconButton variant="solid" color="danger"><RiDeleteBinLine size={20} /></IconButton>
           </Stack>
         </Stack>
       </Section>
@@ -115,11 +116,17 @@ export default function ButtonsPage() {
         description="Buttons support leading and trailing icon slots."
       >
         <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
-          <Button startDecorator="+" variant="solid" color="primary">
+          <Button startDecorator={<RiAddLine size={18} />} variant="solid" color="primary">
             Add Item
           </Button>
-          <Button endDecorator=">" variant="outlined" color="neutral">
+          <Button endDecorator={<RiArrowRightLine size={18} />} variant="outlined" color="neutral">
             Next
+          </Button>
+          <Button startDecorator={<RiDownloadLine size={18} />} variant="outlined" color="neutral">
+            Download
+          </Button>
+          <Button startDecorator={<RiDeleteBinLine size={18} />} variant="solid" color="danger">
+            Delete
           </Button>
         </Stack>
       </Section>
@@ -127,27 +134,26 @@ export default function ButtonsPage() {
       <Section title="Usage">
         <CodeBlock>{`import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
+import { RiAddLine, RiDeleteBinLine } from "@remixicon/react";
 
-// Primary button
-<Button variant="solid" color="primary">Save</Button>
-
-// Secondary button
-<Button variant="outlined" color="neutral">Cancel</Button>
+// Primary button with icon
+<Button startDecorator={<RiAddLine size={18} />}>
+  Add Item
+</Button>
 
 // Danger button
-<Button variant="solid" color="danger">Delete</Button>
-
-// Ghost button
-<Button variant="plain" color="neutral">Skip</Button>
+<Button startDecorator={<RiDeleteBinLine size={18} />} color="danger">
+  Delete
+</Button>
 
 // Icon button (default form)
 <IconButton variant="outlined" color="neutral">
-  <AddIcon />
+  <RiAddLine size={20} />
 </IconButton>
 
 // Icon button (pill form)
 <IconButton variant="outlined" sx={{ borderRadius: "9999px" }}>
-  <AddIcon />
+  <RiAddLine size={20} />
 </IconButton>`}</CodeBlock>
       </Section>
 

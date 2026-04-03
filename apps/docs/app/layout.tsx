@@ -29,6 +29,7 @@ const navItems = [
   { label: "Slider", href: "/components/slider" },
   { label: "Progress", href: "/components/progress" },
   { label: "Divider", href: "/components/divider" },
+  { label: "Icons", href: "/components/icons" },
   { label: "Typography", href: "/components/typography" },
 ];
 

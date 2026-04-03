@@ -2,9 +2,11 @@
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Chip from "@mui/joy/Chip";
+import ChipDelete from "@mui/joy/ChipDelete";
 import Badge from "@mui/joy/Badge";
 import Avatar from "@mui/joy/Avatar";
 import Stack from "@mui/joy/Stack";
+import { RiCloseLine } from "@remixicon/react";
 import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
@@ -64,9 +66,9 @@ export default function ChipsBadgesPage() {
         description="Tags can have a close button (Has close button = True in Figma)."
       >
         <Stack direction="row" spacing={1.5} alignItems="center">
-          <Chip size="sm" endDecorator="x">Tag</Chip>
-          <Chip size="md" endDecorator="x">Tag</Chip>
-          <Chip size="lg" endDecorator="x">Tag</Chip>
+          <Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
+          <Chip size="md" endDecorator={<ChipDelete><RiCloseLine size={16} /></ChipDelete>}>Tag</Chip>
+          <Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={18} /></ChipDelete>}>Tag</Chip>
         </Stack>
       </Section>
 

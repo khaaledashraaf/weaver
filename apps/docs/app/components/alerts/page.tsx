@@ -3,6 +3,7 @@ import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Alert from "@mui/joy/Alert";
 import Stack from "@mui/joy/Stack";
+import { RiErrorWarningFill, RiCheckboxCircleFill, RiAlertFill, RiInformationFill, RiIndeterminateCircleFill } from "@remixicon/react";
 import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
@@ -31,11 +32,11 @@ export default function AlertsPage() {
         description="Five status types from Figma: Danger, Success, Warning, Info, Neutral."
       >
         <Stack spacing={1.5}>
-          <Alert color="danger">Danger — Something went wrong.</Alert>
-          <Alert color="success">Success — Operation completed.</Alert>
-          <Alert color="warning">Warning — Please review this.</Alert>
-          <Alert color="primary">Info — Here is some information.</Alert>
-          <Alert color="neutral">Neutral — General notice.</Alert>
+          <Alert color="danger" startDecorator={<RiErrorWarningFill size={20} />}>Danger — Something went wrong.</Alert>
+          <Alert color="success" startDecorator={<RiCheckboxCircleFill size={20} />}>Success — Operation completed.</Alert>
+          <Alert color="warning" startDecorator={<RiAlertFill size={20} />}>Warning — Please review this.</Alert>
+          <Alert color="primary" startDecorator={<RiInformationFill size={20} />}>Info — Here is some information.</Alert>
+          <Alert color="neutral" startDecorator={<RiIndeterminateCircleFill size={20} />}>Neutral — General notice.</Alert>
         </Stack>
       </Section>
 

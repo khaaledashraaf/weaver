@@ -7,6 +7,7 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
 import Stack from "@mui/joy/Stack";
+import { RiSearchLine, RiMailLine, RiLockLine, RiEyeLine } from "@remixicon/react";
 import { Section } from "../section";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
@@ -111,8 +112,14 @@ export default function InputsPage() {
         description="Leading and trailing icon slots."
       >
         <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Input startDecorator="@" placeholder="Username" />
-          <Input endDecorator="$" placeholder="Amount" />
+          <Input startDecorator={<RiSearchLine size={18} />} placeholder="Search..." />
+          <Input startDecorator={<RiMailLine size={18} />} placeholder="Email address" />
+          <Input
+            startDecorator={<RiLockLine size={18} />}
+            endDecorator={<RiEyeLine size={18} />}
+            placeholder="Password"
+            type="password"
+          />
         </Stack>
       </Section>
 
