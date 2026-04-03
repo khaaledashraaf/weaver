@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Select from "@mui/joy/Select";
@@ -21,7 +22,9 @@ export default function SelectPage() {
         Select
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Select menus let users choose a single value from a list of options. The
+        Select menus let users choose a single value from a list of options.
+        Weaver selects use 8px border-radius, 15px font size, and heights of
+        32px (md) and 36px (lg), matching the Input component. The
         Weaver theme styles the trigger, dropdown panel, and individual options
         with consistent border-radius, spacing, and color tokens.
       </Typography>

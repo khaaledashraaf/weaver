@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Switch from "@mui/joy/Switch";
@@ -16,9 +17,9 @@ export default function SwitchPage() {
         Switch
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Switches toggle a single setting on or off. The Weaver theme customizes
-        the track, thumb, and focus ring to match the design system. Switches are
-        ideal for binary settings that take immediate effect.
+        Switches toggle a single setting on or off. Weaver uses green (#0BAE45)
+        for the active track, slate gray for inactive, and white thumbs. Track
+        sizes are sm (32x20, 14px thumb) and md (40x24, 18px thumb).
       </Typography>
 
       <Section

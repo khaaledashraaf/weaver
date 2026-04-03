@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Checkbox from "@mui/joy/Checkbox";
@@ -19,9 +20,9 @@ export default function CheckboxRadioPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Checkboxes allow users to select one or more items from a set, while
-        radio buttons let users select exactly one option from a group. The
-        Weaver theme applies consistent sizing, color tokens, and border-radius
-        to these controls.
+        radio buttons let users select exactly one option from a group. Weaver
+        checkboxes are 16px with 4px radius and 8px gap to labels. Radio buttons
+        are 16px circles with 10px gap to labels.
       </Typography>
 
       {/* Checkbox sections */}

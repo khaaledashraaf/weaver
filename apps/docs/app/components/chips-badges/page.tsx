@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Chip from "@mui/joy/Chip";
@@ -20,8 +21,9 @@ export default function ChipsBadgesPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Chips represent complex entities in small blocks, such as tags, filters,
-        or contacts. Badges generate a small indicator on their child element to
-        convey status or counts. Both are styled by the Weaver theme with
+        or contacts. Weaver chips use 6px radius (sm) and 8px radius (md/lg) —
+        not fully rounded — with heights of 24px, 28px, and 36px. Badges use
+        full-pill radius with 500 font-weight. Both are styled with
         consistent border-radius and color tokens.
       </Typography>
 

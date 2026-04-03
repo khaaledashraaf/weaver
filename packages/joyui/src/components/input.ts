@@ -5,20 +5,21 @@ export const JoyInput = {
     root: ({ ownerState }: { ownerState: any }) => ({
       "--Input-focusedThickness": "2px",
       "--Input-focusedHighlight": resolve("{alias.border-focus}"),
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.xs,
       transition: "border-color 150ms, box-shadow 150ms",
+      fontSize: "0.9375rem",
+      lineHeight: "1.5rem",
+      "--Input-paddingInline": tokens.spacing.md,
       ...(ownerState.size === "sm" && {
-        "--Input-minHeight": "36px",
+        "--Input-minHeight": "28px",
         fontSize: "0.875rem",
       }),
       ...(ownerState.size === "md" && {
-        "--Input-minHeight": "40px",
-        fontSize: "0.9375rem",
+        "--Input-minHeight": "32px",
       }),
       ...(ownerState.size === "lg" && {
-        "--Input-minHeight": "44px",
-        fontSize: "1rem",
+        "--Input-minHeight": "36px",
       }),
       ...(ownerState.color === "danger" && {
         "--Input-focusedHighlight": resolve("{alias.border-focus-danger}"),
@@ -35,8 +36,10 @@ export const JoyTextarea = {
     root: () => ({
       "--Textarea-focusedThickness": "2px",
       "--Textarea-focusedHighlight": resolve("{alias.border-focus}"),
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.xs,
+      fontSize: "0.9375rem",
+      lineHeight: "1.5rem",
       "&.Mui-disabled, &.Joy-disabled": {
         opacity: 0.5,
       },
@@ -47,7 +50,7 @@ export const JoyTextarea = {
 export const JoyFormControl = {
   styleOverrides: {
     root: {
-      "--FormLabel-margin": `0 0 ${tokens.spacing.xs} 0`,
+      "--FormLabel-margin": `0 0 ${tokens.spacing.sm} 0`,
     },
   },
 };

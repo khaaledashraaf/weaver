@@ -32,9 +32,9 @@ export default function CardsModalsPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Cards are surfaces that display content and actions about a single
-        subject. Modals present focused content that requires user attention or
-        interaction. The Weaver theme applies consistent border-radius, shadows,
-        and spacing to both.
+        subject. Weaver cards use 16px border-radius with a 1px border and no
+        shadow. Modals use 12px border-radius with section-based padding (20px
+        per section). Both provide consistent, Figma-matched styling.
       </Typography>
 
       {/* Card sections */}

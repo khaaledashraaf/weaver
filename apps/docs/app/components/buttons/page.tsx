@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
@@ -19,8 +20,9 @@ export default function ButtonsPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Buttons allow users to take actions and make choices with a single tap.
-        The Weaver theme applies custom border-radius, font weights, and color
-        palettes to the standard Joy UI Button component.
+        Weaver buttons use 8px border-radius, 15px font size across all sizes,
+        and heights of 36px (sm), 40px (md), and 48px (lg). Disabled opacity
+        is 0.4.
       </Typography>
 
       <Section

@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Table from "@mui/joy/Table";
@@ -23,8 +24,9 @@ export default function TablesPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Tables display sets of data organized in rows and columns. Wrap a Joy UI
-        Table in a Sheet for outlined borders and overflow handling. The Weaver
-        theme applies consistent header styling, row spacing, and typography.
+        Table in a Sheet for outlined borders and overflow handling. Weaver table
+        headers are 44px tall with 14px / 500 weight text and a subtle
+        background. Cell padding is 8px.
       </Typography>
 
       <Section

@@ -3,22 +3,22 @@ import { tokens, resolve } from "../tokens";
 export const JoySelect = {
   styleOverrides: {
     root: ({ ownerState }: { ownerState: any }) => ({
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.xs,
+      fontSize: "0.9375rem",
+      lineHeight: "1.5rem",
       ...(ownerState.size === "sm" && {
-        "--Select-minHeight": "36px",
+        "--Select-minHeight": "28px",
         fontSize: "0.875rem",
       }),
       ...(ownerState.size === "md" && {
-        "--Select-minHeight": "40px",
-        fontSize: "0.9375rem",
+        "--Select-minHeight": "32px",
       }),
       ...(ownerState.size === "lg" && {
-        "--Select-minHeight": "44px",
-        fontSize: "1rem",
+        "--Select-minHeight": "36px",
       }),
       "&:focus-visible, &.Joy-focusVisible": {
-        outlineOffset: 2,
+        outlineOffset: 0,
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {

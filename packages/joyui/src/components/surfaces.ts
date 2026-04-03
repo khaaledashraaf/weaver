@@ -1,4 +1,4 @@
-import { tokens } from "../tokens";
+import { tokens, resolve } from "../tokens";
 
 export const JoySheet = {
   styleOverrides: {
@@ -11,9 +11,10 @@ export const JoySheet = {
 export const JoyCard = {
   styleOverrides: {
     root: {
-      borderRadius: tokens.radius.lg,
-      boxShadow: tokens.shadow.sm,
+      borderRadius: tokens.radius["3xl"],
+      boxShadow: "none",
       "--Card-padding": tokens.spacing["3xl"],
+      border: `1px solid ${resolve("{alias.border-default}")}`,
     },
   },
 };
@@ -39,9 +40,9 @@ export const JoyModal = {
 export const JoyModalDialog = {
   styleOverrides: {
     root: {
-      borderRadius: tokens.radius.lg,
+      borderRadius: tokens.radius["2xl"],
       boxShadow: tokens.shadow.xl,
-      padding: tokens.spacing["5xl"],
+      padding: 0,
     },
   },
 };
@@ -49,7 +50,7 @@ export const JoyModalDialog = {
 export const JoyModalClose = {
   styleOverrides: {
     root: {
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
     },
   },
 };

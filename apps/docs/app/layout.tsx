@@ -21,9 +21,14 @@ const navItems = [
   { label: "Chips & Badges", href: "/components/chips-badges" },
   { label: "Alerts", href: "/components/alerts" },
   { label: "Tooltips", href: "/components/tooltips" },
+  { label: "Avatar", href: "/components/avatar" },
+  { label: "Tabs", href: "/components/tabs" },
   { label: "Cards & Modals", href: "/components/cards-modals" },
   { label: "Accordion", href: "/components/accordion" },
   { label: "Tables", href: "/components/tables" },
+  { label: "Slider", href: "/components/slider" },
+  { label: "Progress", href: "/components/progress" },
+  { label: "Divider", href: "/components/divider" },
   { label: "Typography", href: "/components/typography" },
 ];
 

@@ -21,8 +21,8 @@ export default function TooltipsPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Tooltips display informative text when users hover over, focus on, or
-        tap an element. The Weaver theme applies consistent styling to tooltip
-        surfaces including border-radius, typography, and color tokens.
+        tap an element. Weaver tooltips use 6px border-radius, 12px font size
+        with 500 weight, and 6px/8px padding.
       </Typography>
 
       <Section

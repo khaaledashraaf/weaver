@@ -7,8 +7,9 @@ export const JoyBadge = {
     },
     badge: {
       fontSize: "0.6875rem",
-      fontWeight: 600,
+      fontWeight: 500,
       borderRadius: tokens.radius.full,
+      lineHeight: "0.875rem",
     },
   },
 };

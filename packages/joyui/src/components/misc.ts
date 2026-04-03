@@ -18,7 +18,7 @@ export const JoyTabs = {
 export const JoyTabList = {
   styleOverrides: {
     root: {
-      gap: tokens.spacing.xs,
+      gap: tokens.spacing.xxs,
     },
   },
 };
@@ -27,7 +27,10 @@ export const JoyTab = {
   styleOverrides: {
     root: {
       fontWeight: 500,
-      borderRadius: tokens.radius.sm,
+      fontSize: "0.9375rem",
+      lineHeight: "1.5rem",
+      borderRadius: tokens.radius["control-default"],
+      padding: `${tokens.spacing.md} ${tokens.spacing.xl}`,
     },
   },
 };
@@ -35,11 +38,18 @@ export const JoyTab = {
 export const JoyTable = {
   styleOverrides: {
     root: {
-      "--TableCell-headBackground": resolve("{alias.interactive-table-header}"),
+      "--TableCell-headBackground": "rgba(88,123,140,0.07)",
+      "--TableCell-paddingX": tokens.spacing.md,
       "& thead th": {
-        fontWeight: 600,
-        fontSize: "0.8125rem",
+        fontWeight: 500,
+        fontSize: "0.875rem",
+        lineHeight: "1.25rem",
         color: resolve("{alias.content-subtle}"),
+        height: 44,
+      },
+      "& tbody td": {
+        fontSize: "0.875rem",
+        lineHeight: "1.25rem",
       },
     },
   },
@@ -54,7 +64,7 @@ export const JoySkeleton = {
 export const JoySnackbar = {
   styleOverrides: {
     root: {
-      borderRadius: tokens.radius.md,
+      borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.lg,
     },
   },
@@ -75,7 +85,7 @@ export const JoyListItem = {
 export const JoyListItemButton = {
   styleOverrides: {
     root: {
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
       gap: tokens.spacing.md,
     },
   },

@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Alert from "@mui/joy/Alert";
@@ -17,8 +18,9 @@ export default function AlertsPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Alerts display brief messages that communicate status, feedback, or
-        important information. The Weaver theme applies consistent border-radius,
-        spacing, and color palettes to alert components.
+        important information. Weaver alerts use 8px border-radius, 16px padding
+        on all sides, 12px gap, 15px / 500 weight text, and come in three styles:
+        Light, Outline, and Solid across five status colors.
       </Typography>
 
       <Section

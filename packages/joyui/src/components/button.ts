@@ -5,24 +5,22 @@ export const JoyButton = {
     root: ({ ownerState }: { ownerState: any; theme: any }) => ({
       fontWeight: 500,
       textTransform: "none" as const,
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
       transition: "background-color 150ms, color 150ms",
+      fontSize: "0.9375rem",
+      lineHeight: "1.5rem",
       "--Button-gap": "4px",
       ...(ownerState.size === "sm" && {
         minHeight: 36,
         paddingInline: tokens.spacing.md,
-        fontSize: "0.875rem",
-        "--Button-gap": "2px",
       }),
       ...(ownerState.size === "md" && {
         minHeight: 40,
         paddingInline: tokens.spacing.lg,
-        fontSize: "0.875rem",
       }),
       ...(ownerState.size === "lg" && {
-        minHeight: 44,
+        minHeight: 48,
         paddingInline: tokens.spacing.xl,
-        fontSize: "1rem",
       }),
       ...(ownerState.variant === "solid" &&
         ownerState.color === "primary" && {
@@ -54,7 +52,7 @@ export const JoyButton = {
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
-        opacity: 0.5,
+        opacity: 0.4,
       },
     }),
   },
@@ -63,17 +61,17 @@ export const JoyButton = {
 export const JoyIconButton = {
   styleOverrides: {
     root: ({ ownerState }: { ownerState: any }) => ({
-      borderRadius: tokens.radius.sm,
+      borderRadius: tokens.radius["control-default"],
       transition: "background-color 150ms",
       ...(ownerState.size === "sm" && { width: 36, height: 36 }),
       ...(ownerState.size === "md" && { width: 40, height: 40 }),
-      ...(ownerState.size === "lg" && { width: 44, height: 44 }),
+      ...(ownerState.size === "lg" && { width: 48, height: 48 }),
       "&:focus-visible": {
         outlineOffset: 2,
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
-        opacity: 0.5,
+        opacity: 0.4,
       },
     }),
   },

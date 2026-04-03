@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import AccordionGroup from "@mui/joy/AccordionGroup";
@@ -17,9 +18,9 @@ export default function AccordionPage() {
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
         Accordions let users show and hide sections of related content on a
-        page. They reduce clutter and help users focus on the information they
-        need. The Weaver theme styles the accordion with consistent dividers,
-        spacing, and typography.
+        page. Weaver accordions have two styles: Default (no border-radius) and
+        Boxed (10px radius). They use 20px padding, 600 weight / 17px title text,
+        and 15px body text.
       </Typography>
 
       <Section

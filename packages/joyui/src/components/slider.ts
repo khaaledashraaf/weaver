@@ -4,7 +4,7 @@ export const JoySlider = {
   styleOverrides: {
     root: {
       "--Slider-trackSize": "4px",
-      "--Slider-thumbSize": "20px",
+      "--Slider-thumbSize": "24px",
     },
     thumb: {
       borderRadius: tokens.radius.full,

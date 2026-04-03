@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Input from "@mui/joy/Input";
@@ -21,7 +22,9 @@ export default function InputsPage() {
         Input
       </Typography>
       <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
-        Input fields let users enter and edit text. The Weaver theme customizes
+        Input fields let users enter and edit text. Weaver inputs use 8px
+        border-radius, 15px font size, and heights of 32px (md) and 36px (lg).
+        The theme customizes
         border-radius, focus rings, and color tokens for a cohesive look. Pair
         with FormControl, FormLabel, and FormHelperText for complete form fields.
       </Typography>
