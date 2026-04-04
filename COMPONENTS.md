@@ -33,7 +33,7 @@ Status legend: Done = Figma-matched override + docs page | Partial = override ex
 | 15 | Accordion | Accordion | `accordion.ts` | `/accordion` | Done | Default(0 radius) / Boxed(10px), 20px padding, 600/17px title |
 | 16 | Tabs | Tabs | `misc.ts` | `/tabs` | Done | 15px/500 weight, 8px radius, 2px gap, Underline + Segment styles in Figma |
 | 17 | Card | Cards | `surfaces.ts` | `/cards-modals` | Done | 16px radius, 1px border, no shadow |
-| 18 | Breadcrumbs | Breadcrumbs | `misc.ts` | — | Partial | Override is a stub, no dedicated docs page |
+| 18 | Breadcrumbs | Breadcrumbs | `misc.ts` | `/breadcrumbs` | Done | 15px/500 font, 4px gap, chevron 16px, icon 20px, default + raised styles |
 | 19 | Divider | Divider / Content Divider | `divider.ts` | `/divider` | Done | Horizontal + vertical, placeholder override |
 
 ## Tier 4 — Supporting Components
@@ -44,10 +44,10 @@ Status legend: Done = Figma-matched override + docs page | Partial = override ex
 | 21 | Progress | Progress | `progress.ts` | `/progress` | Partial | Stub override, docs page created |
 | 22 | Link Button | Buttons (Link Button) | `button.ts` | `/buttons` | Done | variant="link", 3 colors, 3 sizes, no-opacity disabled |
 | 23 | Menu | Menu | — | — | Todo | Dropdown menu with item types |
-| 24 | Pagination | Pagination | — | — | Todo | Ghost and soft variants |
+| 24 | Pagination | Pagination | `pagination.tsx` | `/pagination` | Done | Custom WeaverPagination component, numeric/simple/summary, ghost/soft styles |
 | 25 | Banner | Banner | — | — | Todo | brand/grey/black variants, full-width + floating |
 | 26 | Social Buttons | Social buttons | — | — | Todo | Social login button variants |
-| 27 | Button Group | Button Group | — | — | Todo | Grouped button layout |
+| 27 | Button Group | Button Group | `button-group.ts` | `/button-group` | Done | Container with overflow hidden, ghost items, border-subtle separators, 3 sizes |
 | 28 | Slideout / Drawer | Slideout | `surfaces.ts` | — | Partial | Placeholder override, no docs |
 
 ## Tier 5 — Complex / Deferred (WIP or custom patterns in Figma)
@@ -79,7 +79,7 @@ Status legend: Done = Figma-matched override + docs page | Partial = override ex
 |------|-------|------|---------|------|----------|
 | 1 — Core Interactive | 7 | 7 | 0 | 0 | 0 |
 | 2 — Feedback & Display | 6 | 6 | 0 | 0 | 0 |
-| 3 — Layout & Navigation | 6 | 5 | 1 | 0 | 0 |
-| 4 — Supporting | 7 | 3 | 2 | 2 | 0 |
+| 3 — Layout & Navigation | 6 | 6 | 0 | 0 | 0 |
+| 4 — Supporting | 7 | 5 | 1 | 1 | 0 |
 | 5 — Complex / Deferred | 11 | 0 | 0 | 0 | 11 |
-| **Total** | **37** | **21** | **3** | **2** | **11** |
+| **Total** | **37** | **24** | **1** | **1** | **11** |
