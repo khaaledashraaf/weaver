@@ -30,13 +30,45 @@ function Example() {
 }
 ```
 
+## AI-Assisted Figma-to-Code
+
+The package includes built-in support for AI coding assistants (Claude Code, Cursor, etc.):
+
+- **`CLAUDE.md`** — General package context, read automatically at conversation start. Includes setup instructions, available components, typography levels, and icons.
+- **`FIGMA_RULES.md`** — Strict Figma-to-code mapping rules (component names, button variants, color tokens, anti-patterns). Injected automatically via a hook every time an AI assistant fetches a Figma design.
+
+### Setup the Figma MCP Hook
+
+Add this to your project's `.claude/settings.json` (or merge into existing settings):
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__figma",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat joyui/FIGMA_RULES.md"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+This ensures the AI assistant reads the Weaver design rules every time it fetches a Figma design, producing correct component mappings without manual correction.
+
 ## What's included
 
 - **Design tokens** — colors, spacing, radius, and shadows from Figma
 - **Palette** — primary, neutral, danger, success, and warning color schemes
-- **Typography** — Inter font with 11 type levels
+- **Typography** — Inter font with 18 type levels, all defaulting to `content-default` (`#101B2E`)
 - **40+ component overrides** — buttons, inputs, selects, checkboxes, alerts, modals, and more
 - **Icons** — uses [Remix Icon](https://remixicon.com) (not bundled, install separately)
+- **AI rules** — `CLAUDE.md` and `FIGMA_RULES.md` for accurate Figma-to-code generation
 
 ## Repo structure
 
