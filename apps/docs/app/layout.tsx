@@ -41,7 +41,8 @@ const navGroups = [
     label: "DATA DISPLAY",
     items: [
       { label: "Avatar", href: "/components/avatar" },
-      { label: "Chips & Badges", href: "/components/chips-badges" },
+      { label: "Chips", href: "/components/chips" },
+      { label: "Badge", href: "/components/badges" },
       { label: "Table", href: "/components/tables" },
       { label: "Tabs", href: "/components/tabs" },
       { label: "Tooltip", href: "/components/tooltips" },
