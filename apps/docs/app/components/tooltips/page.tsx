@@ -5,6 +5,7 @@ import Tooltip from "@mui/joy/Tooltip";
 import Button from "@mui/joy/Button";
 import Stack from "@mui/joy/Stack";
 import { Section } from "../section";
+import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
@@ -20,10 +21,10 @@ const placements = ["top", "bottom", "left", "right"] as const;
 export default function TooltipsPage() {
   return (
     <Box>
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 0.5 }}>
         Tooltip
       </Typography>
-      <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
+      <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Tooltips display informative text on hover or focus. Figma defines two
         styles (Dark, Default) and two sizes (Small: 6px radius / 12px font,
         Large: 8px radius / 14px font). Nine pointer positions are available.
@@ -33,52 +34,91 @@ export default function TooltipsPage() {
         title="Placements"
         description="Tooltips can appear on any side of the trigger element."
       >
-        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-          {placements.map((placement) => (
-            <Tooltip key={placement} title={`Tooltip on ${placement}`} placement={placement}>
-              <Button variant="outlined" color="neutral">{placement}</Button>
-            </Tooltip>
-          ))}
-        </Stack>
+        <DemoBox
+          code={`<Tooltip title="Tooltip on top" placement="top">
+  <Button variant="outlined" color="neutral">top</Button>
+</Tooltip>
+<Tooltip title="Tooltip on bottom" placement="bottom">
+  <Button variant="outlined" color="neutral">bottom</Button>
+</Tooltip>
+<Tooltip title="Tooltip on left" placement="left">
+  <Button variant="outlined" color="neutral">left</Button>
+</Tooltip>
+<Tooltip title="Tooltip on right" placement="right">
+  <Button variant="outlined" color="neutral">right</Button>
+</Tooltip>`}
+        >
+          <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
+            {placements.map((placement) => (
+              <Tooltip key={placement} title={`Tooltip on ${placement}`} placement={placement}>
+                <Button variant="outlined" color="neutral">{placement}</Button>
+              </Tooltip>
+            ))}
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Styles"
         description="Figma defines Dark (dark background) and Default (light background) styles."
       >
-        <Stack direction="row" spacing={2}>
-          <Tooltip title="Dark tooltip (default)" variant="solid">
-            <Button variant="outlined" color="neutral">Dark</Button>
-          </Tooltip>
-          <Tooltip title="Default tooltip" variant="outlined">
-            <Button variant="outlined" color="neutral">Default</Button>
-          </Tooltip>
-        </Stack>
+        <DemoBox
+          code={`<Tooltip title="Dark tooltip (default)" variant="solid">
+  <Button variant="outlined" color="neutral">Dark</Button>
+</Tooltip>
+<Tooltip title="Default tooltip" variant="outlined">
+  <Button variant="outlined" color="neutral">Default</Button>
+</Tooltip>`}
+        >
+          <Stack direction="row" spacing={2}>
+            <Tooltip title="Dark tooltip (default)" variant="solid">
+              <Button variant="outlined" color="neutral">Dark</Button>
+            </Tooltip>
+            <Tooltip title="Default tooltip" variant="outlined">
+              <Button variant="outlined" color="neutral">Default</Button>
+            </Tooltip>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Sizes"
         description="Small tooltips are compact (12px font). Large tooltips support multi-line content (14px font)."
       >
-        <Stack direction="row" spacing={2}>
-          <Tooltip title="Small tooltip" size="sm">
-            <Button variant="outlined" color="neutral">Small</Button>
-          </Tooltip>
-          <Tooltip title="Large tooltip with more detailed content that may span multiple lines" size="lg">
-            <Button variant="outlined" color="neutral">Large</Button>
-          </Tooltip>
-        </Stack>
+        <DemoBox
+          code={`<Tooltip title="Small tooltip" size="sm">
+  <Button variant="outlined" color="neutral">Small</Button>
+</Tooltip>
+<Tooltip title="Large tooltip with more detailed content that may span multiple lines" size="lg">
+  <Button variant="outlined" color="neutral">Large</Button>
+</Tooltip>`}
+        >
+          <Stack direction="row" spacing={2}>
+            <Tooltip title="Small tooltip" size="sm">
+              <Button variant="outlined" color="neutral">Small</Button>
+            </Tooltip>
+            <Tooltip title="Large tooltip with more detailed content that may span multiple lines" size="lg">
+              <Button variant="outlined" color="neutral">Large</Button>
+            </Tooltip>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="With Arrow"
         description="Arrow pointing to the trigger element, matching Figma pointer positions."
       >
-        <Stack direction="row" spacing={2}>
-          <Tooltip title="With arrow" arrow>
-            <Button variant="outlined" color="neutral">Hover me</Button>
-          </Tooltip>
-        </Stack>
+        <DemoBox
+          code={`<Tooltip title="With arrow" arrow>
+  <Button variant="outlined" color="neutral">Hover me</Button>
+</Tooltip>`}
+        >
+          <Stack direction="row" spacing={2}>
+            <Tooltip title="With arrow" arrow>
+              <Button variant="outlined" color="neutral">Hover me</Button>
+            </Tooltip>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section title="Usage">

@@ -8,6 +8,7 @@ import Avatar from "@mui/joy/Avatar";
 import Stack from "@mui/joy/Stack";
 import { RiCloseLine } from "@remixicon/react";
 import { Section } from "../section";
+import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
@@ -30,10 +31,10 @@ import { CodeBlock } from "../code-block";
 export default function ChipsBadgesPage() {
   return (
     <Box>
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 0.5 }}>
         Chips & Badges
       </Typography>
-      <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
+      <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Tags/Chips are compact elements for labels, filters, or selections.
         Weaver chips use 6px radius (xs) and 8px radius (md/lg) — NOT fully
         rounded. Badges are inline pill-shaped labels with 10 color options
@@ -44,62 +45,96 @@ export default function ChipsBadgesPage() {
         title="Tag Sizes"
         description="Figma defines three sizes: xs (24px), md (28px), lg (36px)."
       >
-        <Stack direction="row" spacing={1.5} alignItems="center">
-          <Chip size="sm">xs (24px)</Chip>
-          <Chip size="md">md (28px)</Chip>
-          <Chip size="lg">lg (36px)</Chip>
-        </Stack>
+        <DemoBox
+          code={`<Chip size="sm">xs (24px)</Chip>
+<Chip size="md">md (28px)</Chip>
+<Chip size="lg">lg (36px)</Chip>`}
+        >
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <Chip size="sm">xs (24px)</Chip>
+            <Chip size="md">md (28px)</Chip>
+            <Chip size="lg">lg (36px)</Chip>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Tag States"
         description="Figma states: Default, Hover, Active, Focused, Disabled."
       >
-        <Stack direction="row" spacing={1.5} alignItems="center">
-          <Chip>Default</Chip>
-          <Chip disabled>Disabled</Chip>
-        </Stack>
+        <DemoBox
+          code={`<Chip>Default</Chip>
+<Chip disabled>Disabled</Chip>`}
+        >
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <Chip>Default</Chip>
+            <Chip disabled>Disabled</Chip>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Tag with Close Button"
         description="Tags can have a close button (Has close button = True in Figma)."
       >
-        <Stack direction="row" spacing={1.5} alignItems="center">
-          <Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
-          <Chip size="md" endDecorator={<ChipDelete><RiCloseLine size={16} /></ChipDelete>}>Tag</Chip>
-          <Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={18} /></ChipDelete>}>Tag</Chip>
-        </Stack>
+        <DemoBox
+          code={`<Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
+<Chip size="md" endDecorator={<ChipDelete><RiCloseLine size={16} /></ChipDelete>}>Tag</Chip>
+<Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={18} /></ChipDelete>}>Tag</Chip>`}
+        >
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
+            <Chip size="md" endDecorator={<ChipDelete><RiCloseLine size={16} /></ChipDelete>}>Tag</Chip>
+            <Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={18} /></ChipDelete>}>Tag</Chip>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Badge Styles"
         description="Figma defines three badge styles: Light (soft), Outline, Solid."
       >
-        <Stack spacing={2}>
-          <Typography level="title-sm">Light (soft)</Typography>
-          <Stack direction="row" spacing={1.5}>
-            <Badge badgeContent="3" color="primary" />
-            <Badge badgeContent="3" color="success" />
-            <Badge badgeContent="3" color="danger" />
-            <Badge badgeContent="3" color="warning" />
-            <Badge badgeContent="3" color="neutral" />
+        <DemoBox
+          code={`<Badge badgeContent="3" color="primary" />
+<Badge badgeContent="3" color="success" />
+<Badge badgeContent="3" color="danger" />
+<Badge badgeContent="3" color="warning" />
+<Badge badgeContent="3" color="neutral" />`}
+        >
+          <Stack spacing={2}>
+            <Typography level="title-sm">Light (soft)</Typography>
+            <Stack direction="row" spacing={1.5}>
+              <Badge badgeContent="3" color="primary" />
+              <Badge badgeContent="3" color="success" />
+              <Badge badgeContent="3" color="danger" />
+              <Badge badgeContent="3" color="warning" />
+              <Badge badgeContent="3" color="neutral" />
+            </Stack>
           </Stack>
-        </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Badge Sizes"
         description="Two sizes from Figma: sm (24px height) and lg (28px height)."
       >
-        <Stack direction="row" spacing={3}>
-          <Badge badgeContent="5" size="sm">
-            <Avatar size="sm">A</Avatar>
-          </Badge>
-          <Badge badgeContent="5" size="md">
-            <Avatar>B</Avatar>
-          </Badge>
-        </Stack>
+        <DemoBox
+          code={`<Badge badgeContent="5" size="sm">
+  <Avatar size="sm">A</Avatar>
+</Badge>
+<Badge badgeContent="5" size="md">
+  <Avatar>B</Avatar>
+</Badge>`}
+        >
+          <Stack direction="row" spacing={3}>
+            <Badge badgeContent="5" size="sm">
+              <Avatar size="sm">A</Avatar>
+            </Badge>
+            <Badge badgeContent="5" size="md">
+              <Avatar>B</Avatar>
+            </Badge>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section title="Usage">

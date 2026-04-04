@@ -9,6 +9,7 @@ import FormHelperText from "@mui/joy/FormHelperText";
 import Stack from "@mui/joy/Stack";
 import { RiSearchLine, RiMailLine, RiLockLine, RiEyeLine } from "@remixicon/react";
 import { Section } from "../section";
+import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
@@ -23,10 +24,10 @@ import { CodeBlock } from "../code-block";
 export default function InputsPage() {
   return (
     <Box>
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 0.5 }}>
         Input
       </Typography>
-      <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
+      <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Input fields let users enter and edit text. Weaver inputs use 8px
         border-radius, 15px font size, and heights of 32px (md) and 36px (lg).
         Two styles: Default (bordered) and Soft (filled background).
@@ -36,101 +37,166 @@ export default function InputsPage() {
         title="Styles"
         description="Figma defines two input styles: Default (with border) and Soft (filled background, no visible border)."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <FormControl>
-            <FormLabel>Default style</FormLabel>
-            <Input placeholder="Placeholder" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Soft style</FormLabel>
-            <Input placeholder="Placeholder" variant="soft" />
-          </FormControl>
-        </Stack>
+        <DemoBox
+          code={`<FormControl>
+  <FormLabel>Default style</FormLabel>
+  <Input placeholder="Placeholder" />
+</FormControl>
+<FormControl>
+  <FormLabel>Soft style</FormLabel>
+  <Input placeholder="Placeholder" variant="soft" />
+</FormControl>`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <FormControl>
+              <FormLabel>Default style</FormLabel>
+              <Input placeholder="Placeholder" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Soft style</FormLabel>
+              <Input placeholder="Placeholder" variant="soft" />
+            </FormControl>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Sizes"
         description="Two sizes from Figma: md (32px height) and lg (36px height)."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <FormControl>
-            <FormLabel>Medium (md) — 32px</FormLabel>
-            <Input size="md" placeholder="Medium input" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Large (lg) — 36px</FormLabel>
-            <Input size="lg" placeholder="Large input" />
-          </FormControl>
-        </Stack>
+        <DemoBox
+          code={`<Input size="md" placeholder="Medium input" />
+<Input size="lg" placeholder="Large input" />`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <FormControl>
+              <FormLabel>Medium (md) — 32px</FormLabel>
+              <Input size="md" placeholder="Medium input" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Large (lg) — 36px</FormLabel>
+              <Input size="lg" placeholder="Large input" />
+            </FormControl>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="States"
         description="Figma states: Default, Focus, Error, Disabled, Filled."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <FormControl>
-            <FormLabel>Default</FormLabel>
-            <Input placeholder="Default state" />
-          </FormControl>
-          <FormControl error>
-            <FormLabel>Error</FormLabel>
-            <Input placeholder="Error state" color="danger" />
-            <FormHelperText>This is a hint text</FormHelperText>
-          </FormControl>
-          <FormControl disabled>
-            <FormLabel>Disabled</FormLabel>
-            <Input placeholder="Disabled state" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Filled</FormLabel>
-            <Input defaultValue="Filled value" />
-          </FormControl>
-        </Stack>
+        <DemoBox
+          code={`<FormControl>
+  <FormLabel>Default</FormLabel>
+  <Input placeholder="Default state" />
+</FormControl>
+<FormControl error>
+  <FormLabel>Error</FormLabel>
+  <Input placeholder="Error state" color="danger" />
+  <FormHelperText>This is a hint text</FormHelperText>
+</FormControl>
+<FormControl disabled>
+  <FormLabel>Disabled</FormLabel>
+  <Input placeholder="Disabled state" />
+</FormControl>
+<FormControl>
+  <FormLabel>Filled</FormLabel>
+  <Input defaultValue="Filled value" />
+</FormControl>`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <FormControl>
+              <FormLabel>Default</FormLabel>
+              <Input placeholder="Default state" />
+            </FormControl>
+            <FormControl error>
+              <FormLabel>Error</FormLabel>
+              <Input placeholder="Error state" color="danger" />
+              <FormHelperText>This is a hint text</FormHelperText>
+            </FormControl>
+            <FormControl disabled>
+              <FormLabel>Disabled</FormLabel>
+              <Input placeholder="Disabled state" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Filled</FormLabel>
+              <Input defaultValue="Filled value" />
+            </FormControl>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="With Form Control"
         description="Inputs are typically used with FormLabel and FormHelperText, separated by 6px gap."
       >
-        <Stack spacing={3} sx={{ maxWidth: 400 }}>
-          <FormControl>
-            <FormLabel>Label</FormLabel>
-            <Input placeholder="Placeholder" />
-            <FormHelperText>This is a hint text</FormHelperText>
-          </FormControl>
-          <FormControl error>
-            <FormLabel>Label</FormLabel>
-            <Input placeholder="Placeholder" color="danger" />
-            <FormHelperText>Error message</FormHelperText>
-          </FormControl>
-        </Stack>
+        <DemoBox
+          code={`<FormControl>
+  <FormLabel>Label</FormLabel>
+  <Input placeholder="Placeholder" />
+  <FormHelperText>This is a hint text</FormHelperText>
+</FormControl>
+<FormControl error>
+  <FormLabel>Label</FormLabel>
+  <Input placeholder="Placeholder" color="danger" />
+  <FormHelperText>Error message</FormHelperText>
+</FormControl>`}
+        >
+          <Stack spacing={3} sx={{ maxWidth: 400, width: "100%" }}>
+            <FormControl>
+              <FormLabel>Label</FormLabel>
+              <Input placeholder="Placeholder" />
+              <FormHelperText>This is a hint text</FormHelperText>
+            </FormControl>
+            <FormControl error>
+              <FormLabel>Label</FormLabel>
+              <Input placeholder="Placeholder" color="danger" />
+              <FormHelperText>Error message</FormHelperText>
+            </FormControl>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="With Decorators"
         description="Leading and trailing icon slots."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Input startDecorator={<RiSearchLine size={18} />} placeholder="Search..." />
-          <Input startDecorator={<RiMailLine size={18} />} placeholder="Email address" />
-          <Input
-            startDecorator={<RiLockLine size={18} />}
-            endDecorator={<RiEyeLine size={18} />}
-            placeholder="Password"
-            type="password"
-          />
-        </Stack>
+        <DemoBox
+          code={`<Input startDecorator={<RiSearchLine size={18} />} placeholder="Search..." />
+<Input startDecorator={<RiMailLine size={18} />} placeholder="Email address" />
+<Input
+  startDecorator={<RiLockLine size={18} />}
+  endDecorator={<RiEyeLine size={18} />}
+  placeholder="Password"
+  type="password"
+/>`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <Input startDecorator={<RiSearchLine size={18} />} placeholder="Search..." />
+            <Input startDecorator={<RiMailLine size={18} />} placeholder="Email address" />
+            <Input
+              startDecorator={<RiLockLine size={18} />}
+              endDecorator={<RiEyeLine size={18} />}
+              placeholder="Password"
+              type="password"
+            />
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Textarea"
         description="Multi-line text input. Same 8px border-radius and 15px font as Input."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Textarea minRows={3} placeholder="Enter your message..." />
-          <Textarea minRows={3} variant="soft" placeholder="Soft style textarea" />
-        </Stack>
+        <DemoBox
+          code={`<Textarea minRows={3} placeholder="Enter your message..." />
+<Textarea minRows={3} variant="soft" placeholder="Soft style textarea" />`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <Textarea minRows={3} placeholder="Enter your message..." />
+            <Textarea minRows={3} variant="soft" placeholder="Soft style textarea" />
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section title="Usage">

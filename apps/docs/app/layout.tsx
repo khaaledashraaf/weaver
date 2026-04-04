@@ -9,28 +9,58 @@ import ListItem from "@mui/joy/ListItem";
 import ListItemButton from "@mui/joy/ListItemButton";
 import Typography from "@mui/joy/Typography";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./globals.css";
 
-const navItems = [
-  { label: "Overview", href: "/" },
-  { label: "Buttons", href: "/components/buttons" },
-  { label: "Inputs", href: "/components/inputs" },
-  { label: "Select", href: "/components/select" },
-  { label: "Checkbox & Radio", href: "/components/checkbox-radio" },
-  { label: "Switch", href: "/components/switch" },
-  { label: "Chips & Badges", href: "/components/chips-badges" },
-  { label: "Alerts", href: "/components/alerts" },
-  { label: "Tooltips", href: "/components/tooltips" },
-  { label: "Avatar", href: "/components/avatar" },
-  { label: "Tabs", href: "/components/tabs" },
-  { label: "Cards & Modals", href: "/components/cards-modals" },
-  { label: "Accordion", href: "/components/accordion" },
-  { label: "Tables", href: "/components/tables" },
-  { label: "Slider", href: "/components/slider" },
-  { label: "Progress", href: "/components/progress" },
-  { label: "Divider", href: "/components/divider" },
-  { label: "Icons", href: "/components/icons" },
-  { label: "Typography", href: "/components/typography" },
+const navGroups = [
+  {
+    items: [
+      { label: "Overview", href: "/" },
+    ],
+  },
+  {
+    label: "FOUNDATIONS",
+    items: [
+      { label: "Icons", href: "/components/icons" },
+      { label: "Typography", href: "/components/typography" },
+    ],
+  },
+  {
+    label: "INPUTS",
+    items: [
+      { label: "Button", href: "/components/buttons" },
+      { label: "Input", href: "/components/inputs" },
+      { label: "Select", href: "/components/select" },
+      { label: "Checkbox", href: "/components/checkbox-radio" },
+      { label: "Switch", href: "/components/switch" },
+      { label: "Slider", href: "/components/slider" },
+    ],
+  },
+  {
+    label: "DATA DISPLAY",
+    items: [
+      { label: "Avatar", href: "/components/avatar" },
+      { label: "Chips & Badges", href: "/components/chips-badges" },
+      { label: "Table", href: "/components/tables" },
+      { label: "Tabs", href: "/components/tabs" },
+      { label: "Tooltip", href: "/components/tooltips" },
+      { label: "Divider", href: "/components/divider" },
+    ],
+  },
+  {
+    label: "FEEDBACK",
+    items: [
+      { label: "Alert", href: "/components/alerts" },
+      { label: "Progress", href: "/components/progress" },
+    ],
+  },
+  {
+    label: "SURFACES",
+    items: [
+      { label: "Card & Modal", href: "/components/cards-modals" },
+      { label: "Accordion", href: "/components/accordion" },
+    ],
+  },
 ];
 
 export default function RootLayout({
@@ -38,47 +68,87 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
       <body>
         <WeaverProvider>
           <Box sx={{ display: "flex", minHeight: "100vh" }}>
+            {/* Left sidebar */}
             <Sheet
               sx={{
-                width: 260,
+                width: 220,
                 borderRight: "1px solid",
                 borderColor: "divider",
-                p: 2,
                 position: "fixed",
                 top: 0,
                 left: 0,
                 bottom: 0,
                 overflowY: "auto",
+                zIndex: 10,
+                py: 2,
+                px: 1.5,
               }}
             >
-              <Typography level="h4" sx={{ mb: 2, px: 1 }}>
-                Weaver DS
-              </Typography>
-              <List size="sm">
-                {navItems.map((item) => (
-                  <ListItem key={item.href}>
-                    <ListItemButton
-                      component={Link}
-                      href={item.href}
+              <Box sx={{ px: 1, mb: 2.5, mt: 0.5 }}>
+                <Typography level="title-md" fontWeight={700}>
+                  Weaver DS
+                </Typography>
+              </Box>
+
+              {navGroups.map((group, gi) => (
+                <Box key={gi} sx={{ mb: 1.5 }}>
+                  {group.label && (
+                    <Typography
+                      level="body-xs"
+                      textTransform="uppercase"
+                      letterSpacing="0.08em"
+                      fontWeight={600}
+                      sx={{ px: 1, mb: 0.5, color: "text.tertiary", fontSize: "0.65rem" }}
                     >
-                      {item.label}
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
+                      {group.label}
+                    </Typography>
+                  )}
+                  <List
+                    size="sm"
+                    sx={{
+                      "--ListItem-radius": "6px",
+                      "--List-gap": "1px",
+                      "--ListItem-minHeight": "30px",
+                      "--ListItemButton-paddingBlock": "0px",
+                    }}
+                  >
+                    {group.items.map((item) => (
+                      <ListItem key={item.href}>
+                        <ListItemButton
+                          component={Link}
+                          href={item.href}
+                          selected={pathname === item.href}
+                          sx={{
+                            fontSize: "0.8125rem",
+                            fontWeight: pathname === item.href ? 600 : 400,
+                            color: pathname === item.href ? "primary.600" : "text.secondary",
+                          }}
+                        >
+                          {item.label}
+                        </ListItemButton>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
+              ))}
             </Sheet>
+
+            {/* Main content */}
             <Box
               component="main"
               sx={{
                 flexGrow: 1,
-                ml: "260px",
-                p: 4,
-                maxWidth: 960,
+                ml: "220px",
+                px: { xs: 3, md: 6 },
+                py: 5,
+                maxWidth: 860,
               }}
             >
               {children}

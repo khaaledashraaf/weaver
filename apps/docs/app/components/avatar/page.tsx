@@ -5,6 +5,7 @@ import Avatar from "@mui/joy/Avatar";
 import AvatarGroup from "@mui/joy/AvatarGroup";
 import Stack from "@mui/joy/Stack";
 import { Section } from "../section";
+import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
@@ -19,10 +20,10 @@ import { CodeBlock } from "../code-block";
 export default function AvatarPage() {
   return (
     <Box>
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 0.5 }}>
         Avatar
       </Typography>
-      <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
+      <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Avatars represent users or entities. Figma defines 9 sizes (16px to 64px),
         three types (Image, Initials, Icon), and two forms (Rounded, Circular).
         Initials use 600 font-weight. Joy UI maps sm=32px, md=40px, lg=48px.
@@ -32,52 +33,73 @@ export default function AvatarPage() {
         title="Types"
         description="Figma defines three avatar types: Image, Initials, and Icon."
       >
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Stack spacing={0.5} alignItems="center">
-            <Avatar src="https://i.pravatar.cc/150?img=3" alt="User" />
-            <Typography level="body-xs">Image</Typography>
+        <DemoBox
+          code={`<Avatar src="https://i.pravatar.cc/150?img=3" alt="User" />
+<Avatar>JD</Avatar>
+<Avatar>+</Avatar>`}
+        >
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Stack spacing={0.5} alignItems="center">
+              <Avatar src="https://i.pravatar.cc/150?img=3" alt="User" />
+              <Typography level="body-xs">Image</Typography>
+            </Stack>
+            <Stack spacing={0.5} alignItems="center">
+              <Avatar>JD</Avatar>
+              <Typography level="body-xs">Initials</Typography>
+            </Stack>
+            <Stack spacing={0.5} alignItems="center">
+              <Avatar>+</Avatar>
+              <Typography level="body-xs">Icon</Typography>
+            </Stack>
           </Stack>
-          <Stack spacing={0.5} alignItems="center">
-            <Avatar>JD</Avatar>
-            <Typography level="body-xs">Initials</Typography>
-          </Stack>
-          <Stack spacing={0.5} alignItems="center">
-            <Avatar>+</Avatar>
-            <Typography level="body-xs">Icon</Typography>
-          </Stack>
-        </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Sizes"
         description="Joy UI exposes sm (32px), md (40px), lg (48px). Figma has 9 sizes from 16px to 64px."
       >
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Stack spacing={0.5} alignItems="center">
-            <Avatar size="sm">SM</Avatar>
-            <Typography level="body-xs">sm (32)</Typography>
+        <DemoBox
+          code={`<Avatar size="sm">SM</Avatar>
+<Avatar size="md">MD</Avatar>
+<Avatar size="lg">LG</Avatar>`}
+        >
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Stack spacing={0.5} alignItems="center">
+              <Avatar size="sm">SM</Avatar>
+              <Typography level="body-xs">sm (32)</Typography>
+            </Stack>
+            <Stack spacing={0.5} alignItems="center">
+              <Avatar size="md">MD</Avatar>
+              <Typography level="body-xs">md (40)</Typography>
+            </Stack>
+            <Stack spacing={0.5} alignItems="center">
+              <Avatar size="lg">LG</Avatar>
+              <Typography level="body-xs">lg (48)</Typography>
+            </Stack>
           </Stack>
-          <Stack spacing={0.5} alignItems="center">
-            <Avatar size="md">MD</Avatar>
-            <Typography level="body-xs">md (40)</Typography>
-          </Stack>
-          <Stack spacing={0.5} alignItems="center">
-            <Avatar size="lg">LG</Avatar>
-            <Typography level="body-xs">lg (48)</Typography>
-          </Stack>
-        </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Avatar Group"
         description="Stacked avatars with overlap. Figma supports xs, 2xs, md, lg group sizes."
       >
-        <AvatarGroup>
-          <Avatar src="https://i.pravatar.cc/150?img=1" alt="User 1" />
-          <Avatar src="https://i.pravatar.cc/150?img=2" alt="User 2" />
-          <Avatar src="https://i.pravatar.cc/150?img=3" alt="User 3" />
-          <Avatar>+3</Avatar>
-        </AvatarGroup>
+        <DemoBox
+          code={`<AvatarGroup>
+  <Avatar src="https://i.pravatar.cc/150?img=1" alt="User 1" />
+  <Avatar src="https://i.pravatar.cc/150?img=2" alt="User 2" />
+  <Avatar src="https://i.pravatar.cc/150?img=3" alt="User 3" />
+  <Avatar>+3</Avatar>
+</AvatarGroup>`}
+        >
+          <AvatarGroup>
+            <Avatar src="https://i.pravatar.cc/150?img=1" alt="User 1" />
+            <Avatar src="https://i.pravatar.cc/150?img=2" alt="User 2" />
+            <Avatar src="https://i.pravatar.cc/150?img=3" alt="User 3" />
+            <Avatar>+3</Avatar>
+          </AvatarGroup>
+        </DemoBox>
       </Section>
 
       <Section title="Usage">

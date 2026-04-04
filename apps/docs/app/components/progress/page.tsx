@@ -4,6 +4,7 @@ import Box from "@mui/joy/Box";
 import LinearProgress from "@mui/joy/LinearProgress";
 import Stack from "@mui/joy/Stack";
 import { Section } from "../section";
+import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
@@ -17,10 +18,10 @@ import { CodeBlock } from "../code-block";
 export default function ProgressPage() {
   return (
     <Box>
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 0.5 }}>
         Progress
       </Typography>
-      <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
+      <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Progress bars show the status of ongoing processes. Figma defines two
         sizes (sm and lg), 8 line colors, and label placement options (Top, Bottom,
         Inline, Helper text only).
@@ -30,50 +31,74 @@ export default function ProgressPage() {
         title="Basic Progress"
         description="Determinate progress at various values."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <LinearProgress determinate value={20} />
-          <LinearProgress determinate value={50} />
-          <LinearProgress determinate value={80} />
-          <LinearProgress determinate value={100} />
-        </Stack>
+        <DemoBox
+          code={`<LinearProgress determinate value={20} />
+<LinearProgress determinate value={50} />
+<LinearProgress determinate value={80} />
+<LinearProgress determinate value={100} />`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <LinearProgress determinate value={20} />
+            <LinearProgress determinate value={50} />
+            <LinearProgress determinate value={80} />
+            <LinearProgress determinate value={100} />
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Indeterminate"
         description="Loading indicator when progress is unknown."
       >
-        <Box sx={{ maxWidth: 400 }}>
-          <LinearProgress />
-        </Box>
+        <DemoBox
+          code={`<LinearProgress />`}
+        >
+          <Box sx={{ maxWidth: 400, width: "100%" }}>
+            <LinearProgress />
+          </Box>
+        </DemoBox>
       </Section>
 
       <Section
         title="Sizes"
         description="Figma defines two sizes: sm and lg."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <Box>
-            <Typography level="body-xs" sx={{ mb: 0.5 }}>sm</Typography>
-            <LinearProgress determinate value={60} size="sm" />
-          </Box>
-          <Box>
-            <Typography level="body-xs" sx={{ mb: 0.5 }}>lg</Typography>
-            <LinearProgress determinate value={60} size="lg" />
-          </Box>
-        </Stack>
+        <DemoBox
+          code={`<LinearProgress determinate value={60} size="sm" />
+<LinearProgress determinate value={60} size="lg" />`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <Box>
+              <Typography level="body-xs" sx={{ mb: 0.5 }}>sm</Typography>
+              <LinearProgress determinate value={60} size="sm" />
+            </Box>
+            <Box>
+              <Typography level="body-xs" sx={{ mb: 0.5 }}>lg</Typography>
+              <LinearProgress determinate value={60} size="lg" />
+            </Box>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section
         title="Colors"
         description="Figma defines 8 progress line colors: Default, Green, Golden, Amber, Red, Purple, Sky, Neutral."
       >
-        <Stack spacing={2} sx={{ maxWidth: 400 }}>
-          <LinearProgress determinate value={60} color="primary" />
-          <LinearProgress determinate value={60} color="success" />
-          <LinearProgress determinate value={60} color="warning" />
-          <LinearProgress determinate value={60} color="danger" />
-          <LinearProgress determinate value={60} color="neutral" />
-        </Stack>
+        <DemoBox
+          code={`<LinearProgress determinate value={60} color="primary" />
+<LinearProgress determinate value={60} color="success" />
+<LinearProgress determinate value={60} color="warning" />
+<LinearProgress determinate value={60} color="danger" />
+<LinearProgress determinate value={60} color="neutral" />`}
+        >
+          <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
+            <LinearProgress determinate value={60} color="primary" />
+            <LinearProgress determinate value={60} color="success" />
+            <LinearProgress determinate value={60} color="warning" />
+            <LinearProgress determinate value={60} color="danger" />
+            <LinearProgress determinate value={60} color="neutral" />
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section title="Usage">

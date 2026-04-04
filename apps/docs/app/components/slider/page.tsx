@@ -4,6 +4,7 @@ import Box from "@mui/joy/Box";
 import Slider from "@mui/joy/Slider";
 import Stack from "@mui/joy/Stack";
 import { Section } from "../section";
+import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
@@ -17,10 +18,10 @@ import { CodeBlock } from "../code-block";
 export default function SliderPage() {
   return (
     <Box>
-      <Typography level="h2" sx={{ mb: 1 }}>
+      <Typography level="h2" sx={{ mb: 0.5 }}>
         Slider
       </Typography>
-      <Typography level="body-lg" sx={{ mb: 4, color: "text.secondary" }}>
+      <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Sliders select a value from a continuous range. Weaver uses a 4px track
         and 24px thumb. Figma defines single and double node variants with
         optional text or tooltip indicators.
@@ -30,43 +31,60 @@ export default function SliderPage() {
         title="Single Node"
         description="Figma Single node slider — basic track with one handle."
       >
-        <Box sx={{ px: 2, maxWidth: 400 }}>
-          <Slider defaultValue={40} />
-        </Box>
+        <DemoBox
+          code={`<Slider defaultValue={40} />`}
+        >
+          <Box sx={{ px: 2, maxWidth: 400, width: "100%" }}>
+            <Slider defaultValue={40} />
+          </Box>
+        </DemoBox>
       </Section>
 
       <Section
         title="Double Node (Range)"
         description="Figma Double node slider — two handles for selecting a range."
       >
-        <Box sx={{ px: 2, maxWidth: 400 }}>
-          <Slider defaultValue={[20, 60]} />
-        </Box>
+        <DemoBox
+          code={`<Slider defaultValue={[20, 60]} />`}
+        >
+          <Box sx={{ px: 2, maxWidth: 400, width: "100%" }}>
+            <Slider defaultValue={[20, 60]} />
+          </Box>
+        </DemoBox>
       </Section>
 
       <Section
         title="With Marks"
         description="Display tick marks along the track."
       >
-        <Box sx={{ px: 2, maxWidth: 400 }}>
-          <Slider defaultValue={30} step={10} marks min={0} max={100} />
-        </Box>
+        <DemoBox
+          code={`<Slider defaultValue={30} step={10} marks min={0} max={100} />`}
+        >
+          <Box sx={{ px: 2, maxWidth: 400, width: "100%" }}>
+            <Slider defaultValue={30} step={10} marks min={0} max={100} />
+          </Box>
+        </DemoBox>
       </Section>
 
       <Section
         title="States"
         description="Figma handle states: Default, Hover, Focus."
       >
-        <Stack spacing={3} sx={{ px: 2, maxWidth: 400 }}>
-          <Box>
-            <Typography level="body-xs" sx={{ mb: 1 }}>Default</Typography>
-            <Slider defaultValue={50} />
-          </Box>
-          <Box>
-            <Typography level="body-xs" sx={{ mb: 1 }}>Disabled</Typography>
-            <Slider defaultValue={50} disabled />
-          </Box>
-        </Stack>
+        <DemoBox
+          code={`<Slider defaultValue={50} />
+<Slider defaultValue={50} disabled />`}
+        >
+          <Stack spacing={3} sx={{ px: 2, maxWidth: 400, width: "100%" }}>
+            <Box>
+              <Typography level="body-xs" sx={{ mb: 1 }}>Default</Typography>
+              <Slider defaultValue={50} />
+            </Box>
+            <Box>
+              <Typography level="body-xs" sx={{ mb: 1 }}>Disabled</Typography>
+              <Slider defaultValue={50} disabled />
+            </Box>
+          </Stack>
+        </DemoBox>
       </Section>
 
       <Section title="Usage">
