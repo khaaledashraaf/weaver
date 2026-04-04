@@ -58,57 +58,6 @@ export default function CheckboxRadioPage() {
       </Section>
 
       <Section
-        title="Checkbox with Support Text"
-        description="Figma Checkbox Label supports optional supporting text below the label."
-      >
-        <DemoBox
-          code={`<Checkbox
-  label={
-    <Box>
-      <Typography level="body-sm" fontWeight={500}>Option A</Typography>
-      <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-        Supporting text for this option
-      </Typography>
-    </Box>
-  }
-/>
-<Checkbox
-  label={
-    <Box>
-      <Typography level="body-sm" fontWeight={500}>Option B</Typography>
-      <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-        Supporting text for this option
-      </Typography>
-    </Box>
-  }
-/>`}
-        >
-          <Stack spacing={2}>
-            <Checkbox
-              label={
-                <Box>
-                  <Typography level="body-sm" fontWeight={500}>Option A</Typography>
-                  <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-                    Supporting text for this option
-                  </Typography>
-                </Box>
-              }
-            />
-            <Checkbox
-              label={
-                <Box>
-                  <Typography level="body-sm" fontWeight={500}>Option B</Typography>
-                  <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-                    Supporting text for this option
-                  </Typography>
-                </Box>
-              }
-            />
-          </Stack>
-        </DemoBox>
-      </Section>
-
-      <Section
         title="Radio States"
         description="Figma states: Default, Hover, Focus, Disabled. Active: True/False."
       >
@@ -124,65 +73,6 @@ export default function CheckboxRadioPage() {
               <Radio value="active" label="Active (selected)" />
               <Radio value="inactive" label="Inactive" />
               <Radio value="disabled" label="Disabled" disabled />
-            </Stack>
-          </RadioGroup>
-        </DemoBox>
-      </Section>
-
-      <Section
-        title="Radio with Support Text"
-        description="Figma Radio Label supports optional supporting text."
-      >
-        <DemoBox
-          code={`<RadioGroup defaultValue="opt1">
-  <Radio
-    value="opt1"
-    label={
-      <Box>
-        <Typography level="body-sm" fontWeight={500}>Option 1</Typography>
-        <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-          Description for option 1
-        </Typography>
-      </Box>
-    }
-  />
-  <Radio
-    value="opt2"
-    label={
-      <Box>
-        <Typography level="body-sm" fontWeight={500}>Option 2</Typography>
-        <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-          Description for option 2
-        </Typography>
-      </Box>
-    }
-  />
-</RadioGroup>`}
-        >
-          <RadioGroup defaultValue="opt1">
-            <Stack spacing={2}>
-              <Radio
-                value="opt1"
-                label={
-                  <Box>
-                    <Typography level="body-sm" fontWeight={500}>Option 1</Typography>
-                    <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-                      Description for option 1
-                    </Typography>
-                  </Box>
-                }
-              />
-              <Radio
-                value="opt2"
-                label={
-                  <Box>
-                    <Typography level="body-sm" fontWeight={500}>Option 2</Typography>
-                    <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-                      Description for option 2
-                    </Typography>
-                  </Box>
-                }
-              />
             </Stack>
           </RadioGroup>
         </DemoBox>

@@ -42,7 +42,7 @@ Status legend: Done = Figma-matched override + docs page | Partial = override ex
 |---|-----------|-----------|----------|------|--------|-------|
 | 20 | Slider | Slider | `slider.ts` | `/slider` | Done | 4px track, 24px thumb |
 | 21 | Progress | Progress | `progress.ts` | `/progress` | Partial | Stub override, docs page created |
-| 22 | Link Button | Buttons (Link Button) | — | — | Todo | Exists in Figma as separate component set |
+| 22 | Link Button | Buttons (Link Button) | `button.ts` | `/buttons` | Done | variant="link", 3 colors, 3 sizes, no-opacity disabled |
 | 23 | Menu | Menu | — | — | Todo | Dropdown menu with item types |
 | 24 | Pagination | Pagination | — | — | Todo | Ghost and soft variants |
 | 25 | Banner | Banner | — | — | Todo | brand/grey/black variants, full-width + floating |
@@ -66,6 +66,13 @@ Status legend: Done = Figma-matched override + docs page | Partial = override ex
 | 38 | Command | Command | Deferred | Custom pattern (command palette) |
 | 39 | Page Sections | Page Sections (WIP) | Deferred | Layout pattern, WIP |
 
+## Open TODOs
+
+| Component | Issue | Notes |
+|-----------|-------|-------|
+| Checkbox | Support text renders inline instead of below label | Joy UI's label slot uses inline layout; needs custom wrapper or slot override |
+| Radio | Same support text issue as Checkbox | Same root cause |
+
 ## Summary
 
 | Tier | Total | Done | Partial | Todo | Deferred |
@@ -73,6 +80,6 @@ Status legend: Done = Figma-matched override + docs page | Partial = override ex
 | 1 — Core Interactive | 7 | 7 | 0 | 0 | 0 |
 | 2 — Feedback & Display | 6 | 6 | 0 | 0 | 0 |
 | 3 — Layout & Navigation | 6 | 5 | 1 | 0 | 0 |
-| 4 — Supporting | 7 | 2 | 2 | 3 | 0 |
+| 4 — Supporting | 7 | 3 | 2 | 2 | 0 |
 | 5 — Complex / Deferred | 11 | 0 | 0 | 0 | 11 |
-| **Total** | **37** | **20** | **3** | **3** | **11** |
+| **Total** | **37** | **21** | **3** | **2** | **11** |
