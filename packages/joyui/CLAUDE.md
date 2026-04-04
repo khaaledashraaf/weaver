@@ -22,7 +22,12 @@ Add this hook to your project's `.claude/settings.json` to automatically enforce
     "PreToolUse": [
       {
         "matcher": "mcp__figma",
-        "hook": "cat joyui/FIGMA_RULES.md"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat joyui/FIGMA_RULES.md"
+          }
+        ]
       }
     ]
   }

@@ -3,7 +3,12 @@
     "PreToolUse": [
       {
         "matcher": "mcp__figma",
-        "hook": "cat joyui/FIGMA_RULES.md"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat joyui/FIGMA_RULES.md"
+          }
+        ]
       }
     ]
   }
