@@ -107,6 +107,10 @@ Font family: Inter. Do not import or use other fonts.
 
 7. **Trust the theme.** If a component's styling doesn't match Figma, the issue is likely wrong `variant`/`color`/`size` props — not missing `sx` styles.
 
+8. **Do NOT add `sx` to linked Figma component instances.** If an element in the Figma design is a component instance (linked, not detached), use the corresponding Joy UI component with the correct `variant`, `color`, and `size` props — no `sx` overrides. Only use `sx` for detached or custom elements that have no matching themed component.
+
+9. **Do NOT rely on Joy UI's default text colors per typography level.** Joy UI automatically assigns muted colors to smaller levels (`body-sm`, `body-xs`, etc.). Ignore this — always set text color explicitly based on what the Figma design specifies. Use `color="text.primary"` or the appropriate `sx={{ color: '...' }}` to match the design.
+
 ---
 
 ## Available Themed Components
