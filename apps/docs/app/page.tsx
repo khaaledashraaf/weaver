@@ -217,6 +217,81 @@ export default function LandingPage() {
           Go to Documentation
           <span className="btn-arrow"><RiArrowRightLine size={20} /></span>
         </Button>
+
+        {/* How to Use */}
+        <Box
+          sx={{
+            mt: 6,
+            width: "100%",
+            maxWidth: 560,
+            mx: "auto",
+            bgcolor: "rgba(255, 255, 255, 0.05)",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            borderRadius: "lg",
+            p: 3,
+          }}
+        >
+          <Typography
+            sx={{
+              color: "rgba(187, 218, 255, 0.5)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: 1,
+              mb: 2.5,
+              textAlign: "center",
+            }}
+          >
+            How to use
+          </Typography>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            {[
+              { step: "1", label: "Copy the joyui package into your project" },
+              { step: "2", label: "Wrap your app with WeaverProvider" },
+              { step: "3", label: "Add the Figma MCP hook to .claude/settings.json" },
+              { step: "4", label: "Use Joy UI components — they're already themed" },
+            ].map(({ step, label }) => (
+              <Box
+                key={step}
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 1,
+                  textAlign: "center",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    bgcolor: "rgba(255, 255, 255, 0.08)",
+                    border: "1px solid rgba(255, 255, 255, 0.12)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#5B97FF",
+                    fontWeight: 700,
+                    fontSize: "0.875rem",
+                  }}
+                >
+                  {step}
+                </Box>
+                <Typography
+                  sx={{
+                    color: "rgba(187, 218, 255, 0.7)",
+                    fontSize: "0.8125rem",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {label}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

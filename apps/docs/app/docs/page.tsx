@@ -19,6 +19,18 @@ export default function OverviewPage() {
       </Typography>
 
       <Section
+        title="Installation"
+        description="Copy the joyui package into your project root, then add it as a local dependency."
+      >
+        <CodeBlock>{`// package.json
+{
+  "dependencies": {
+    "weaver-ui-joyui": "./joyui"
+  }
+}`}</CodeBlock>
+      </Section>
+
+      <Section
         title="Setup"
         description="Wrap your application root with WeaverProvider. All Joy UI components inside will inherit the Weaver theme."
       >
@@ -118,6 +130,33 @@ function MyForm() {
           >
             remixicon.com
           </Typography>
+        </Typography>
+      </Section>
+
+      <Section
+        title="AI-Assisted Figma-to-Code"
+        description="The package includes FIGMA_RULES.md with component mappings and anti-patterns for AI coding assistants. Add this hook to your project's .claude/settings.json to automatically enforce Weaver design rules when fetching Figma designs."
+      >
+        <CodeBlock>{`// .claude/settings.json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__figma",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat joyui/FIGMA_RULES.md"
+          }
+        ]
+      }
+    ]
+  }
+}`}</CodeBlock>
+        <Typography level="body-sm" sx={{ mt: 1.5, color: "text.secondary" }}>
+          This injects the Weaver design rules into context every time an AI
+          assistant fetches a Figma design, ensuring correct component mappings
+          without manual correction.
         </Typography>
       </Section>
 

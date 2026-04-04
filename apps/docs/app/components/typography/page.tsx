@@ -226,12 +226,12 @@ export default function TypographyPage() {
 
       <Section
         title="Colors"
-        description="Typography can use semantic text colors."
+        description="All typography levels default to content-default (#101B2E, dark navy) — not pure black. This overrides Joy UI's default behavior of muting smaller body levels."
       >
         <Stack spacing={1}>
-          <Typography>Default text color</Typography>
-          <Typography sx={{ color: "text.secondary" }}>Secondary text color</Typography>
-          <Typography sx={{ color: "text.tertiary" }}>Tertiary text color</Typography>
+          <Typography>content-default — Default text color (#101B2E)</Typography>
+          <Typography sx={{ color: "text.secondary" }}>content-subtle — Secondary text color</Typography>
+          <Typography sx={{ color: "text.tertiary" }}>content-muted — Tertiary text color</Typography>
           <Typography color="primary">Primary color text</Typography>
           <Typography color="danger">Danger color text</Typography>
           <Typography color="success">Success color text</Typography>
