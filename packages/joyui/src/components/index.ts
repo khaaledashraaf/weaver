@@ -24,6 +24,9 @@ import { JoyLinearProgress, JoyCircularProgress } from "./progress";
 import { JoyDivider } from "./divider";
 import { JoySelect, JoyOption, JoySelectListbox } from "./select";
 import { JoyBreadcrumbs } from "./misc";
+import { JoyButtonGroup } from "./button-group";
+export { WeaverPagination } from "./pagination";
+export type { WeaverPaginationProps } from "./pagination";
 import { JoyBadge } from "./badge";
 import {
   JoySheet,
@@ -82,6 +85,7 @@ export const components = {
   JoyOption,
   JoySelectListbox,
   JoyBreadcrumbs,
+  JoyButtonGroup,
   JoyBadge,
   JoySheet,
   JoyCard,

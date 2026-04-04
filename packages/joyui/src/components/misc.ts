@@ -202,7 +202,50 @@ export const JoyListSubheader = {
 export const JoyBreadcrumbs = {
   styleOverrides: {
     root: {
-      fontSize: "0.875rem",
+      fontSize: "0.9375rem",
+      lineHeight: "1.5rem",
+      fontWeight: 500,
+      gap: tokens.spacing.xxs,
+      "--Breadcrumbs-gap": tokens.spacing.xxs,
+
+      // Separator styling
+      "& .MuiBreadcrumbs-separator": {
+        color: resolve("{alias.content-muted}"),
+        marginInline: tokens.spacing.xxs,
+      },
+
+      // Breadcrumb items (links)
+      "& li > a, & li > .MuiLink-root": {
+        color: resolve("{alias.content-subtle}"),
+        fontWeight: 500,
+        fontSize: "0.9375rem",
+        textDecoration: "none",
+        "&:hover": {
+          color: resolve("{alias.content-muted}"),
+          textDecoration: "none",
+        },
+      },
+
+      // Active / current item (last item, non-link)
+      "& li:last-child": {
+        color: resolve("{alias.content-default}"),
+        fontWeight: 500,
+      },
+
+      // Disabled state
+      "& li > [aria-disabled='true']": {
+        color: resolve("{alias.content-disabled}"),
+        pointerEvents: "none",
+      },
+    },
+    ol: {
+      gap: tokens.spacing.xxs,
+      alignItems: "center",
+    },
+    li: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: tokens.spacing.xxs,
     },
   },
 };

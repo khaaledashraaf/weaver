@@ -35,6 +35,7 @@ const navGroups = [
       { label: "Checkbox", href: "/components/checkbox-radio" },
       { label: "Switch", href: "/components/switch" },
       { label: "Slider", href: "/components/slider" },
+      { label: "Button Group", href: "/components/button-group" },
     ],
   },
   {
@@ -47,6 +48,13 @@ const navGroups = [
       { label: "Tabs", href: "/components/tabs" },
       { label: "Tooltip", href: "/components/tooltips" },
       { label: "Divider", href: "/components/divider" },
+    ],
+  },
+  {
+    label: "NAVIGATION",
+    items: [
+      { label: "Breadcrumbs", href: "/components/breadcrumbs" },
+      { label: "Pagination", href: "/components/pagination" },
     ],
   },
   {
