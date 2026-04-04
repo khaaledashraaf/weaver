@@ -12,14 +12,11 @@ import { PropsTable } from "../props-table";
 import { CodeBlock } from "../code-block";
 
 /* ── Figma variants ──
-  Tab Item styles: Underline, Segment, Rounded, Grey bill, Brand bill
-  Tab Item states: Active, Default, Hover
-  Tab Item sizes:  Default, xs, sm
-
-  Tabs container:
-    Styles: Segment, Rounded, Underline
-    Sizes: md, xs, sm
-    Full Width: True, False
+  Styles: Underline, Segment, Rounded
+  Sizes: md, sm, xs
+  Full Width: True, False
+  Active tab: 500 weight, content/default
+  Inactive tab: 400 weight, content/subtle
 */
 
 export default function TabsPage() {
@@ -29,137 +26,151 @@ export default function TabsPage() {
         Tabs
       </Typography>
       <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
-        Tabs organize content into views. Figma defines five tab styles
-        (Underline, Segment, Rounded, Grey bill, Brand bill), three sizes
-        (Default/md, sm, xs), and a full-width option. Active tabs use 500
-        font-weight, inactive use 400.
+        Tabs organize content into views. Figma defines three styles (Underline,
+        Segment, Rounded), three sizes (md, sm, xs), and a full-width option.
+        Active tabs use 500 font-weight with content/default color, inactive
+        use 400 with content/subtle.
       </Typography>
 
       <Section
-        title="Basic Tabs"
-        description="Default tab style with panel content."
+        title="Underline"
+        description="Bottom border with active indicator. Maps to TabList variant='plain'."
       >
         <DemoBox
           code={`<Tabs defaultValue={0}>
-  <TabList>
-    <Tab>First</Tab>
-    <Tab>Second</Tab>
-    <Tab>Third</Tab>
-  </TabList>
-  <TabPanel value={0} sx={{ p: 2 }}>First tab content</TabPanel>
-  <TabPanel value={1} sx={{ p: 2 }}>Second tab content</TabPanel>
-  <TabPanel value={2} sx={{ p: 2 }}>Third tab content</TabPanel>
-</Tabs>`}
-        >
-          <Tabs defaultValue={0}>
-            <TabList>
-              <Tab>First</Tab>
-              <Tab>Second</Tab>
-              <Tab>Third</Tab>
-            </TabList>
-            <TabPanel value={0} sx={{ p: 2 }}>First tab content</TabPanel>
-            <TabPanel value={1} sx={{ p: 2 }}>Second tab content</TabPanel>
-            <TabPanel value={2} sx={{ p: 2 }}>Third tab content</TabPanel>
-          </Tabs>
-        </DemoBox>
-      </Section>
-
-      <Section
-        title="Tab Styles"
-        description="Figma defines Underline, Segment, and Rounded styles. Joy UI maps these via TabList variant."
-      >
-        <DemoBox
-          code={`{/* Underline (plain) */}
-<Tabs defaultValue={0}>
   <TabList variant="plain">
-    <Tab>Tab 1</Tab>
-    <Tab>Tab 2</Tab>
-    <Tab>Tab 3</Tab>
-  </TabList>
-</Tabs>
-
-{/* Segment (soft) */}
-<Tabs defaultValue={0}>
-  <TabList variant="soft">
-    <Tab>Tab 1</Tab>
-    <Tab>Tab 2</Tab>
-    <Tab>Tab 3</Tab>
-  </TabList>
-</Tabs>
-
-{/* Outlined */}
-<Tabs defaultValue={0}>
-  <TabList variant="outlined">
-    <Tab>Tab 1</Tab>
-    <Tab>Tab 2</Tab>
-    <Tab>Tab 3</Tab>
+    <Tab variant="plain">Tab item</Tab>
+    <Tab variant="plain">Tab item</Tab>
+    <Tab variant="plain">Tab item</Tab>
   </TabList>
 </Tabs>`}
         >
           <Stack spacing={3} sx={{ width: "100%" }}>
-            <Box>
-              <Typography level="title-sm" sx={{ mb: 1 }}>Underline (plain)</Typography>
-              <Tabs defaultValue={0}>
-                <TabList variant="plain">
-                  <Tab>Tab 1</Tab>
-                  <Tab>Tab 2</Tab>
-                  <Tab>Tab 3</Tab>
-                </TabList>
-              </Tabs>
-            </Box>
-            <Box>
-              <Typography level="title-sm" sx={{ mb: 1 }}>Segment (soft)</Typography>
-              <Tabs defaultValue={0}>
-                <TabList variant="soft">
-                  <Tab>Tab 1</Tab>
-                  <Tab>Tab 2</Tab>
-                  <Tab>Tab 3</Tab>
-                </TabList>
-              </Tabs>
-            </Box>
-            <Box>
-              <Typography level="title-sm" sx={{ mb: 1 }}>Outlined</Typography>
-              <Tabs defaultValue={0}>
-                <TabList variant="outlined">
-                  <Tab>Tab 1</Tab>
-                  <Tab>Tab 2</Tab>
-                  <Tab>Tab 3</Tab>
-                </TabList>
-              </Tabs>
-            </Box>
+            <Tabs defaultValue={0}>
+              <TabList variant="plain">
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+              </TabList>
+            </Tabs>
+            <Typography level="body-xs" sx={{ color: "text.tertiary" }}>Full width</Typography>
+            <Tabs defaultValue={0}>
+              <TabList variant="plain" sx={{ flexGrow: 1, "& .MuiTab-root": { flex: 1 } }}>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+                <Tab variant="plain">Tab item</Tab>
+              </TabList>
+            </Tabs>
           </Stack>
         </DemoBox>
       </Section>
 
       <Section
-        title="Sizes"
-        description="Figma sizes: Default (md), sm, xs."
+        title="Segment"
+        description="Pill-shaped container with active tab highlighted. Maps to TabList variant='soft'."
       >
         <DemoBox
-          code={`<Tabs defaultValue={0} size="sm">
-  <TabList><Tab>Tab 1</Tab><Tab>Tab 2</Tab><Tab>Tab 3</Tab></TabList>
-</Tabs>
-<Tabs defaultValue={0} size="md">
-  <TabList><Tab>Tab 1</Tab><Tab>Tab 2</Tab><Tab>Tab 3</Tab></TabList>
-</Tabs>
-<Tabs defaultValue={0} size="lg">
-  <TabList><Tab>Tab 1</Tab><Tab>Tab 2</Tab><Tab>Tab 3</Tab></TabList>
+          code={`<Tabs defaultValue={0}>
+  <TabList variant="soft">
+    <Tab variant="soft">Tab item</Tab>
+    <Tab variant="soft">Tab item</Tab>
+    <Tab variant="soft">Tab item</Tab>
+  </TabList>
 </Tabs>`}
         >
-          <Stack spacing={2} sx={{ width: "100%" }}>
-            {(["sm", "md", "lg"] as const).map((size) => (
-              <Box key={size}>
-                <Typography level="body-xs" sx={{ mb: 0.5 }}>{size}</Typography>
-                <Tabs defaultValue={0} size={size}>
-                  <TabList>
-                    <Tab>Tab 1</Tab>
-                    <Tab>Tab 2</Tab>
-                    <Tab>Tab 3</Tab>
-                  </TabList>
-                </Tabs>
-              </Box>
-            ))}
+          <Stack spacing={3} sx={{ width: "100%" }}>
+            <Tabs defaultValue={0}>
+              <TabList variant="soft">
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+              </TabList>
+            </Tabs>
+            <Typography level="body-xs" sx={{ color: "text.tertiary" }}>Full width</Typography>
+            <Tabs defaultValue={0}>
+              <TabList variant="soft" sx={{ "& .MuiTab-root": { flex: 1 } }}>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+                <Tab variant="soft">Tab item</Tab>
+              </TabList>
+            </Tabs>
           </Stack>
+        </DemoBox>
+      </Section>
+
+      <Section
+        title="Rounded"
+        description="Rounded rectangle container with 8px radius. Maps to TabList variant='outlined'."
+      >
+        <DemoBox
+          code={`<Tabs defaultValue={0}>
+  <TabList variant="outlined">
+    <Tab variant="outlined">Tab item</Tab>
+    <Tab variant="outlined">Tab item</Tab>
+    <Tab variant="outlined">Tab item</Tab>
+  </TabList>
+</Tabs>`}
+        >
+          <Stack spacing={3} sx={{ width: "100%" }}>
+            <Tabs defaultValue={0}>
+              <TabList variant="outlined">
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+              </TabList>
+            </Tabs>
+            <Typography level="body-xs" sx={{ color: "text.tertiary" }}>Full width</Typography>
+            <Tabs defaultValue={0}>
+              <TabList variant="outlined" sx={{ "& .MuiTab-root": { flex: 1 } }}>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+                <Tab variant="outlined">Tab item</Tab>
+              </TabList>
+            </Tabs>
+          </Stack>
+        </DemoBox>
+      </Section>
+
+      <Section
+        title="With Tab Panels"
+        description="Tabs with content panels."
+      >
+        <DemoBox
+          code={`<Tabs defaultValue={0}>
+  <TabList variant="plain">
+    <Tab variant="plain">Overview</Tab>
+    <Tab variant="plain">Settings</Tab>
+    <Tab variant="plain">Activity</Tab>
+  </TabList>
+  <TabPanel value={0}>Overview content</TabPanel>
+  <TabPanel value={1}>Settings content</TabPanel>
+  <TabPanel value={2}>Activity content</TabPanel>
+</Tabs>`}
+        >
+          <Box sx={{ width: "100%" }}>
+            <Tabs defaultValue={0}>
+              <TabList variant="plain">
+                <Tab variant="plain">Overview</Tab>
+                <Tab variant="plain">Settings</Tab>
+                <Tab variant="plain">Activity</Tab>
+              </TabList>
+              <TabPanel value={0} sx={{ p: 2 }}>Overview content</TabPanel>
+              <TabPanel value={1} sx={{ p: 2 }}>Settings content</TabPanel>
+              <TabPanel value={2} sx={{ p: 2 }}>Activity content</TabPanel>
+            </Tabs>
+          </Box>
         </DemoBox>
       </Section>
 
@@ -169,18 +180,18 @@ export default function TabsPage() {
       >
         <DemoBox
           code={`<Tabs defaultValue={0}>
-  <TabList>
-    <Tab>Active</Tab>
-    <Tab disabled>Disabled</Tab>
-    <Tab>Active</Tab>
+  <TabList variant="plain">
+    <Tab variant="plain">Active</Tab>
+    <Tab variant="plain" disabled>Disabled</Tab>
+    <Tab variant="plain">Active</Tab>
   </TabList>
 </Tabs>`}
         >
           <Tabs defaultValue={0}>
-            <TabList>
-              <Tab>Active</Tab>
-              <Tab disabled>Disabled</Tab>
-              <Tab>Active</Tab>
+            <TabList variant="plain">
+              <Tab variant="plain">Active</Tab>
+              <Tab variant="plain" disabled>Disabled</Tab>
+              <Tab variant="plain">Active</Tab>
             </TabList>
           </Tabs>
         </DemoBox>
@@ -192,13 +203,30 @@ import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 
+// Underline style
 <Tabs defaultValue={0}>
-  <TabList>
-    <Tab>Overview</Tab>
-    <Tab>Settings</Tab>
+  <TabList variant="plain">
+    <Tab variant="plain">Overview</Tab>
+    <Tab variant="plain">Settings</Tab>
   </TabList>
   <TabPanel value={0}>Overview content</TabPanel>
   <TabPanel value={1}>Settings content</TabPanel>
+</Tabs>
+
+// Segment style (pill)
+<Tabs defaultValue={0}>
+  <TabList variant="soft">
+    <Tab variant="soft">Tab 1</Tab>
+    <Tab variant="soft">Tab 2</Tab>
+  </TabList>
+</Tabs>
+
+// Rounded style
+<Tabs defaultValue={0}>
+  <TabList variant="outlined">
+    <Tab variant="outlined">Tab 1</Tab>
+    <Tab variant="outlined">Tab 2</Tab>
+  </TabList>
 </Tabs>`}</CodeBlock>
       </Section>
 

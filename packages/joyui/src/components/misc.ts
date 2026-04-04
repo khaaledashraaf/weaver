@@ -17,21 +17,111 @@ export const JoyTabs = {
 
 export const JoyTabList = {
   styleOverrides: {
-    root: {
+    root: ({ ownerState }: { ownerState: any }) => ({
       gap: tokens.spacing.xxs,
-    },
+
+      // Underline style
+      ...(ownerState.variant === "plain" && {
+        gap: tokens.spacing["3xl"],
+        borderBottom: `1px solid ${resolve("{alias.border-default}")}`,
+        borderRadius: 0,
+        padding: 0,
+        backgroundColor: "transparent",
+        "--TabList-radius": "0",
+      }),
+
+      // Segment style (full-pill)
+      ...(ownerState.variant === "soft" && {
+        backgroundColor: resolve("{alias.bg-neutral-subtle}"),
+        borderRadius: tokens.radius.full,
+        padding: tokens.spacing.xxs,
+        "--TabList-radius": tokens.radius.full,
+      }),
+
+      // Rounded style
+      ...(ownerState.variant === "outlined" && {
+        backgroundColor: resolve("{alias.bg-neutral-subtle}"),
+        borderRadius: tokens.radius.lg,
+        padding: tokens.spacing.xxs,
+        border: "none",
+        "--TabList-radius": tokens.radius.md,
+      }),
+    }),
   },
 };
 
 export const JoyTab = {
   styleOverrides: {
-    root: {
-      fontWeight: 500,
+    root: ({ ownerState }: { ownerState: any; theme: any }) => ({
       fontSize: "0.9375rem",
       lineHeight: "1.5rem",
+      fontWeight: 400,
+      color: resolve("{alias.content-subtle}"),
       borderRadius: tokens.radius["control-default"],
       padding: `${tokens.spacing.md} ${tokens.spacing.xl}`,
-    },
+      transition: "color 150ms, background-color 150ms",
+
+      // Active tab text
+      "&.Mui-selected, &.Joy-selected": {
+        fontWeight: 500,
+        color: resolve("{alias.content-default}"),
+      },
+
+      // Underline tab (inside plain TabList)
+      ...(ownerState.variant === "plain" && {
+        borderRadius: 0,
+        padding: `${tokens.spacing.md} ${tokens.spacing.xxs}`,
+        backgroundColor: "transparent",
+        "&.Mui-selected, &.Joy-selected": {
+          fontWeight: 500,
+          color: resolve("{alias.content-default}"),
+          backgroundColor: "transparent",
+        },
+        "&.Mui-selected::after, &.Joy-selected::after": {
+          backgroundColor: resolve("{alias.content-brand-default}"),
+        },
+        "&:not(.Mui-selected)::after": {
+          display: "none",
+        },
+        "&:hover": {
+          backgroundColor: "transparent",
+        },
+      }),
+
+      // Segment tab (inside soft TabList)
+      ...(ownerState.variant === "soft" && {
+        borderRadius: tokens.radius.full,
+        backgroundColor: "transparent",
+        "&.Mui-selected, &.Joy-selected": {
+          fontWeight: 500,
+          color: resolve("{alias.content-default}"),
+          backgroundColor: resolve("{alias.bg-default}"),
+          boxShadow: tokens.shadow.sm,
+        },
+        "&::after": { display: "none" },
+        "&:hover:not(.Mui-selected)": {
+          backgroundColor: "transparent",
+        },
+      }),
+
+      // Rounded tab (inside outlined TabList)
+      ...(ownerState.variant === "outlined" && {
+        borderRadius: tokens.radius.md,
+        border: "none",
+        backgroundColor: "transparent",
+        "&.Mui-selected, &.Joy-selected": {
+          fontWeight: 500,
+          color: resolve("{alias.content-default}"),
+          backgroundColor: resolve("{alias.bg-default}"),
+          boxShadow: tokens.shadow.sm,
+          border: "none",
+        },
+        "&::after": { display: "none" },
+        "&:hover:not(.Mui-selected)": {
+          backgroundColor: "transparent",
+        },
+      }),
+    }),
   },
 };
 
