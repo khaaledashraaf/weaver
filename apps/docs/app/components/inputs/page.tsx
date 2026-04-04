@@ -89,38 +89,44 @@ export default function InputsPage() {
           code={`<FormControl>
   <FormLabel>Default</FormLabel>
   <Input placeholder="Default state" />
+  <FormHelperText>This is a hint text</FormHelperText>
 </FormControl>
 <FormControl error>
   <FormLabel>Error</FormLabel>
   <Input placeholder="Error state" color="danger" />
-  <FormHelperText>This is a hint text</FormHelperText>
+  <FormHelperText>Error message</FormHelperText>
 </FormControl>
 <FormControl disabled>
   <FormLabel>Disabled</FormLabel>
   <Input placeholder="Disabled state" />
+  <FormHelperText>This is a hint text</FormHelperText>
 </FormControl>
 <FormControl>
   <FormLabel>Filled</FormLabel>
   <Input defaultValue="Filled value" />
+  <FormHelperText>This is a hint text</FormHelperText>
 </FormControl>`}
         >
           <Stack spacing={2} sx={{ maxWidth: 400, width: "100%" }}>
             <FormControl>
               <FormLabel>Default</FormLabel>
               <Input placeholder="Default state" />
+              <FormHelperText>This is a hint text</FormHelperText>
             </FormControl>
             <FormControl error>
               <FormLabel>Error</FormLabel>
               <Input placeholder="Error state" color="danger" />
-              <FormHelperText>This is a hint text</FormHelperText>
+              <FormHelperText>Error message</FormHelperText>
             </FormControl>
             <FormControl disabled>
               <FormLabel>Disabled</FormLabel>
               <Input placeholder="Disabled state" />
+              <FormHelperText>This is a hint text</FormHelperText>
             </FormControl>
             <FormControl>
               <FormLabel>Filled</FormLabel>
               <Input defaultValue="Filled value" />
+              <FormHelperText>This is a hint text</FormHelperText>
             </FormControl>
           </Stack>
         </DemoBox>
