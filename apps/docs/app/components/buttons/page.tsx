@@ -24,7 +24,7 @@ import { CodeBlock } from "../code-block";
   Link Button states: Default, Hover (underline), Pressed, Focused, Disabled
 */
 
-const sizes = ["sm", "md", "lg"] as const;
+const sizes = ["xs", "sm", "md", "lg"] as const;
 
 export default function ButtonsPage() {
   return (
@@ -34,7 +34,7 @@ export default function ButtonsPage() {
       </Typography>
       <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
         Buttons trigger actions. Weaver buttons use 8px border-radius, 15px font
-        size across all sizes, and heights of 36px (sm), 40px (md), and 48px (lg).
+        size across all sizes, and heights of 32px (xs), 36px (sm), 40px (md), and 48px (lg).
         Figma defines 10 button styles and 4 sizes.
       </Typography>
 
@@ -68,27 +68,40 @@ export default function ButtonsPage() {
 
       <Section title="Sizes" description="Four sizes: xs (32px), sm (36px), md (40px), lg (48px).">
         <DemoBox
-          code={`<Button size="sm">Small 36</Button>
+          code={`<Button size="xs">XSmall 32</Button>
+<Button size="sm">Small 36</Button>
 <Button size="md">Medium 40</Button>
 <Button size="lg">Large 48</Button>`}
         >
           {sizes.map((size) => (
             <Button key={size} size={size}>
-              {size === "sm" ? "Small 36" : size === "md" ? "Medium 40" : "Large 48"}
+              {size === "xs" ? "XSmall 32" : size === "sm" ? "Small 36" : size === "md" ? "Medium 40" : "Large 48"}
             </Button>
           ))}
         </DemoBox>
       </Section>
 
-      <Section title="Disabled" description="Disabled uses 0.4 opacity as defined in Figma.">
+      <Section title="Disabled" description="Disabled buttons use explicit disabled tokens — no opacity. Background uses the variant's disabled token, text uses content/disabled.">
         <DemoBox
-          code={`<Button disabled>Disabled</Button>
-<Button variant="outlined" color="neutral" disabled>Disabled Secondary</Button>
-<Button variant="solid" color="danger" disabled>Disabled Danger</Button>`}
+          code={`<Button disabled>Primary</Button>
+<Button variant="outlined" color="neutral" disabled>Secondary</Button>
+<Button variant="soft" color="neutral" disabled>Soft</Button>
+<Button variant="plain" color="neutral" disabled>Ghost</Button>
+<Button variant="solid" color="danger" disabled>Danger</Button>`}
         >
-          <Button disabled>Disabled</Button>
-          <Button variant="outlined" color="neutral" disabled>Disabled Secondary</Button>
-          <Button variant="solid" color="danger" disabled>Disabled Danger</Button>
+          <Stack spacing={1.5} sx={{ width: "100%" }}>
+            <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+              <Button disabled>Primary</Button>
+              <Button variant="outlined" color="neutral" disabled>Secondary</Button>
+              <Button variant="soft" color="neutral" disabled>Soft</Button>
+              <Button variant="plain" color="neutral" disabled>Ghost</Button>
+            </Stack>
+            <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+              <Button variant="solid" color="danger" disabled>Danger</Button>
+              <Button variant="soft" color="danger" disabled>Soft Danger</Button>
+              <Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed" }} disabled>Dashed</Button>
+            </Stack>
+          </Stack>
         </DemoBox>
       </Section>
 
@@ -103,7 +116,7 @@ export default function ButtonsPage() {
             <Stack direction="row" spacing={1.5} alignItems="center">
               {sizes.map((size) => (
                 <IconButton key={size} size={size} variant="outlined" color="neutral">
-                  <RiAddLine size={size === "sm" ? 16 : size === "md" ? 20 : 24} />
+                  <RiAddLine size={size === "xs" ? 16 : size === "sm" ? 16 : size === "md" ? 20 : 24} />
                 </IconButton>
               ))}
             </Stack>
@@ -118,7 +131,7 @@ export default function ButtonsPage() {
             <Stack direction="row" spacing={1.5} alignItems="center">
               {sizes.map((size) => (
                 <IconButton key={size} size={size} variant="outlined" color="neutral" sx={{ borderRadius: "9999px" }}>
-                  <RiAddLine size={size === "sm" ? 16 : size === "md" ? 20 : 24} />
+                  <RiAddLine size={size === "xs" ? 16 : size === "sm" ? 16 : size === "md" ? 20 : 24} />
                 </IconButton>
               ))}
             </Stack>
@@ -204,7 +217,7 @@ import { RiAddLine, RiDeleteBinLine, RiArrowRightSLine } from "@remixicon/react"
           props={[
             { name: "variant", type: '"solid" | "soft" | "outlined" | "plain" | "link"', default: '"solid"' },
             { name: "color", type: '"primary" | "neutral" | "danger"', default: '"primary"' },
-            { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
+            { name: "size", type: '"xs" | "sm" | "md" | "lg"', default: '"md"' },
             { name: "disabled", type: "boolean", default: "false" },
             { name: "startDecorator", type: "ReactNode", default: "-" },
             { name: "endDecorator", type: "ReactNode", default: "-" },

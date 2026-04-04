@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 
 import "@mui/joy/Button";
+import "@mui/joy/IconButton";
 import "@mui/joy/styles";
 
 declare module "@mui/joy/Button" {
   interface ButtonPropsSizeOverrides {
+    xs: true;
     xl: true;
   }
   interface ButtonPropsVariantOverrides {
     link: true;
+  }
+}
+
+declare module "@mui/joy/IconButton" {
+  interface IconButtonPropsSizeOverrides {
+    xs: true;
   }
 }
 

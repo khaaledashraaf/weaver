@@ -1,5 +1,9 @@
 import { tokens, resolve } from "../tokens";
 
+const disabledColor = resolve("{alias.content-disabled}");
+const disabledBg = resolve("{alias.interactive-brand-disabled}");
+const disabledBorder = resolve("{alias.border-disabled}");
+
 export const JoyButton = {
   styleOverrides: {
     root: ({ ownerState }: { ownerState: any; theme: any }) => ({
@@ -10,6 +14,11 @@ export const JoyButton = {
       fontSize: "0.9375rem",
       lineHeight: "1.5rem",
       "--Button-gap": "4px",
+      ...(ownerState.size === "xs" && {
+        minHeight: 32,
+        paddingInline: tokens.spacing.sm,
+        "--Button-gap": "2px",
+      }),
       ...(ownerState.size === "sm" && {
         minHeight: 36,
         paddingInline: tokens.spacing.md,
@@ -63,11 +72,6 @@ export const JoyButton = {
         },
         "&:active": {
           backgroundColor: "transparent",
-        },
-        "&.Mui-disabled, &.Joy-disabled": {
-          backgroundColor: "transparent",
-          color: resolve("{alias.content-disabled}"),
-          opacity: 1,
         },
 
         // Size overrides for link variant
@@ -133,17 +137,38 @@ export const JoyButton = {
         outlineOffset: 2,
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
+
+      // ── Disabled (all variants) ───────────────────────
       "&.Mui-disabled, &.Joy-disabled": {
-        opacity: 0.4,
-      },
-      // Link variant disabled should not use opacity
-      ...(ownerState.variant === "link" && {
-        "&.Mui-disabled, &.Joy-disabled": {
-          opacity: 1,
-          color: resolve("{alias.content-disabled}"),
+        opacity: 1,
+        color: disabledColor,
+        cursor: "not-allowed",
+        pointerEvents: "auto",
+
+        // solid → disabled bg, no border
+        ...(ownerState.variant === "solid" && {
+          backgroundColor: disabledBg,
+        }),
+        // soft → disabled bg, no border
+        ...(ownerState.variant === "soft" && {
+          backgroundColor: resolve("{alias.interactive-soft-disabled}"),
+        }),
+        // outlined → disabled bg + disabled border
+        ...(ownerState.variant === "outlined" && {
+          backgroundColor: resolve("{alias.interactive-secondary-disabled}"),
+          borderColor: disabledBorder,
+          boxShadow: "none",
+        }),
+        // plain/ghost → transparent bg
+        ...(ownerState.variant === "plain" && {
+          backgroundColor: resolve("{alias.interactive-ghost-disabled}"),
+        }),
+        // link → transparent bg, no decoration
+        ...(ownerState.variant === "link" && {
           backgroundColor: "transparent",
-        },
-      }),
+          textDecoration: "none",
+        }),
+      },
     }),
   },
 };
@@ -153,6 +178,7 @@ export const JoyIconButton = {
     root: ({ ownerState }: { ownerState: any }) => ({
       borderRadius: tokens.radius["control-default"],
       transition: "background-color 150ms",
+      ...(ownerState.size === "xs" && { width: 32, height: 32 }),
       ...(ownerState.size === "sm" && { width: 36, height: 36 }),
       ...(ownerState.size === "md" && { width: 40, height: 40 }),
       ...(ownerState.size === "lg" && { width: 48, height: 48 }),
@@ -161,7 +187,23 @@ export const JoyIconButton = {
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
-        opacity: 0.4,
+        opacity: 1,
+        color: disabledColor,
+        cursor: "not-allowed",
+        pointerEvents: "auto",
+        ...(ownerState.variant === "solid" && {
+          backgroundColor: disabledBg,
+        }),
+        ...(ownerState.variant === "soft" && {
+          backgroundColor: resolve("{alias.interactive-soft-disabled}"),
+        }),
+        ...(ownerState.variant === "outlined" && {
+          backgroundColor: resolve("{alias.interactive-secondary-disabled}"),
+          borderColor: disabledBorder,
+        }),
+        ...(ownerState.variant === "plain" && {
+          backgroundColor: resolve("{alias.interactive-ghost-disabled}"),
+        }),
       },
     }),
   },
