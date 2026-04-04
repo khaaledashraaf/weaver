@@ -22,7 +22,7 @@ import {
 import { JoySlider } from "./slider";
 import { JoyLinearProgress, JoyCircularProgress } from "./progress";
 import { JoyDivider } from "./divider";
-import { JoySelect, JoyOption } from "./select";
+import { JoySelect, JoyOption, JoySelectListbox } from "./select";
 import { JoyBreadcrumbs } from "./misc";
 import { JoyBadge } from "./badge";
 import {
@@ -80,6 +80,7 @@ export const components = {
   JoyDivider,
   JoySelect,
   JoyOption,
+  JoySelectListbox,
   JoyBreadcrumbs,
   JoyBadge,
   JoySheet,
