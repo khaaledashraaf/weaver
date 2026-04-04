@@ -1,6 +1,6 @@
 # Weaver Design System — Joy UI Theme
 
-This package (`weaver-ui-joyui`) is the Weaver Design System implemented as a Joy UI theme. All Joy UI components rendered inside `WeaverProvider` are automatically themed — use the correct `variant`, `color`, and `size` props instead of custom `sx` styles.
+This package (`weaver-ui-joyui`) is the Weaver Design System implemented as a Joy UI theme. All Joy UI components rendered inside `WeaverProvider` are automatically themed.
 
 ```tsx
 import { WeaverProvider } from "weaver-ui-joyui";
@@ -12,72 +12,24 @@ function App({ children }) {
 
 Import all standard components from `@mui/joy`. Import `WeaverProvider` and `WeaverPagination` from `weaver-ui-joyui`.
 
----
+## Setup — Figma MCP Hook (Recommended)
 
-## Figma-to-Code Component Mapping
+Add this hook to your project's `.claude/settings.json` to automatically enforce Weaver design rules every time an AI assistant fetches a Figma design:
 
-IMPORTANT: Figma component names do NOT match Joy UI component names. Always use this table when implementing Figma designs.
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__figma",
+        "hook": "cat joyui/FIGMA_RULES.md"
+      }
+    ]
+  }
+}
+```
 
-| Figma Component | Joy UI Code | Notes |
-|---|---|---|
-| Tag | `<Chip variant="outlined">` | Small label with border |
-| Badge (status pill with text) | `<Chip variant="soft">` | NEVER use `<Badge>` for this |
-| Badge (dot/count overlay) | `<Badge>` | Only for notification dots on avatars/icons |
-| Toggle | `<Switch>` | Not `Toggle` — Joy UI calls it Switch |
-| Date Picker | `<Button variant="outlined" color="neutral">` + calendar icon | No native Joy UI date picker |
-| Pagination | `<WeaverPagination>` | Custom component from `weaver-ui-joyui` |
-| Icon Button | `<IconButton>` | Same variant/color mapping as Button |
-| Button Group | `<ButtonGroup>` | Theme handles shadow, padding, dividers |
-
-## Button Variant Mapping
-
-Figma uses custom variant names. Map them to Joy UI `variant` + `color` props:
-
-| Figma Variant | `variant` | `color` |
-|---|---|---|
-| primary | `"solid"` | `"primary"` |
-| secondary | `"outlined"` | `"neutral"` |
-| soft | `"soft"` | `"primary"` |
-| outline | `"outlined"` | `"neutral"` |
-| ghost | `"plain"` | `"neutral"` |
-| danger | `"solid"` | `"danger"` |
-| ghost-primary | `"plain"` | `"primary"` |
-| soft-danger | `"soft"` | `"danger"` |
-| link | `"link"` | `"primary"` / `"neutral"` / `"danger"` |
-
-Button sizes: `xs` (32px), `sm` (36px), `md` (40px), `lg` (48px).
-
-## Semantic Color Mapping
-
-For Chips, Alerts, and other colored components — map Figma color names to Joy UI `color` prop:
-
-| Figma Color | Joy UI `color` |
-|---|---|
-| Green / Success | `"success"` |
-| Red / Danger | `"danger"` |
-| Amber / Warning | `"warning"` |
-| Blue / Brand / Primary | `"primary"` |
-| Neutral / Gray | `"neutral"` |
-
-Extended Figma colors (purple, fuchsia, rose, sky, golden) have no direct Joy UI palette equivalent. For these, use `sx` with token values from the design tokens.
-
-## Badge/Chip Style Mapping
-
-Figma Badge styles map to Joy UI Chip variants:
-
-| Figma Badge Style | Joy UI Chip |
-|---|---|
-| light | `variant="soft"` |
-| outline | `variant="outlined"` |
-| solid | `variant="solid"` |
-
-## Icons
-
-- Library: **Remix Icon** via `@remixicon/react`
-- Figma component descriptions include the exact React import name (e.g., `RiSearchLine`, `RiArrowLeftLine`)
-- Import: `import { RiSearchLine } from "@remixicon/react"`
-- Pass as `startDecorator` / `endDecorator` props on Button, Input, Select, etc.
-- Default icon size is 20px — do not override unless the design explicitly specifies a different size
+If you already have a `.claude/settings.json`, merge the `PreToolUse` hook into your existing `hooks` config.
 
 ## Typography
 
@@ -87,31 +39,14 @@ Use Joy UI's `<Typography level="...">`. Available levels:
 - **Heading:** `h1`, `h2`, `h3`, `h4`
 - **Title:** `title-lg`, `title-md`, `title-sm`
 
-Font family: Inter. Do not import or use other fonts.
+Font family: Inter. All typography levels default to `content-default` (`#101B2E`).
 
----
+## Icons
 
-## IMPORTANT: Anti-patterns — Do NOT do these
-
-1. **Do NOT use `<Badge>` for status pills.** Figma's "Badge" component (colored pill with text like "Active", "Pending") maps to `<Chip variant="soft" color="success">`, NOT Joy UI's `<Badge>` which is a small dot/count overlay on avatars.
-
-2. **Do NOT hardcode colors, shadows, or borders via `sx`.** The theme already handles all visual styling through `variant`, `color`, and `size` props. If a component looks wrong, check your props first.
-
-3. **Do NOT use `opacity` for disabled states.** The theme sets `opacity: 1` on disabled components and uses explicit disabled tokens for colors/backgrounds.
-
-4. **Do NOT add focus ring styles to error-state inputs.** The Figma design does not show focus rings on error inputs.
-
-5. **Do NOT invent variants, colors, or sizes** that don't exist in the Figma design. Only implement what Figma specifies.
-
-6. **Do NOT wrap Joy UI components in custom styled wrappers** for things the theme already handles (shadows, border-radius, hover states, etc.).
-
-7. **Trust the theme.** If a component's styling doesn't match Figma, the issue is likely wrong `variant`/`color`/`size` props — not missing `sx` styles.
-
-8. **Do NOT add `sx` to linked Figma component instances.** If an element in the Figma design is a component instance (linked, not detached), use the corresponding Joy UI component with the correct `variant`, `color`, and `size` props — no `sx` overrides. Only use `sx` for detached or custom elements that have no matching themed component.
-
-9. **All typography levels default to `content-default` (`#101B2E`, dark navy).** The theme overrides Joy UI's default muted colors on smaller levels. This is NOT pure `#000` black — it is the correct color per the design system. Do not override it with `black` or `#000`. If the Figma design shows muted/lighter text, use the appropriate token: `content-subtle` (mapped to `text.secondary`) or `content-muted` (mapped to `text.tertiary`).
-
----
+- Library: **Remix Icon** via `@remixicon/react`
+- Import: `import { RiSearchLine } from "@remixicon/react"`
+- Pass as `startDecorator` / `endDecorator` props
+- Default icon size is 20px
 
 ## Available Themed Components
 

@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__figma",
+        "hook": "cat joyui/FIGMA_RULES.md"
+      }
+    ]
+  }
+}
