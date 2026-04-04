@@ -109,7 +109,7 @@ Font family: Inter. Do not import or use other fonts.
 
 8. **Do NOT add `sx` to linked Figma component instances.** If an element in the Figma design is a component instance (linked, not detached), use the corresponding Joy UI component with the correct `variant`, `color`, and `size` props — no `sx` overrides. Only use `sx` for detached or custom elements that have no matching themed component.
 
-9. **Do NOT rely on Joy UI's default text colors per typography level.** Joy UI automatically assigns muted colors to smaller levels (`body-sm`, `body-xs`, etc.). Ignore this — always set text color explicitly based on what the Figma design specifies. Use `color="text.primary"` or the appropriate `sx={{ color: '...' }}` to match the design.
+9. **All typography levels default to `content-default` (`#101B2E`, dark navy).** The theme overrides Joy UI's default muted colors on smaller levels. This is NOT pure `#000` black — it is the correct color per the design system. Do not override it with `black` or `#000`. If the Figma design shows muted/lighter text, use the appropriate token: `content-subtle` (mapped to `text.secondary`) or `content-muted` (mapped to `text.tertiary`).
 
 ---
 
