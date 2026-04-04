@@ -7,6 +7,9 @@ declare module "@mui/joy/Button" {
   interface ButtonPropsSizeOverrides {
     xl: true;
   }
+  interface ButtonPropsVariantOverrides {
+    link: true;
+  }
 }
 
 declare module "@mui/joy/styles/types/typography" {

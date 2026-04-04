@@ -4,7 +4,7 @@ import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
 import Stack from "@mui/joy/Stack";
-import { RiAddLine, RiArrowRightLine, RiDeleteBinLine, RiSettings3Line, RiSearchLine, RiEditLine, RiDownloadLine } from "@remixicon/react";
+import { RiAddLine, RiArrowRightLine, RiArrowRightSLine, RiDeleteBinLine, RiSettings3Line, RiSearchLine, RiEditLine, RiDownloadLine } from "@remixicon/react";
 import { Section } from "../section";
 import { DemoBox } from "../demo-box";
 import { PropsTable } from "../props-table";
@@ -18,6 +18,10 @@ import { CodeBlock } from "../code-block";
   IconButton styles: Primary, Soft, Secondary, Outline, Ghost, Ghost Primary, Danger, Danger Ghost
   IconButton sizes:  2xs (28), xs (32), sm (36), md (40), lg (48)
   IconButton forms:  Default, Pill
+
+  Link Button styles: Primary, Neutral, Danger, White
+  Link Button sizes:  sm (13px), md (15px), lg (17px)
+  Link Button states: Default, Hover (underline), Pressed, Focused, Disabled
 */
 
 const sizes = ["sm", "md", "lg"] as const;
@@ -136,14 +140,52 @@ export default function ButtonsPage() {
         </DemoBox>
       </Section>
 
+      <Section title="Link Button" description='Link buttons use variant="link" for inline text-like actions. They support Primary, Neutral, and Danger colors with sm, md, lg sizes.'>
+        <DemoBox
+          code={`<Button variant="link" color="primary" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+<Button variant="link" color="neutral" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+<Button variant="link" color="danger" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>`}
+        >
+          <Stack spacing={2} sx={{ width: "100%" }}>
+            <Stack direction="row" spacing={3} flexWrap="wrap" useFlexGap alignItems="center">
+              <Button variant="link" color="primary" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+              <Button variant="link" color="neutral" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+              <Button variant="link" color="danger" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+            </Stack>
+            <Typography level="body-xs" sx={{ color: "text.tertiary" }}>Sizes</Typography>
+            <Stack direction="row" spacing={3} flexWrap="wrap" useFlexGap alignItems="center">
+              <Button variant="link" size="sm" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+              <Button variant="link" size="md" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+              <Button variant="link" size="lg" endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+            </Stack>
+            <Typography level="body-xs" sx={{ color: "text.tertiary" }}>Disabled</Typography>
+            <Stack direction="row" spacing={3} flexWrap="wrap" useFlexGap alignItems="center">
+              <Button variant="link" color="primary" disabled endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+              <Button variant="link" color="neutral" disabled endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+              <Button variant="link" color="danger" disabled endDecorator={<RiArrowRightSLine size={20} />}>Link button</Button>
+            </Stack>
+          </Stack>
+        </DemoBox>
+      </Section>
+
       <Section title="Usage">
         <CodeBlock>{`import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
-import { RiAddLine, RiDeleteBinLine } from "@remixicon/react";
+import { RiAddLine, RiDeleteBinLine, RiArrowRightSLine } from "@remixicon/react";
 
 // Primary button with icon
 <Button startDecorator={<RiAddLine size={18} />}>
   Add Item
+</Button>
+
+// Link button
+<Button variant="link" endDecorator={<RiArrowRightSLine size={20} />}>
+  Link button
+</Button>
+
+// Link button (danger)
+<Button variant="link" color="danger" endDecorator={<RiArrowRightSLine size={20} />}>
+  Delete
 </Button>
 
 // Icon button
@@ -160,7 +202,7 @@ import { RiAddLine, RiDeleteBinLine } from "@remixicon/react";
       <Section title="Props">
         <PropsTable
           props={[
-            { name: "variant", type: '"solid" | "soft" | "outlined" | "plain"', default: '"solid"' },
+            { name: "variant", type: '"solid" | "soft" | "outlined" | "plain" | "link"', default: '"solid"' },
             { name: "color", type: '"primary" | "neutral" | "danger"', default: '"primary"' },
             { name: "size", type: '"sm" | "md" | "lg"', default: '"md"' },
             { name: "disabled", type: "boolean", default: "false" },
