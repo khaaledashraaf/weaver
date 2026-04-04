@@ -16,10 +16,6 @@ export const JoyInput = {
         borderColor: `${resolve("{alias.border-focus}")} !important`,
         boxShadow: `0 0 0 4px rgba(50, 118, 255, 0.3) !important`,
       },
-      ...(ownerState.size === "sm" && {
-        "--Input-minHeight": "28px",
-        fontSize: "0.875rem",
-      }),
       ...(ownerState.size === "md" && {
         "--Input-minHeight": "32px",
       }),

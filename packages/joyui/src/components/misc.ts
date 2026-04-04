@@ -130,16 +130,32 @@ export const JoyTable = {
     root: {
       "--TableCell-headBackground": "rgba(88,123,140,0.07)",
       "--TableCell-paddingX": tokens.spacing.md,
+      "--TableRow-hoverBackground": "rgba(88,123,140,0.04)",
+      borderRadius: tokens.radius.lg,
+      overflow: "hidden",
+      border: `1px solid ${resolve("{alias.border-subtle}")}`,
       "& thead th": {
         fontWeight: 500,
         fontSize: "0.875rem",
         lineHeight: "1.25rem",
         color: resolve("{alias.content-subtle}"),
         height: 44,
+        verticalAlign: "middle",
+        borderBottom: `1px solid ${resolve("{alias.border-subtle}")} !important`,
       },
       "& tbody td": {
         fontSize: "0.875rem",
         lineHeight: "1.25rem",
+        borderBottom: `1px solid ${resolve("{alias.border-subtle}")} !important`,
+      },
+      "& tbody tr:hover td": {
+        backgroundColor: resolve("{alias.interactive-ghost-hover}"),
+      },
+      "& tbody tr[aria-selected='true'] td, & tbody tr.Mui-selected td": {
+        backgroundColor: resolve("{alias.interactive-ghost-hover}"),
+      },
+      "& tbody tr:last-child td": {
+        borderBottom: "none",
       },
     },
   },
