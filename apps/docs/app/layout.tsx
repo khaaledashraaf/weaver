@@ -15,12 +15,13 @@ import "./globals.css";
 const navGroups = [
   {
     items: [
-      { label: "Overview", href: "/" },
+      { label: "Overview", href: "/docs" },
     ],
   },
   {
     label: "FOUNDATIONS",
     items: [
+      { label: "Tokens", href: "/components/tokens" },
       { label: "Icons", href: "/components/icons" },
       { label: "Typography", href: "/components/typography" },
     ],
@@ -69,91 +70,96 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const isLanding = pathname === "/";
 
   return (
     <html lang="en">
       <body>
         <WeaverProvider>
-          <Box sx={{ display: "flex", minHeight: "100vh" }}>
-            {/* Left sidebar */}
-            <Sheet
-              sx={{
-                width: 220,
-                borderRight: "1px solid",
-                borderColor: "divider",
-                position: "fixed",
-                top: 0,
-                left: 0,
-                bottom: 0,
-                overflowY: "auto",
-                zIndex: 10,
-                py: 2,
-                px: 1.5,
-              }}
-            >
-              <Box sx={{ px: 1, mb: 2.5, mt: 0.5 }}>
-                <Typography level="title-md" fontWeight={700}>
-                  Weaver DS
-                </Typography>
-              </Box>
-
-              {navGroups.map((group, gi) => (
-                <Box key={gi} sx={{ mb: 1.5 }}>
-                  {group.label && (
-                    <Typography
-                      level="body-xs"
-                      textTransform="uppercase"
-                      letterSpacing="0.08em"
-                      fontWeight={600}
-                      sx={{ px: 1, mb: 0.5, color: "text.tertiary", fontSize: "0.65rem" }}
-                    >
-                      {group.label}
-                    </Typography>
-                  )}
-                  <List
-                    size="sm"
-                    sx={{
-                      "--ListItem-radius": "6px",
-                      "--List-gap": "1px",
-                      "--ListItem-minHeight": "30px",
-                      "--ListItemButton-paddingBlock": "0px",
-                    }}
-                  >
-                    {group.items.map((item) => (
-                      <ListItem key={item.href}>
-                        <ListItemButton
-                          component={Link}
-                          href={item.href}
-                          selected={pathname === item.href}
-                          sx={{
-                            fontSize: "0.8125rem",
-                            fontWeight: pathname === item.href ? 600 : 400,
-                            color: pathname === item.href ? "primary.600" : "text.secondary",
-                          }}
-                        >
-                          {item.label}
-                        </ListItemButton>
-                      </ListItem>
-                    ))}
-                  </List>
+          {isLanding ? (
+            children
+          ) : (
+            <Box sx={{ display: "flex", minHeight: "100vh" }}>
+              {/* Left sidebar */}
+              <Sheet
+                sx={{
+                  width: 220,
+                  borderRight: "1px solid",
+                  borderColor: "divider",
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  overflowY: "auto",
+                  zIndex: 10,
+                  py: 2,
+                  px: 1.5,
+                }}
+              >
+                <Box sx={{ px: 1, mb: 2.5, mt: 0.5 }}>
+                  <Typography level="title-md" fontWeight={700}>
+                    Weaver DS
+                  </Typography>
                 </Box>
-              ))}
-            </Sheet>
 
-            {/* Main content */}
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                ml: "220px",
-                px: { xs: 3, md: 6 },
-                py: 5,
-                maxWidth: 860,
-              }}
-            >
-              {children}
+                {navGroups.map((group, gi) => (
+                  <Box key={gi} sx={{ mb: 1.5 }}>
+                    {group.label && (
+                      <Typography
+                        level="body-xs"
+                        textTransform="uppercase"
+                        letterSpacing="0.08em"
+                        fontWeight={600}
+                        sx={{ px: 1, mb: 0.5, color: "text.tertiary", fontSize: "0.65rem" }}
+                      >
+                        {group.label}
+                      </Typography>
+                    )}
+                    <List
+                      size="sm"
+                      sx={{
+                        "--ListItem-radius": "6px",
+                        "--List-gap": "1px",
+                        "--ListItem-minHeight": "30px",
+                        "--ListItemButton-paddingBlock": "0px",
+                      }}
+                    >
+                      {group.items.map((item) => (
+                        <ListItem key={item.href}>
+                          <ListItemButton
+                            component={Link}
+                            href={item.href}
+                            selected={pathname === item.href}
+                            sx={{
+                              fontSize: "0.8125rem",
+                              fontWeight: pathname === item.href ? 600 : 400,
+                              color: pathname === item.href ? "primary.600" : "text.secondary",
+                            }}
+                          >
+                            {item.label}
+                          </ListItemButton>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                ))}
+              </Sheet>
+
+              {/* Main content */}
+              <Box
+                component="main"
+                sx={{
+                  flexGrow: 1,
+                  ml: "220px",
+                  px: { xs: 3, md: 6 },
+                  py: 5,
+                  maxWidth: 860,
+                }}
+              >
+                {children}
+              </Box>
             </Box>
-          </Box>
+          )}
         </WeaverProvider>
       </body>
     </html>
