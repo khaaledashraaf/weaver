@@ -2,20 +2,6 @@
 
 Weaver is a custom design system maintained in Figma, shipped as a [Joy UI](https://mui.com/joy-ui/getting-started/) theme package. Wrap your app with `<WeaverProvider>` and all Joy UI components will match the Weaver designs out of the box.
 
-## Installation
-
-```bash
-npm install weaver-ui-joyui
-```
-
-### Peer dependencies
-
-Make sure you have these installed:
-
-```bash
-npm install @mui/joy @emotion/react @emotion/styled react react-dom
-```
-
 ## Usage
 
 Wrap your app root with `WeaverProvider`:

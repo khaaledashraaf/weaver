@@ -19,13 +19,6 @@ export default function OverviewPage() {
       </Typography>
 
       <Section
-        title="Installation"
-        description="Install weaver-ui-joyui and its peer dependencies."
-      >
-        <CodeBlock>{`npm install weaver-ui-joyui @mui/joy @emotion/react @emotion/styled`}</CodeBlock>
-      </Section>
-
-      <Section
         title="Setup"
         description="Wrap your application root with WeaverProvider. All Joy UI components inside will inherit the Weaver theme."
       >

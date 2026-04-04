@@ -105,11 +105,13 @@ export default function RootLayout({
                   px: 1.5,
                 }}
               >
-                <Box sx={{ px: 1, mb: 2.5, mt: 0.5 }}>
-                  <Typography level="title-md" fontWeight={700}>
-                    Weaver DS
-                  </Typography>
-                </Box>
+                <Link href="/" style={{ textDecoration: "none" }}>
+                  <Box sx={{ px: 1, mb: 2.5, mt: 0.5, cursor: "pointer" }}>
+                    <Typography level="title-lg" fontWeight={600}>
+                      Weaver
+                    </Typography>
+                  </Box>
+                </Link>
 
                 {navGroups.map((group, gi) => (
                   <Box key={gi} sx={{ mb: 1.5 }}>

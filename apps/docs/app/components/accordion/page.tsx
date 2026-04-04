@@ -45,8 +45,8 @@ export default function AccordionPage() {
   <Accordion>
     <AccordionSummary>How do I install it?</AccordionSummary>
     <AccordionDetails>
-      Install via npm: npm install weaver-ui-joyui, then wrap your app
-      with WeaverProvider.
+      Wrap your app with WeaverProvider and all Joy UI components
+      will inherit the Weaver theme.
     </AccordionDetails>
   </Accordion>
   <Accordion>

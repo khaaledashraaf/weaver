@@ -5,7 +5,7 @@ import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import Link from "next/link";
 import Aurora from "./components/aurora";
-import { RiArrowRightLine } from "@remixicon/react";
+import { RiArrowRightLine, RiBook2Line } from "@remixicon/react";
 export default function LandingPage() {
   return (
     <Box
@@ -178,9 +178,44 @@ export default function LandingPage() {
           variant="solid"
           color="primary"
           size="lg"
-          endDecorator={<RiArrowRightLine size={20} />}
+          sx={{
+            position: "relative",
+            overflow: "hidden",
+            gap: "8px",
+            "& .btn-book": {
+              display: "inline-flex",
+              transition: "opacity 0.3s, transform 0.3s, width 0.3s, margin 0.3s",
+              opacity: 1,
+              transform: "translateX(0)",
+              width: 20,
+              marginRight: 0,
+            },
+            "& .btn-arrow": {
+              display: "inline-flex",
+              transition: "opacity 0.3s, transform 0.3s, width 0.3s, margin 0.3s",
+              opacity: 0,
+              transform: "translateX(-8px)",
+              width: 0,
+              marginLeft: 0,
+              overflow: "hidden",
+            },
+            "&:hover .btn-book": {
+              opacity: 0,
+              transform: "translateX(-8px)",
+              width: 0,
+              marginRight: 0,
+            },
+            "&:hover .btn-arrow": {
+              opacity: 1,
+              transform: "translateX(0)",
+              width: 20,
+              marginLeft: 0,
+            },
+          }}
         >
+          <span className="btn-book"><RiBook2Line size={20} /></span>
           Go to Documentation
+          <span className="btn-arrow"><RiArrowRightLine size={20} /></span>
         </Button>
       </Box>
     </Box>
