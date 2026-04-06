@@ -1,4 +1,4 @@
-import tokensJson from "../../tokens/src/tokens.json";
+import tokensJson from "./tokens.json";
 
 const tokens = tokensJson as {
   brand: Record<string, string>;
