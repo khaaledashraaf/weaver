@@ -26,6 +26,7 @@ export const JoyButtonGroup = {
         fontWeight: 500,
         fontSize: font["body-md"].fontSize,
         boxShadow: "none",
+        "& svg": { width: 20, height: 20, fontSize: 20 },
         // Figma: item px + text wrap px (2px) = total
         // xs: 8+2=10, sm: 10+2=12, md: 14+2=16
         ...(ownerState.size === "xs" && { paddingInline: `${tokens.spacing.lg} !important` }),

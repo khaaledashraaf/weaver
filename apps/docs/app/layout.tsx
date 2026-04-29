@@ -65,13 +65,13 @@ const navGroups = [
       { label: "Progress", href: "/components/progress" },
     ],
   },
-  {
-    label: "SURFACES",
-    items: [
-      { label: "Card & Modal", href: "/components/cards-modals" },
-      { label: "Accordion", href: "/components/accordion" },
-    ],
-  },
+  // {
+  //   label: "SURFACES",
+  //   items: [
+  //     { label: "Card & Modal", href: "/components/cards-modals" },
+  //     { label: "Accordion", href: "/components/accordion" },
+  //   ],
+  // },
 ];
 
 export default function RootLayout({
