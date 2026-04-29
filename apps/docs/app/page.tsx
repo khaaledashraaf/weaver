@@ -257,7 +257,7 @@ export default function LandingPage() {
           lineHeight: 1.6,
         }}
       >
-        Designed by Ahmed Galal. Implemented by Khaled Ashraf with the help of
+        Designed by Ahmed Galal. Implemented by Khaled ElMalih with the help of
         Nuwan Dharmpala, Omar ElZawawi, and Salah ElWahsh.
       </Typography>
     </Box>
