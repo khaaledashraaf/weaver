@@ -19,20 +19,34 @@ export default function OverviewPage() {
       </Typography>
 
       <Section
-        title="Installation"
-        description="Copy the joyui package into your project root, then add it as a local dependency."
+        title="1. Install the package"
+        description="Add weaver-ui-joyui to your package.json as a versioned GCS tarball, then run npm install."
       >
         <CodeBlock>{`// package.json
 {
   "dependencies": {
-    "weaver-ui-joyui": "./joyui"
+    "weaver-ui-joyui": "https://storage.googleapis.com/noon-toolbox/perm/weaver/weaver-ui-joyui-1.0.0.tgz"
   }
 }`}</CodeBlock>
+        <Typography level="body-sm" sx={{ mt: 1.5, color: "text.secondary" }}>
+          Find the latest version and changelog at{" "}
+          <Typography
+            component="a"
+            href="https://github.com/fastfishio/weaver#versions"
+            target="_blank"
+            rel="noopener"
+            sx={{ color: "primary.500" }}
+          >
+            fastfishio/weaver#versions
+          </Typography>
+          . Bump the version in the URL and re-run{" "}
+          <code>npm install</code> to upgrade.
+        </Typography>
       </Section>
 
       <Section
-        title="Setup"
-        description="Wrap your application root with WeaverProvider. All Joy UI components inside will inherit the Weaver theme."
+        title="2. Wrap your app with WeaverProvider"
+        description="All Joy UI components rendered inside WeaverProvider will inherit the Weaver theme."
       >
         <CodeBlock>{`import { WeaverProvider } from "weaver-ui-joyui";
 
@@ -46,32 +60,19 @@ function App() {
       </Section>
 
       <Section
-        title="Usage"
-        description="Use standard Joy UI components — they automatically pick up Weaver's colors, typography, spacing, and radius."
+        title="3. Install the Figma-to-Code skill (Claude Code)"
+        description="The package ships a Claude Code skill that auto-loads Weaver's component mappings, variant names, color tokens, and styling rules whenever you implement a design from Figma. Copy it into your project after running npm install:"
       >
-        <CodeBlock>{`import Button from "@mui/joy/Button";
-import Input from "@mui/joy/Input";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-
-function MyForm() {
-  return (
-    <>
-      <Input placeholder="Enter your name" />
-      <Select placeholder="Choose an option">
-        <Option value="one">Option One</Option>
-        <Option value="two">Option Two</Option>
-      </Select>
-      <Button variant="solid" color="primary">
-        Save Changes
-      </Button>
-    </>
-  );
-}`}</CodeBlock>
+        <CodeBlock>{`cp -r node_modules/weaver-ui-joyui/.claude/skills/weaver-figma .claude/skills/weaver-figma`}</CodeBlock>
+        <Typography level="body-sm" sx={{ mt: 1.5, color: "text.secondary" }}>
+          Once installed, Claude Code picks the skill up automatically whenever
+          you mention Figma, share a Figma URL, or use the Figma MCP tools.
+          Manual invocation: <code>/weaver-figma</code>.
+        </Typography>
       </Section>
 
       <Section
-        title="What's Included"
+        title="What's included"
         description="The theme package provides overrides for 40+ Joy UI components."
       >
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
@@ -134,21 +135,45 @@ function MyForm() {
       </Section>
 
       <Section
-        title="AI-Assisted Figma-to-Code"
-        description="The package ships with a Claude Code skill that enforces Weaver's component mappings, variant names, color tokens, and styling rules whenever you implement a design from Figma. Install it locally in your project after running npm install:"
+        title="AI reference docs"
+        description="The installed package ships canonical reference files that any AI agent can read. Bump the package version and your agent's rules update automatically — no manual sync needed. For tools that don't read Claude Code skills (Cursor, Windsurf, ChatGPT, etc.), point them directly at the files below."
       >
-        <CodeBlock>{`cp -r node_modules/weaver-ui-joyui/.claude/skills/weaver-figma .claude/skills/weaver-figma`}</CodeBlock>
-        <Typography level="body-sm" sx={{ mt: 1.5, color: "text.secondary" }}>
-          Once installed, Claude Code picks the skill up automatically whenever
-          you mention Figma, share a Figma URL, or use the Figma MCP tools. You
-          can also invoke it manually with <code>/weaver-figma</code>. The repo
-          also ships an <code>llms.txt</code> at its root indexing every
-          component spec, foundation, and rule for any LLM-based agent.
-        </Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
+          {[
+            {
+              name: "CLAUDE.md",
+              desc: "Package overview and quick-start setup. The entry point for any AI agent inspecting the installed package.",
+            },
+            {
+              name: "llms.txt",
+              desc: "Design system catalog: every themed component, typography level, custom component, icon convention, and MVP scope limitation.",
+            },
+            {
+              name: "RULES.md",
+              desc: "Figma-to-code rules: component mappings (Tag → Chip, Toggle → Switch, …), 10-variant button matrix, color mappings, and 8 mandatory rules.",
+            },
+            {
+              name: ".claude/skills/weaver-figma/SKILL.md",
+              desc: "Trigger skill for Claude Code. A thin pointer that loads RULES.md and llms.txt whenever a Figma design is referenced.",
+            },
+          ].map(({ name, desc }) => (
+            <Box key={name}>
+              <Typography
+                level="title-sm"
+                sx={{ fontFamily: "monospace", mb: 0.5 }}
+              >
+                {name}
+              </Typography>
+              <Typography level="body-sm" sx={{ color: "text.secondary" }}>
+                {desc}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
       </Section>
 
       <Section
-        title="Current Scope"
+        title="Current scope"
         description="The current release covers the following configuration."
       >
         <Box
