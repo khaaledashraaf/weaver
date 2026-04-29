@@ -258,7 +258,7 @@ export default function LandingPage() {
         }}
       >
         Designed by Ahmed Galal. Implemented by Khaled ElMalih with the help of
-        Nuwan Dharmpala, Omar ElZawawi, and Salah ElWahsh.
+        Nuwan Dharmapala, Omar ElZawawi, and Salah Wahsh.
       </Typography>
     </Box>
   );
