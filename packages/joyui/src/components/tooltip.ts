@@ -1,12 +1,13 @@
 import { tokens } from "../tokens";
+import { font } from "../typography";
 
 export const JoyTooltip = {
   styleOverrides: {
     root: {
       borderRadius: tokens.radius.md,
-      fontSize: "0.75rem",
+      fontSize: font["body-2xs"].fontSize,
       fontWeight: 500,
-      lineHeight: "1rem",
+      lineHeight: font["body-2xs"].lineHeight,
       padding: `${tokens.spacing.sm} ${tokens.spacing.md}`,
     },
   },

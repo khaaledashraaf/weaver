@@ -1,6 +1,6 @@
 {
   "name": "weaver-ui-joyui",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Weaver Design System theme for Joy UI",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -15,8 +15,10 @@
   },
   "files": [
     "dist",
-    "README.md",
-    "CLAUDE.md"
+    "CLAUDE.md",
+    "llms.txt",
+    "RULES.md",
+    ".claude"
   ],
   "scripts": {
     "build": "tsup"

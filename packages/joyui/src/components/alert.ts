@@ -1,4 +1,5 @@
 import { tokens } from "../tokens";
+import { font } from "../typography";
 
 export const JoyAlert = {
   styleOverrides: {
@@ -6,9 +7,9 @@ export const JoyAlert = {
       borderRadius: tokens.radius["control-default"],
       padding: tokens.spacing["3xl"],
       gap: tokens.spacing.xl,
-      fontSize: "0.9375rem",
+      fontSize: font["body-md"].fontSize,
       fontWeight: 500,
-      lineHeight: "1.5rem",
+      lineHeight: font["body-md"].lineHeight,
     },
   },
 };

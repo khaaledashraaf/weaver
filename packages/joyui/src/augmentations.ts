@@ -11,12 +11,22 @@ declare module "@mui/joy/Button" {
   }
   interface ButtonPropsVariantOverrides {
     link: true;
+    secondary: true;
   }
 }
 
 declare module "@mui/joy/IconButton" {
   interface IconButtonPropsSizeOverrides {
     xs: true;
+  }
+  interface IconButtonPropsVariantOverrides {
+    secondary: true;
+  }
+}
+
+declare module "@mui/joy/styles/types/colorSystem" {
+  interface PaletteNeutralOverrides {
+    softAlphaBg: true;
   }
 }
 

@@ -17,26 +17,27 @@ export default function ChipsPage() {
         Chips
       </Typography>
       <Typography level="body-md" sx={{ mb: 5, color: "text.secondary" }}>
-        Chips (Tags) are compact elements for labels, filters, or selections.
-        Weaver chips use 6px radius (xs) and 8px radius (md/lg) — not fully
-        rounded. Three sizes and four variants available.
+        Chips (Badges / Tags in Figma) are compact pills for status, labels, or
+        filters. Three Figma variants — <strong>Light</strong> (Joy{" "}
+        <code>soft</code>), <strong>Outline</strong> (Joy <code>outlined</code>),
+        and <strong>Solid</strong> (Joy <code>solid</code>) — and two sizes:
+        sm (24px) and lg (28px). All chips render as full pills (radius full).
+        Joy's <code>md</code> size maps to Figma's lg.
       </Typography>
 
       <Section
         title="Variants"
-        description="Joy UI chip variants using Weaver token colors."
+        description="Light, Outline, Solid (Joy soft / outlined / solid)."
       >
         <DemoBox
-          code={`<Chip variant="soft">Soft</Chip>
-<Chip variant="solid">Solid</Chip>
-<Chip variant="outlined">Outlined</Chip>
-<Chip variant="plain">Plain</Chip>`}
+          code={`<Chip variant="soft">Light</Chip>
+<Chip variant="outlined">Outline</Chip>
+<Chip variant="solid">Solid</Chip>`}
         >
           <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap alignItems="center">
-            <Chip variant="soft">Soft</Chip>
+            <Chip variant="soft">Light</Chip>
+            <Chip variant="outlined">Outline</Chip>
             <Chip variant="solid">Solid</Chip>
-            <Chip variant="outlined">Outlined</Chip>
-            <Chip variant="plain">Plain</Chip>
           </Stack>
         </DemoBox>
       </Section>
@@ -83,17 +84,15 @@ export default function ChipsPage() {
 
       <Section
         title="Sizes"
-        description="Three sizes: sm (24px), md (28px), lg (36px)."
+        description="sm (24px, body-3xs/medium 11/500/14) and lg (28px, body-2xs/medium 12/500/16). Joy md maps to lg."
       >
         <DemoBox
           code={`<Chip size="sm">Small (24px)</Chip>
-<Chip size="md">Medium (28px)</Chip>
-<Chip size="lg">Large (36px)</Chip>`}
+<Chip size="lg">Large (28px)</Chip>`}
         >
           <Stack direction="row" spacing={1.5} alignItems="center">
             <Chip size="sm">Small (24px)</Chip>
-            <Chip size="md">Medium (28px)</Chip>
-            <Chip size="lg">Large (36px)</Chip>
+            <Chip size="lg">Large (28px)</Chip>
           </Stack>
         </DemoBox>
       </Section>
@@ -118,14 +117,12 @@ export default function ChipsPage() {
         description="Chips can have a close/delete action."
       >
         <DemoBox
-          code={`<Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
-<Chip size="md" endDecorator={<ChipDelete><RiCloseLine size={16} /></ChipDelete>}>Tag</Chip>
-<Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={18} /></ChipDelete>}>Tag</Chip>`}
+          code={`<Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={12} /></ChipDelete>}>Tag</Chip>
+<Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>`}
         >
           <Stack direction="row" spacing={1.5} alignItems="center">
-            <Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
-            <Chip size="md" endDecorator={<ChipDelete><RiCloseLine size={16} /></ChipDelete>}>Tag</Chip>
-            <Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={18} /></ChipDelete>}>Tag</Chip>
+            <Chip size="sm" endDecorator={<ChipDelete><RiCloseLine size={12} /></ChipDelete>}>Tag</Chip>
+            <Chip size="lg" endDecorator={<ChipDelete><RiCloseLine size={14} /></ChipDelete>}>Tag</Chip>
           </Stack>
         </DemoBox>
       </Section>

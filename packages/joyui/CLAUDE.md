@@ -10,60 +10,20 @@ function App({ children }) {
 }
 ```
 
-Import all standard components from `@mui/joy`. Import `WeaverProvider` and `WeaverPagination` from `weaver-ui-joyui`.
+Import all standard components from `@mui/joy`. Import `WeaverProvider`, `WeaverPagination`, `WeaverDatePicker`, and `WeaverCalendar` from `weaver-ui-joyui`.
 
-## Setup — Figma MCP Hook (Recommended)
+## Setup — Figma Design Rules Skill (Recommended)
 
-Add this hook to your project's `.claude/settings.json` to automatically enforce Weaver design rules every time an AI assistant fetches a Figma design:
+This package includes a Claude Code skill that automatically enforces Weaver design rules when implementing Figma designs. To enable it, copy the skill into your project:
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "mcp__figma",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "cat joyui/FIGMA_RULES.md"
-          }
-        ]
-      }
-    ]
-  }
-}
+```bash
+cp -r node_modules/weaver-ui-joyui/.claude/skills/weaver-figma .claude/skills/weaver-figma
 ```
 
-If you already have a `.claude/settings.json`, merge the `PreToolUse` hook into your existing `hooks` config.
+Once installed, Claude Code will automatically apply Weaver component mappings, variant names, color mappings, and styling constraints whenever you implement designs from Figma. You can also invoke it manually with `/weaver-figma`.
 
-## Typography
+## Canonical references
 
-Use Joy UI's `<Typography level="...">`. Available levels:
-
-- **Body:** `body-md` (default/base), `body-sm`, `body-xs`, `body-2xs`, `body-3xs`, `body-lg`, `body-xl`
-- **Heading:** `h1`, `h2`, `h3`, `h4`
-- **Title:** `title-lg`, `title-md`, `title-sm`
-
-Font family: Inter. All typography levels default to `content-default` (`#101B2E`).
-
-## Icons
-
-- Library: **Remix Icon** via `@remixicon/react`
-- Import: `import { RiSearchLine } from "@remixicon/react"`
-- Pass as `startDecorator` / `endDecorator` props
-- Default icon size is 20px
-
-## Available Themed Components
-
-All imported from `@mui/joy` unless noted:
-
-**Buttons:** Button, IconButton, ButtonGroup
-**Inputs:** Input, Textarea, Select, Option, FormControl, FormLabel, FormHelperText
-**Selection:** Checkbox, Radio, RadioGroup, Switch, Slider
-**Data Display:** Chip, Badge, Avatar, AvatarGroup, Table, Divider, Tooltip
-**Feedback:** Alert, LinearProgress, CircularProgress, Skeleton, Snackbar
-**Surfaces:** Card, CardContent, CardOverflow, Sheet, Modal, ModalDialog, ModalClose, Drawer
-**Navigation:** Tabs, TabList, Tab, Link, Breadcrumbs, List, ListItem, ListItemButton, ListDivider, ListSubheader
-**Layout:** Accordion, AccordionGroup, AccordionSummary, AccordionDetails
-**Dialog:** DialogTitle, DialogContent, DialogActions
-**Custom** (from `weaver-ui-joyui`): WeaverPagination
+- **Design system catalog** — `node_modules/weaver-ui-joyui/llms.txt` (setup, themed components list, typography levels, icons, custom components, limitations).
+- **Figma-to-code rules** — `node_modules/weaver-ui-joyui/RULES.md` (component mappings, button variant matrix, color mappings, 8 mandatory rules). Updates with every package version.
+- **Trigger skill** — `node_modules/weaver-ui-joyui/.claude/skills/weaver-figma/SKILL.md` is a thin pointer to the two files above. Engineers copy it once into `<their-project>/.claude/skills/` via the `cp -r` command. Because the skill points to the package files (not embeds them), bumping the package version automatically refreshes the rules; the copied skill itself rarely needs to be re-copied.

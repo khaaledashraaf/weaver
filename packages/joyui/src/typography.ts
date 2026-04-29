@@ -147,3 +147,18 @@ export const typographyConfig = {
     color: textPrimary,
   },
 };
+
+// ── Typography helper for component overrides ────────────────────────────
+// `typographyConfig` includes a `color` field (CSS var) which we don't want
+// to apply in component overrides — those set their own colors. `font[level]`
+// returns just the type metrics (fontSize, lineHeight, fontWeight) so callers
+// can pick the fields they need without dragging the color along.
+type TypographyLevel = keyof typeof typographyConfig;
+type FontMetrics = { fontSize: string; lineHeight: string; fontWeight: number };
+
+export const font: Record<TypographyLevel, FontMetrics> = Object.fromEntries(
+  Object.entries(typographyConfig).map(([level, cfg]) => [
+    level,
+    { fontSize: cfg.fontSize, lineHeight: cfg.lineHeight as string, fontWeight: cfg.fontWeight },
+  ])
+) as Record<TypographyLevel, FontMetrics>;

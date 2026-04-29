@@ -1,0 +1,84 @@
+# Weaver Design System
+
+> Weaver is a custom internal design system maintained in Figma and shipped as a Joy UI theme package (`weaver-ui-joyui`). Wrap an app with `<WeaverProvider>` and all `@mui/joy` components match the Figma designs. Distributed as a versioned tarball on Google Cloud Storage (not on npm). Current MVP scope: Blue theme, Light mode, Default radius, Inter font, no RTL.
+
+## About
+
+- [Project architecture](./CLAUDE.md) — monorepo layout, key files, build commands
+- [Consumer docs](./README.md) — installation, usage, version history
+- Reference architecture: github.com/khaaledashraaf/banhatten-ds
+
+## Foundations
+
+- [Design tokens](packages/tokens/src/tokens.json) — single source of truth: brand primitives (~295 raw colors with shades 50–950) and alias semantics (~223 tokens: `bg-*`, `content-*`, `border-*`, `interactive-*`), plus shadow, radius, spacing
+- [Token resolver](packages/joyui/src/tokens.ts) — `resolve("{group.key}")` for alias resolution
+- [Palette](packages/joyui/src/palette.ts) — Joy UI color schemes: `primary`, `neutral`, `danger`, `success`, `warning`
+- [Typography](packages/joyui/src/typography.ts) — Inter font, 14 levels (7 body × `body-md|sm|xs|2xs|3xs|lg|xl`, 4 heading × `h1|h2|h3|h4`, 3 title × `title-lg|md|sm`), default text color `content-default` (`#101B2E`)
+- [Theme](packages/joyui/src/theme.ts) — static `weaverTheme` export via `extendTheme()`
+- [Provider](packages/joyui/src/provider.tsx) — `WeaverProvider` wraps `CssVarsProvider` + `CssBaseline`
+- [Augmentations](packages/joyui/src/augmentations.ts) — TypeScript module augmentations for custom variants (e.g. button `secondary`)
+
+## Figma-to-Code Rules
+
+- [packages/joyui/RULES.md](packages/joyui/RULES.md) — **canonical source**. Component mappings (Tag→Chip, Toggle→Switch, Pagination→WeaverPagination, …), full button variant matrix (10 variants × 4 sizes), color mappings (Green→success, Red→danger, …), Remix Icon conventions, and the 8 mandatory implementation rules (no `sx` on themed components, no opacity for disabled states, no focus ring on error inputs, no invented variants, etc.). Ships inside the `weaver-ui-joyui` package as `node_modules/weaver-ui-joyui/RULES.md`.
+- [packages/joyui/.claude/skills/weaver-figma/SKILL.md](packages/joyui/.claude/skills/weaver-figma/SKILL.md) — Claude Code skill (thin pointer). Frontmatter triggers it on Figma mentions; body redirects the agent to read RULES.md and llms.txt from the installed package, so consumers don't need to re-copy the skill when rules change.
+- Source-of-truth Figma file: "Weaver Design system (Copy)" (fileKey `YiS0OyrJAwxI1VRl9bTuDN`)
+
+## Components
+
+Each entry: spec (variants, sizes, states, props, slots, token references) · implementation (Joy UI styleOverrides) · live demo.
+
+- [Accordion](packages/specs/src/accordion.json) — vertically stacked expandable/collapsible content sections; default and boxed visual styles. Implementation: `packages/joyui/src/components/accordion.ts`. Demo: `/components/accordion`.
+- [Alert](packages/specs/src/alert.json) — contextual feedback banner; light, outline, solid styles with expandable content. Implementation: `packages/joyui/src/components/alert.ts`. Demo: `/components/alerts`.
+- [Avatar](packages/specs/src/avatar.json) — visual representation via image, initials, or icon; circular and rounded shapes across nine sizes. Implementation: `packages/joyui/src/components/avatar.ts`. Demo: `/components/avatar`.
+- [Badge](packages/specs/src/badge.json) — small label for status, counts, and categorization; supports dot, icon, and flag types. Implementation: `packages/joyui/src/components/badge.ts`. Demo: `/components/badges`.
+- [Banner](packages/specs/src/banner.json) — promotional or informational bar at the top of a page or section; multiple layout types, sizing modes, and color themes. Spec only — no Joy UI override or demo route yet.
+- [Breadcrumbs](packages/specs/src/breadcrumbs.json) — hierarchical navigation trail; text, icon, avatar items and configurable separators. Implementation: `packages/joyui/src/components/misc.ts`. Demo: `/components/breadcrumbs`.
+- [Button](packages/specs/src/button.json) — primary interactive element; 10 variants × 4 sizes (`xs` 32px / `sm` 36px / `md` 40px / `lg` 48px), optional leading/trailing icons. Implementation: `packages/joyui/src/components/button.ts`. Demo: `/components/buttons`.
+- [Checkbox](packages/specs/src/checkbox.json) — binary or indeterminate selection control; leading/trailing label placement and optional support text. Implementation: `packages/joyui/src/components/checkbox.ts`. Demo: `/components/checkbox-radio`.
+- [Divider](packages/specs/src/divider.json) — visual separator; horizontal and vertical orientation, solid or dotted styles. Implementation: `packages/joyui/src/components/divider.ts`. Demo: `/components/divider`.
+- [IconButton](packages/specs/src/icon-button.json) — button rendering only an icon, for compact toolbar/table-row/card-header actions. Implementation: `packages/joyui/src/components/button.ts` (shares the Button override). Demo: `/components/buttons`.
+- [Input](packages/specs/src/input.json) — single-line text input; layouts include add-ons, tags, dropdowns, quantity steppers; focus/filled/error/disabled states. Implementation: `packages/joyui/src/components/input.ts`. Demo: `/components/inputs`.
+- [LinkButton](packages/specs/src/link-button.json) — text-styled button resembling a hyperlink, for low-emphasis actions or inline navigation. Implementation: `packages/joyui/src/components/button.ts` (`variant="link"`). Demo: `/components/buttons`.
+- [Menu](packages/specs/src/menu.json) — dropdown menu of actions or options; multi-line items, progress, dividers, captions. Spec only — no Joy UI override or demo route yet.
+- [Modal](packages/specs/src/modal.json) — overlay dialog for focused interactions; multiple sizes, header configurations, footer button layouts. Implementation: `packages/joyui/src/components/surfaces.ts` (`JoyModal`, `JoyModalDialog`, `JoyModalClose`, `JoyDrawer`, `JoyDialog*`, `JoyCard*`, `JoySheet`). Demo: `/components/cards-modals`.
+- [Pagination](packages/specs/src/pagination.json) — page navigation; simple prev/next, numeric page buttons, summary display. Implementation: `packages/joyui/src/components/pagination.tsx` (custom component `WeaverPagination`). Demo: `/components/pagination`.
+- [Progress](packages/specs/src/progress.json) — linear progress bar; multiple color themes and two sizes. Implementation: `packages/joyui/src/components/progress.ts` (covers linear and circular). Demo: `/components/progress`.
+- [Radio](packages/specs/src/radio.json) — single-selection control within a group; leading/trailing label placement and optional support text. Implementation: `packages/joyui/src/components/radio.ts`. Demo: `/components/checkbox-radio`.
+- [Select](packages/specs/src/select.json) — dropdown selection input; single, multi-select, avatar, and tag-based modes. Implementation: `packages/joyui/src/components/select.ts`. Demo: `/components/select`.
+- [Slider](packages/specs/src/slider.json) — range input control; tooltips and text indicators. Implementation: `packages/joyui/src/components/slider.ts`. Demo: `/components/slider`.
+- [Table](packages/specs/src/table.json) — data table; sortable columns, selectable rows, cell content including avatars, badges, and actions. Implementation: `packages/joyui/src/components/misc.ts`. Demo: `/components/tables`.
+- [Tabs](packages/specs/src/tabs.json) — horizontal navigation tabs; underline, segment, rounded, and bill styles. Implementation: `packages/joyui/src/components/misc.ts`. Demo: `/components/tabs`.
+- [Tag](packages/specs/src/tag.json) — compact label for categorization, filtering, status; icons, dots, flags, avatars, close action. **In code this is `<Chip>`**, not `<Badge>` — see SKILL.md component mapping. Implementation: `packages/joyui/src/components/chip.ts`. Demo: `/components/chips`.
+- [Textarea](packages/specs/src/textarea.json) — multi-line text input; tags mode and error state. Implementation: `packages/joyui/src/components/input.ts` (shares the input override). Demo: `/components/inputs`.
+- [Toggle](packages/specs/src/toggle.json) — on/off switch for binary settings; optional icon inside the handle. **In code this is `<Switch>`**, not Toggle. Implementation: `packages/joyui/src/components/switch.ts`. Demo: `/components/switch`.
+- [Tooltip](packages/specs/src/tooltip.json) — contextual popup on hover/focus; pointer positioning, two visual styles. Implementation: `packages/joyui/src/components/tooltip.ts`. Demo: `/components/tooltips`.
+
+## Custom components (no spec yet)
+
+These ship from `weaver-ui-joyui` directly because Joy UI has no equivalent or the Weaver design diverges enough to warrant a custom component:
+
+- `WeaverPagination` — see Pagination above.
+- `WeaverDatePicker` — `mode="single" | "range"`, sizes `xs|sm|md`, native date math (no extra deps), `calendarPos` for popover placement (`top-left`/`top-center`/`top-right`/`bottom-left`/`bottom-center`/`bottom-right`), optional `todayLabel`. Demo: `/components/date-picker`.
+- `WeaverCalendar` — inline calendar, used when the calendar should always be visible. Demo: `/components/date-picker`.
+
+## Limitations (current MVP)
+
+What is **not** implemented yet:
+
+- Light mode only (Figma has Light + Dark)
+- Blue theme only (Figma has Blue, Gray, Brown, Yellow)
+- Default radius only (Figma has Default, Rounded, Sharp)
+- Inter font only (Figma has Inter, Geist, Mono, Alexandria)
+- No RTL support
+- Icons are not bundled (consumers install `@remixicon/react` separately)
+
+## Distribution
+
+Not on npm. Each commit that bumps `packages/joyui/package.json` publishes a tarball to Google Cloud Storage via `cloudbuild.yaml`. Consumers depend on a versioned URL like:
+
+```json
+"weaver-ui-joyui": "https://storage.googleapis.com/noon-toolbox/perm/weaver/weaver-ui-joyui-0.1.7.tgz"
+```
+
+See [README.md](./README.md) for the version history table.

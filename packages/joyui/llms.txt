@@ -1,0 +1,96 @@
+# Weaver Design System (`weaver-ui-joyui`)
+
+> A custom internal design system shipped as a Joy UI theme. Wrap an app with `<WeaverProvider>` and all `@mui/joy` components match the Weaver Figma designs. Current MVP scope: Blue theme, Light mode, Default radius, Inter font, no RTL. This file is the discovery entry point for any LLM working in a project that depends on this package.
+
+## Setup
+
+```tsx
+import { WeaverProvider } from "weaver-ui-joyui";
+
+export default function App({ children }) {
+  return <WeaverProvider>{children}</WeaverProvider>;
+}
+```
+
+- Standard components: `import { Button, Input, Checkbox } from "@mui/joy"`
+- Custom components: `import { WeaverProvider, WeaverPagination, WeaverDatePicker, WeaverCalendar } from "weaver-ui-joyui"`
+
+## Figma-to-Code Rules
+
+The canonical Figma-to-code rules live at:
+
+- **`node_modules/weaver-ui-joyui/RULES.md`** — component mappings (Tag→Chip, Toggle→Switch, …), button variant matrix (10 variants × 4 sizes), color mappings, icon conventions, 8 mandatory rules. **This file updates with every package version.**
+
+For Claude Code, a thin trigger skill ships at `node_modules/weaver-ui-joyui/.claude/skills/weaver-figma/SKILL.md`. Install it once per consumer project:
+
+```bash
+cp -r node_modules/weaver-ui-joyui/.claude/skills/weaver-figma .claude/skills/weaver-figma
+```
+
+After copying, Claude Code auto-loads the skill whenever the user mentions Figma, shares a Figma URL, or uses Figma MCP tools (manual invocation: `/weaver-figma`). The skill itself is a pointer — its body simply tells the agent to read `RULES.md` and `llms.txt` from the installed package — so engineers do **not** need to re-copy the skill when the rules change. Bump the package version and the rules update automatically.
+
+For tools that don't read Claude Code skills (Cursor, Windsurf, ChatGPT, etc.), point them directly at `node_modules/weaver-ui-joyui/RULES.md` and this `llms.txt`.
+
+## Available Themed Components
+
+All imported from `@mui/joy` unless noted; styling is automatic inside `<WeaverProvider>`:
+
+- **Buttons:** Button, IconButton, ButtonGroup
+- **Inputs:** Input, Textarea, Select, Option, FormControl, FormLabel, FormHelperText
+- **Selection:** Checkbox, Radio, RadioGroup, Switch, Slider
+- **Data Display:** Chip, Badge, Avatar, AvatarGroup, Table, Divider, Tooltip
+- **Feedback:** Alert, LinearProgress, CircularProgress, Skeleton, Snackbar
+- **Surfaces:** Card, CardContent, CardOverflow, Sheet, Modal, ModalDialog, ModalClose, Drawer
+- **Navigation:** Tabs, TabList, Tab, Link, Breadcrumbs, List, ListItem, ListItemButton, ListDivider, ListSubheader
+- **Layout:** Accordion, AccordionGroup, AccordionSummary, AccordionDetails
+- **Dialog:** DialogTitle, DialogContent, DialogActions
+- **Custom (from `weaver-ui-joyui`):** WeaverPagination, WeaverDatePicker, WeaverCalendar
+
+## Custom Components
+
+- **`WeaverPagination`** — page navigation control matching the Weaver Pagination spec.
+- **`WeaverDatePicker`** — `mode="single" | "range"`, sizes `xs|sm|md`, native date math (no extra deps), `calendarPos` for popover placement (`top-left`/`top-center`/`top-right`/`bottom-left`/`bottom-center`/`bottom-right`, defaults to `bottom-center`), optional `todayLabel?: string` to swap the formatted trigger for a literal label when the selected value is today.
+- **`WeaverCalendar`** — inline calendar; use when the calendar should always be visible.
+
+## Typography
+
+Use Joy UI's `<Typography level="...">` from `@mui/joy`. Font: Inter. Default text color: `content-default` (`#101B2E`) — never override with `#000`.
+
+- **Body:** `body-md` (default), `body-sm`, `body-xs`, `body-2xs`, `body-3xs`, `body-lg`, `body-xl`
+- **Heading:** `h1`, `h2`, `h3`, `h4`
+- **Title:** `title-lg`, `title-md`, `title-sm`
+
+## Icons
+
+- Library: **Remix Icon** via `@remixicon/react` (not bundled — install separately: `npm install @remixicon/react`)
+- Import: `import { RiSearchLine } from "@remixicon/react"`
+- Default size: 20px
+- Pass as `startDecorator` / `endDecorator` props on themed components
+- Browse the full set at remixicon.com
+
+## Limitations (current MVP)
+
+- Light mode only (Figma has Light + Dark)
+- Blue theme only (Figma has Blue, Gray, Brown, Yellow)
+- Default radius only (Figma has Default, Rounded, Sharp)
+- Inter font only (Figma has Inter, Geist, Mono, Alexandria)
+- No RTL support
+- Icons not bundled — install `@remixicon/react`
+
+## Distribution
+
+Not on npm. Each release is published as a versioned tarball to Google Cloud Storage. Consumers depend on a versioned URL like:
+
+```json
+"weaver-ui-joyui": "https://storage.googleapis.com/noon-toolbox/perm/weaver/weaver-ui-joyui-0.1.9.tgz"
+```
+
+Bump the version in the URL to pick up a new release. Version history is maintained internally by the design system team.
+
+## Files in this package
+
+- `RULES.md` — canonical Figma-to-code rules (updates with every release)
+- `llms.txt` — this file: design system catalog
+- `CLAUDE.md` — package context for AI assistants (slim pointer)
+- `.claude/skills/weaver-figma/SKILL.md` — Claude Code trigger skill (thin pointer to `RULES.md` + `llms.txt`)
+- `dist/` — compiled theme (CSS variables + theme object + custom components)

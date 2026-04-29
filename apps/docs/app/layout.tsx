@@ -36,6 +36,7 @@ const navGroups = [
       { label: "Switch", href: "/components/switch" },
       { label: "Slider", href: "/components/slider" },
       { label: "Button Group", href: "/components/button-group" },
+      { label: "Date Picker", href: "/components/date-picker" },
     ],
   },
   {

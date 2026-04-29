@@ -1,4 +1,5 @@
 import { tokens, resolve } from "../tokens";
+import { font } from "../typography";
 
 const disabledColor = resolve("{alias.content-disabled}");
 const disabledBg = resolve("{alias.interactive-brand-disabled}");
@@ -11,13 +12,13 @@ export const JoyButton = {
       textTransform: "none" as const,
       borderRadius: tokens.radius["control-default"],
       transition: "background-color 150ms, color 150ms",
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
-      "--Button-gap": "4px",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
+      "--Button-gap": tokens.spacing.xs,
       ...(ownerState.size === "xs" && {
         minHeight: 32,
         paddingInline: tokens.spacing.sm,
-        "--Button-gap": "2px",
+        "--Button-gap": tokens.spacing.xxs,
       }),
       ...(ownerState.size === "sm" && {
         minHeight: 36,
@@ -45,11 +46,32 @@ export const JoyButton = {
         }),
       ...(ownerState.variant === "outlined" &&
         ownerState.color === "neutral" && {
-          boxShadow: tokens.shadow.xs,
           "&:active": {
             backgroundColor: resolve("{alias.interactive-outlined-pressed}"),
           },
         }),
+      ...(ownerState.variant === "soft" &&
+        ownerState.color === "neutral" && {
+          backgroundColor: resolve("{alias.interactive-soft-default}"),
+          "&:hover": {
+            backgroundColor: resolve("{alias.interactive-soft-hover}"),
+          },
+          "&:active": {
+            backgroundColor: resolve("{alias.interactive-soft-pressed}"),
+          },
+        }),
+      ...(ownerState.variant === "secondary" && {
+        backgroundColor: resolve("{alias.interactive-input-default}"),
+        border: `1px solid ${resolve("{alias.border-default}")}`,
+        color: resolve("{alias.content-default}"),
+        boxShadow: tokens.shadow.xs,
+        "&:hover": {
+          backgroundColor: resolve("{alias.interactive-outlined-hover}"),
+        },
+        "&:active": {
+          backgroundColor: resolve("{alias.interactive-outlined-pressed}"),
+        },
+      }),
       ...(ownerState.variant === "plain" &&
         ownerState.color === "neutral" && {
           "&:active": {
@@ -76,20 +98,20 @@ export const JoyButton = {
 
         // Size overrides for link variant
         ...(ownerState.size === "sm" && {
-          fontSize: "0.8125rem",
-          lineHeight: "20px",
+          fontSize: font["body-xs"].fontSize,
+          lineHeight: font["body-xs"].lineHeight,
           paddingInline: 0,
           minHeight: "auto",
         }),
         ...(ownerState.size === "md" && {
-          fontSize: "0.9375rem",
-          lineHeight: "24px",
+          fontSize: font["body-md"].fontSize,
+          lineHeight: font["body-md"].lineHeight,
           paddingInline: 0,
           minHeight: "auto",
         }),
         ...(ownerState.size === "lg" && {
-          fontSize: "1.0625rem",
-          lineHeight: "28px",
+          fontSize: font["body-lg"].fontSize,
+          lineHeight: font["body-lg"].lineHeight,
           paddingInline: 0,
           minHeight: "auto",
         }),
@@ -134,7 +156,7 @@ export const JoyButton = {
       }),
 
       "&:focus-visible": {
-        outlineOffset: 2,
+        outlineOffset: tokens.spacing.xxs,
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
 
@@ -155,6 +177,12 @@ export const JoyButton = {
         }),
         // outlined → disabled bg + disabled border
         ...(ownerState.variant === "outlined" && {
+          backgroundColor: resolve("{alias.interactive-secondary-disabled}"),
+          borderColor: disabledBorder,
+          boxShadow: "none",
+        }),
+        // secondary → disabled bg + disabled border, no shadow
+        ...(ownerState.variant === "secondary" && {
           backgroundColor: resolve("{alias.interactive-secondary-disabled}"),
           borderColor: disabledBorder,
           boxShadow: "none",
@@ -182,8 +210,30 @@ export const JoyIconButton = {
       ...(ownerState.size === "sm" && { width: 36, height: 36 }),
       ...(ownerState.size === "md" && { width: 40, height: 40 }),
       ...(ownerState.size === "lg" && { width: 48, height: 48 }),
+      ...(ownerState.variant === "soft" &&
+        ownerState.color === "neutral" && {
+          backgroundColor: resolve("{alias.interactive-soft-default}"),
+          "&:hover": {
+            backgroundColor: resolve("{alias.interactive-soft-hover}"),
+          },
+          "&:active": {
+            backgroundColor: resolve("{alias.interactive-soft-pressed}"),
+          },
+        }),
+      ...(ownerState.variant === "secondary" && {
+        backgroundColor: resolve("{alias.interactive-input-default}"),
+        border: `1px solid ${resolve("{alias.border-default}")}`,
+        color: resolve("{alias.content-default}"),
+        boxShadow: tokens.shadow.xs,
+        "&:hover": {
+          backgroundColor: resolve("{alias.interactive-outlined-hover}"),
+        },
+        "&:active": {
+          backgroundColor: resolve("{alias.interactive-outlined-pressed}"),
+        },
+      }),
       "&:focus-visible": {
-        outlineOffset: 2,
+        outlineOffset: tokens.spacing.xxs,
         outline: `2px solid ${resolve("{alias.border-focus}")}`,
       },
       "&.Mui-disabled, &.Joy-disabled": {
@@ -200,6 +250,11 @@ export const JoyIconButton = {
         ...(ownerState.variant === "outlined" && {
           backgroundColor: resolve("{alias.interactive-secondary-disabled}"),
           borderColor: disabledBorder,
+        }),
+        ...(ownerState.variant === "secondary" && {
+          backgroundColor: resolve("{alias.interactive-secondary-disabled}"),
+          borderColor: disabledBorder,
+          boxShadow: "none",
         }),
         ...(ownerState.variant === "plain" && {
           backgroundColor: resolve("{alias.interactive-ghost-disabled}"),

@@ -1,10 +1,11 @@
 import { tokens, resolve } from "../tokens";
+import { font } from "../typography";
 
 export const JoyLink = {
   styleOverrides: {
     root: {
       fontWeight: 500,
-      textUnderlineOffset: "4px",
+      textUnderlineOffset: tokens.spacing.xs,
     },
   },
 };
@@ -53,8 +54,8 @@ export const JoyTabList = {
 export const JoyTab = {
   styleOverrides: {
     root: ({ ownerState }: { ownerState: any; theme: any }) => ({
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
       fontWeight: 400,
       color: resolve("{alias.content-subtle}"),
       borderRadius: tokens.radius["control-default"],
@@ -127,27 +128,34 @@ export const JoyTab = {
 
 export const JoyTable = {
   styleOverrides: {
-    root: {
-      "--TableCell-headBackground": "rgba(88,123,140,0.07)",
+    root: ({ ownerState }: { ownerState: any }) => ({
+      "--TableCell-headBackground": resolve("{alias.interactive-table-header}"),
       "--TableCell-paddingX": tokens.spacing.md,
-      "--TableRow-hoverBackground": "rgba(88,123,140,0.04)",
-      borderRadius: tokens.radius.lg,
-      overflow: "hidden",
-      border: `1px solid ${resolve("{alias.border-subtle}")}`,
+      "--TableRow-hoverBackground": resolve("{alias.interactive-ghost-hover}"),
       "& thead th": {
         fontWeight: 500,
-        fontSize: "0.875rem",
-        lineHeight: "1.25rem",
+        fontSize: font["body-sm"].fontSize,
+        lineHeight: font["body-sm"].lineHeight,
         color: resolve("{alias.content-subtle}"),
-        height: 44,
+        minHeight: 44,
         verticalAlign: "middle",
         borderBottom: `1px solid ${resolve("{alias.border-subtle}")} !important`,
       },
       "& tbody td": {
-        fontSize: "0.875rem",
-        lineHeight: "1.25rem",
+        fontSize: font["body-sm"].fontSize,
+        lineHeight: font["body-sm"].lineHeight,
+        color: resolve("{alias.content-default}"),
         borderBottom: `1px solid ${resolve("{alias.border-subtle}")} !important`,
       },
+      ...(ownerState.size === "sm" && {
+        "& tbody tr": { height: 48 },
+      }),
+      ...(ownerState.size === "md" && {
+        "& tbody tr": { height: 48 },
+      }),
+      ...(ownerState.size === "lg" && {
+        "& tbody tr": { height: 56 },
+      }),
       "& tbody tr:hover td": {
         backgroundColor: resolve("{alias.interactive-ghost-hover}"),
       },
@@ -155,9 +163,9 @@ export const JoyTable = {
         backgroundColor: resolve("{alias.interactive-ghost-hover}"),
       },
       "& tbody tr:last-child td": {
-        borderBottom: "none",
+        borderBottom: "none !important",
       },
-    },
+    }),
   },
 };
 
@@ -206,7 +214,7 @@ export const JoyListDivider = {
 export const JoyListSubheader = {
   styleOverrides: {
     root: {
-      fontSize: "0.75rem",
+      fontSize: font["body-2xs"].fontSize,
       fontWeight: 600,
       textTransform: "uppercase" as const,
       letterSpacing: "0.05em",
@@ -218,8 +226,8 @@ export const JoyListSubheader = {
 export const JoyBreadcrumbs = {
   styleOverrides: {
     root: {
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
       fontWeight: 500,
       gap: tokens.spacing.xxs,
       "--Breadcrumbs-gap": tokens.spacing.xxs,
@@ -234,7 +242,7 @@ export const JoyBreadcrumbs = {
       "& li > a, & li > .MuiLink-root": {
         color: resolve("{alias.content-subtle}"),
         fontWeight: 500,
-        fontSize: "0.9375rem",
+        fontSize: font["body-md"].fontSize,
         textDecoration: "none",
         "&:hover": {
           color: resolve("{alias.content-muted}"),

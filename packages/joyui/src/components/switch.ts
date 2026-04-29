@@ -6,8 +6,8 @@ export const JoySwitch = {
       "--Switch-trackWidth": ownerState.size === "sm" ? "32px" : "40px",
       "--Switch-trackHeight": ownerState.size === "sm" ? "20px" : "24px",
       "--Switch-thumbSize": ownerState.size === "sm" ? "14px" : "18px",
-      "--Switch-trackRadius": "9999px",
-      "--Switch-thumbRadius": "9999px",
+      "--Switch-trackRadius": tokens.radius.full,
+      "--Switch-thumbRadius": tokens.radius.full,
       "--Switch-trackBackground": tokens.brand["slate-400"],
       "&:hover": {
         "--Switch-trackBackground": tokens.brand["slate-500"],

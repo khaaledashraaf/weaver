@@ -1,15 +1,17 @@
 import { tokens, resolve } from "../tokens";
+import { font } from "../typography";
 
 export const JoySelect = {
   styleOverrides: {
     root: ({ ownerState }: { ownerState: any }) => ({
       borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.xs,
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
+      "--Select-decoratorColor": resolve("{alias.content-subtle}"),
       ...(ownerState.size === "sm" && {
         "--Select-minHeight": "28px",
-        fontSize: "0.875rem",
+        fontSize: font["body-sm"].fontSize,
       }),
       ...(ownerState.size === "md" && {
         "--Select-minHeight": "32px",
@@ -31,7 +33,7 @@ export const JoySelect = {
 export const JoyOption = {
   styleOverrides: {
     root: {
-      fontSize: "0.9375rem",
+      fontSize: font["body-md"].fontSize,
       borderRadius: tokens.radius.xs,
     },
   },

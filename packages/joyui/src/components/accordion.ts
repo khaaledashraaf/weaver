@@ -1,4 +1,5 @@
 import { tokens } from "../tokens";
+import { font } from "../typography";
 
 export const JoyAccordionGroup = {
   styleOverrides: {
@@ -21,8 +22,8 @@ export const JoyAccordionSummary = {
     root: {},
     button: {
       fontWeight: 600,
-      fontSize: "1.0625rem",
-      lineHeight: "1.75rem",
+      fontSize: font["body-lg"].fontSize,
+      lineHeight: font["body-lg"].lineHeight,
       padding: `${tokens.spacing["4xl"]} 0`,
     },
   },
@@ -32,8 +33,8 @@ export const JoyAccordionDetails = {
   styleOverrides: {
     root: {},
     content: {
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
       paddingBottom: tokens.spacing["4xl"],
     },
   },

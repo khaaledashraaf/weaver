@@ -1,15 +1,16 @@
 import { tokens } from "../tokens";
+import { font } from "../typography";
 
 export const JoyBadge = {
   styleOverrides: {
     root: {
-      "--Badge-ringSize": "2px",
+      "--Badge-ringSize": tokens.spacing.xxs,
     },
     badge: {
-      fontSize: "0.6875rem",
+      fontSize: font["body-3xs"].fontSize,
       fontWeight: 500,
       borderRadius: tokens.radius.full,
-      lineHeight: "0.875rem",
+      lineHeight: font["body-3xs"].lineHeight,
     },
   },
 };

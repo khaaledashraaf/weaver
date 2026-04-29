@@ -3,8 +3,8 @@ import { tokens } from "../tokens";
 export const JoySlider = {
   styleOverrides: {
     root: {
-      "--Slider-trackSize": "4px",
-      "--Slider-thumbSize": "24px",
+      "--Slider-trackSize": tokens.spacing.xs,
+      "--Slider-thumbSize": tokens.spacing["5xl"],
     },
     thumb: {
       borderRadius: tokens.radius.full,

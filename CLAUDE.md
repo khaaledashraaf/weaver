@@ -1,5 +1,7 @@
 # Weaver Design System
 
+> AI agents: see [llms.txt](./llms.txt) for the canonical index of components, foundations, and rules.
+
 ## What is this project?
 
 Weaver is a custom internal design system maintained in Figma. This repo implements it as an installable Joy UI theme package so engineers can wrap their app with `<WeaverProvider>` and have all Joy UI components match the Figma designs.

@@ -1,4 +1,5 @@
 import { tokens } from "../tokens";
+import { font } from "../typography";
 
 export const JoyAvatar = {
   styleOverrides: {
@@ -7,17 +8,17 @@ export const JoyAvatar = {
       ...(ownerState.size === "sm" && {
         width: 32,
         height: 32,
-        fontSize: "0.875rem",
+        fontSize: font["body-sm"].fontSize,
       }),
       ...(ownerState.size === "md" && {
         width: 40,
         height: 40,
-        fontSize: "0.875rem",
+        fontSize: font["body-sm"].fontSize,
       }),
       ...(ownerState.size === "lg" && {
         width: 48,
         height: 48,
-        fontSize: "0.9375rem",
+        fontSize: font["body-md"].fontSize,
       }),
     }),
   },

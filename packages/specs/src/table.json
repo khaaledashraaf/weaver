@@ -14,31 +14,30 @@
     "default": {
       "bg": "{alias.bg-default}",
       "text": "{alias.content-default}",
-      "headerBg": "{alias.bg-subtle}",
-      "headerText": "{alias.content-secondary}",
-      "borderBottom": { "width": "1px", "color": "{alias.border-default}" }
+      "headerBg": "{alias.interactive-table-header}",
+      "headerText": "{alias.content-subtle}",
+      "borderBottom": { "width": "1px", "color": "{alias.border-subtle}" }
     }
   },
 
   "sizes": {
-    "lg": { "cellPaddingY": "{spacing.lg}", "cellPaddingX": "{spacing.lg}", "fontSize": "14px" },
-    "sm": { "cellPaddingY": "{spacing.sm}", "cellPaddingX": "{spacing.md}", "fontSize": "13px" }
+    "lg": { "rowMinHeight": "56px", "cellPaddingX": "{spacing.md}", "fontSize": "14px" },
+    "sm": { "rowMinHeight": "48px", "cellPaddingX": "{spacing.md}", "fontSize": "14px" }
   },
 
   "states": {
     "disabled": { "opacity": 0.4, "pointerEvents": "none" },
-    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}" },
-    "error": {}
+    "focus": { "outline": "none", "ring": "2px", "ringColor": "{alias.border-focus}" }
   },
 
   "compoundVariants": [
     {
       "when": { "rowState": "hover" },
-      "apply": { "rowBg": "{alias.bg-subtle}" }
+      "apply": { "rowBg": "{alias.interactive-ghost-hover}" }
     },
     {
       "when": { "rowState": "selected" },
-      "apply": { "rowBg": "{alias.bg-brand-subtle}" }
+      "apply": { "rowBg": "{alias.interactive-ghost-hover}" }
     }
   ],
 

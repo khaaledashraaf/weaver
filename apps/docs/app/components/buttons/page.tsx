@@ -41,17 +41,20 @@ export default function ButtonsPage() {
       <Section title="Styles" description="The Figma design system defines 10 button styles mapped to Joy UI variant + color combinations.">
         <DemoBox
           code={`<Button variant="solid" color="primary">Primary</Button>
-<Button variant="outlined" color="neutral">Secondary</Button>
+<Button variant="secondary">Secondary</Button>
 <Button variant="soft" color="neutral">Soft</Button>
+<Button variant="outlined" color="neutral">Outline</Button>
 <Button variant="plain" color="neutral">Ghost</Button>
 <Button variant="plain" color="primary">Ghost Primary</Button>
 <Button variant="solid" color="danger">Danger</Button>
-<Button variant="soft" color="danger">Soft Danger</Button>`}
+<Button variant="soft" color="danger">Soft Danger</Button>
+<Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed", backgroundColor: "neutral.softBg" }}>Dashed</Button>
+<Button variant="plain" color="neutral" sx={{ backgroundColor: "common.white" }}>White</Button>`}
         >
           <Stack spacing={1.5} sx={{ width: "100%" }}>
             <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
               <Button variant="solid" color="primary">Primary</Button>
-              <Button variant="outlined" color="neutral">Secondary</Button>
+              <Button variant="secondary">Secondary</Button>
               <Button variant="soft" color="neutral">Soft</Button>
               <Button variant="outlined" color="neutral">Outline</Button>
               <Button variant="plain" color="neutral">Ghost</Button>
@@ -60,7 +63,8 @@ export default function ButtonsPage() {
               <Button variant="plain" color="primary">Ghost Primary</Button>
               <Button variant="solid" color="danger">Danger</Button>
               <Button variant="soft" color="danger">Soft Danger</Button>
-              <Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed" }}>Dashed</Button>
+              <Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed", backgroundColor: "neutral.softBg" }}>Dashed</Button>
+              <Button variant="plain" color="neutral" sx={{ backgroundColor: "common.white" }}>White</Button>
             </Stack>
           </Stack>
         </DemoBox>
@@ -84,7 +88,7 @@ export default function ButtonsPage() {
       <Section title="Disabled" description="Disabled buttons use explicit disabled tokens — no opacity. Background uses the variant's disabled token, text uses content/disabled.">
         <DemoBox
           code={`<Button disabled>Primary</Button>
-<Button variant="outlined" color="neutral" disabled>Secondary</Button>
+<Button variant="secondary" disabled>Secondary</Button>
 <Button variant="soft" color="neutral" disabled>Soft</Button>
 <Button variant="plain" color="neutral" disabled>Ghost</Button>
 <Button variant="solid" color="danger" disabled>Danger</Button>`}
@@ -92,14 +96,14 @@ export default function ButtonsPage() {
           <Stack spacing={1.5} sx={{ width: "100%" }}>
             <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
               <Button disabled>Primary</Button>
-              <Button variant="outlined" color="neutral" disabled>Secondary</Button>
+              <Button variant="secondary" disabled>Secondary</Button>
               <Button variant="soft" color="neutral" disabled>Soft</Button>
               <Button variant="plain" color="neutral" disabled>Ghost</Button>
             </Stack>
             <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
               <Button variant="solid" color="danger" disabled>Danger</Button>
               <Button variant="soft" color="danger" disabled>Soft Danger</Button>
-              <Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed" }} disabled>Dashed</Button>
+              <Button variant="outlined" color="neutral" sx={{ borderStyle: "dashed", backgroundColor: "neutral.softBg" }} disabled>Dashed</Button>
             </Stack>
           </Stack>
         </DemoBox>
@@ -108,7 +112,7 @@ export default function ButtonsPage() {
       <Section title="Icon Buttons" description="Icon buttons come in Default (8px radius) and Pill (full round) forms.">
         <DemoBox
           code={`<IconButton variant="solid" color="primary"><RiAddLine size={20} /></IconButton>
-<IconButton variant="outlined" color="neutral"><RiSearchLine size={20} /></IconButton>
+<IconButton variant="secondary"><RiSearchLine size={20} /></IconButton>
 <IconButton variant="plain" color="neutral"><RiEditLine size={20} /></IconButton>
 <IconButton variant="solid" color="danger"><RiDeleteBinLine size={20} /></IconButton>`}
         >
@@ -123,6 +127,7 @@ export default function ButtonsPage() {
             <Stack direction="row" spacing={1.5} alignItems="center">
               <IconButton variant="solid" color="primary"><RiAddLine size={20} /></IconButton>
               <IconButton variant="soft" color="neutral"><RiSettings3Line size={20} /></IconButton>
+              <IconButton variant="secondary"><RiSearchLine size={20} /></IconButton>
               <IconButton variant="outlined" color="neutral"><RiSearchLine size={20} /></IconButton>
               <IconButton variant="plain" color="neutral"><RiEditLine size={20} /></IconButton>
               <IconButton variant="solid" color="danger"><RiDeleteBinLine size={20} /></IconButton>

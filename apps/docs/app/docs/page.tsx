@@ -135,28 +135,15 @@ function MyForm() {
 
       <Section
         title="AI-Assisted Figma-to-Code"
-        description="The package includes FIGMA_RULES.md with component mappings and anti-patterns for AI coding assistants. Add this hook to your project's .claude/settings.json to automatically enforce Weaver design rules when fetching Figma designs."
+        description="The package ships with a Claude Code skill that enforces Weaver's component mappings, variant names, color tokens, and styling rules whenever you implement a design from Figma. Install it locally in your project after running npm install:"
       >
-        <CodeBlock>{`// .claude/settings.json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "mcp__figma",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "cat joyui/FIGMA_RULES.md"
-          }
-        ]
-      }
-    ]
-  }
-}`}</CodeBlock>
+        <CodeBlock>{`cp -r node_modules/weaver-ui-joyui/.claude/skills/weaver-figma .claude/skills/weaver-figma`}</CodeBlock>
         <Typography level="body-sm" sx={{ mt: 1.5, color: "text.secondary" }}>
-          This injects the Weaver design rules into context every time an AI
-          assistant fetches a Figma design, ensuring correct component mappings
-          without manual correction.
+          Once installed, Claude Code picks the skill up automatically whenever
+          you mention Figma, share a Figma URL, or use the Figma MCP tools. You
+          can also invoke it manually with <code>/weaver-figma</code>. The repo
+          also ships an <code>llms.txt</code> at its root indexing every
+          component spec, foundation, and rule for any LLM-based agent.
         </Typography>
       </Section>
 

@@ -58,6 +58,7 @@ export const colorSchemes = {
         softHoverBg: a("interactive-secondary-hover"),
         softActiveBg: a("interactive-secondary-pressed"),
         softColor: a("content-default"),
+        softAlphaBg: a("bg-neutral-soft"),
         outlinedBorder: a("border-default"),
         outlinedColor: a("content-default"),
         outlinedHoverBg: a("interactive-outlined-hover"),

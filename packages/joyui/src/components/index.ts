@@ -10,7 +10,7 @@ import { JoyCheckbox } from "./checkbox";
 import { JoyRadio, JoyRadioGroup } from "./radio";
 import { JoySwitch } from "./switch";
 import { JoyAlert } from "./alert";
-import { JoyChip } from "./chip";
+import { JoyChip, JoyChipDelete } from "./chip";
 import { JoyAvatar, JoyAvatarGroup } from "./avatar";
 import { JoyTooltip } from "./tooltip";
 import {
@@ -70,6 +70,7 @@ export const components = {
   JoySwitch,
   JoyAlert,
   JoyChip,
+  JoyChipDelete,
   JoyAvatar,
   JoyAvatarGroup,
   JoyTooltip,

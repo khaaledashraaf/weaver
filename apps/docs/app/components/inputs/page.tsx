@@ -120,7 +120,7 @@ export default function InputsPage() {
             </FormControl>
             <FormControl disabled>
               <FormLabel>Disabled</FormLabel>
-              <Input placeholder="Disabled state" />
+              <Input placeholder="Disabled state" startDecorator={<RiMailLine size={18} />} />
               <FormHelperText>This is a hint text</FormHelperText>
             </FormControl>
             <FormControl>

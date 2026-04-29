@@ -1,15 +1,16 @@
 import { tokens, resolve } from "../tokens";
+import { font } from "../typography";
 
 export const JoyInput = {
   styleOverrides: {
     root: ({ ownerState }: { ownerState: any }) => ({
-      "--Input-focusedThickness": "0px",
+      "--Input-focusedThickness": tokens.spacing.none,
       "--Input-focusedHighlight": "transparent",
       borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.xs,
       transition: "border-color 150ms, box-shadow 150ms",
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
       "--Input-paddingInline": tokens.spacing.md,
       "--Input-decoratorColor": resolve("{alias.content-muted}"),
       "&.Joy-focused, &:focus-within": {
@@ -38,18 +39,24 @@ export const JoyInput = {
         "--Input-decoratorColor": resolve("{alias.content-disabled}"),
       },
     }),
+    startDecorator: {
+      "& > svg": { width: 20, height: 20 },
+    },
+    endDecorator: {
+      "& > svg": { width: 20, height: 20 },
+    },
   },
 };
 
 export const JoyTextarea = {
   styleOverrides: {
     root: () => ({
-      "--Textarea-focusedThickness": "0px",
+      "--Textarea-focusedThickness": tokens.spacing.none,
       "--Textarea-focusedHighlight": "transparent",
       borderRadius: tokens.radius["control-default"],
       boxShadow: tokens.shadow.xs,
-      fontSize: "0.9375rem",
-      lineHeight: "1.5rem",
+      fontSize: font["body-md"].fontSize,
+      lineHeight: font["body-md"].lineHeight,
       "&.Joy-focused, &:focus-within": {
         borderColor: `${resolve("{alias.border-focus}")} !important`,
         boxShadow: `0 0 0 4px rgba(50, 118, 255, 0.3) !important`,
@@ -76,7 +83,7 @@ export const JoyFormControl = {
 export const JoyFormLabel = {
   styleOverrides: {
     root: {
-      fontSize: "0.875rem",
+      fontSize: font["body-sm"].fontSize,
       fontWeight: 500,
       color: resolve("{alias.content-default}"),
     },
@@ -86,7 +93,7 @@ export const JoyFormLabel = {
 export const JoyFormHelperText = {
   styleOverrides: {
     root: {
-      fontSize: "0.8125rem",
+      fontSize: font["body-xs"].fontSize,
       color: resolve("{alias.content-subtle}"),
       ".MuiFormControl-root.Mui-error &, .Joy-error &": {
         color: resolve("{alias.content-danger-default}"),
