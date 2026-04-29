@@ -2,10 +2,9 @@
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
-import IconButton from "@mui/joy/IconButton";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Stack from "@mui/joy/Stack";
-import { RiAddLine, RiFilter3Line, RiSortAsc, RiDownloadLine } from "@remixicon/react";
+import { RiAddLine, RiFilter3Line, RiSortAsc } from "@remixicon/react";
 import { Section } from "../section";
 import { DemoBox } from "../demo-box";
 import { CodeBlock } from "../code-block";
@@ -48,7 +47,7 @@ export default function ButtonGroupPage() {
         </DemoBox>
       </Section>
 
-      <Section
+      {/* <Section
         title="Icon only"
         description="Button group with icon-only buttons."
       >
@@ -65,7 +64,7 @@ export default function ButtonGroupPage() {
             <IconButton variant="plain"><RiDownloadLine size={20} /></IconButton>
           </ButtonGroup>
         </DemoBox>
-      </Section>
+      </Section> */}
 
       <Section
         title="Text only"

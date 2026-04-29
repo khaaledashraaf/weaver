@@ -5,7 +5,7 @@ import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import Link from "next/link";
 import Aurora from "./components/aurora";
-import { RiArrowRightLine, RiBook2Line } from "@remixicon/react";
+import { RiArrowRightLine, RiBook2Line, RiGithubFill } from "@remixicon/react";
 export default function LandingPage() {
   return (
     <Box
@@ -46,8 +46,6 @@ export default function LandingPage() {
           maxWidth: 720,
         }}
       >
-        
-
         <Typography
           level="h1"
           sx={{
@@ -172,127 +170,96 @@ export default function LandingPage() {
           to life with consistent tokens, typography, and component overrides.
         </Typography>
 
-        <Button
-          component={Link}
-          href="/docs"
-          variant="solid"
-          color="primary"
-          size="lg"
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-            gap: "8px",
-            "& .btn-book": {
-              display: "inline-flex",
-              transition: "opacity 0.3s, transform 0.3s, width 0.3s, margin 0.3s",
-              opacity: 1,
-              transform: "translateX(0)",
-              width: 20,
-              marginRight: 0,
-            },
-            "& .btn-arrow": {
-              display: "inline-flex",
-              transition: "opacity 0.3s, transform 0.3s, width 0.3s, margin 0.3s",
-              opacity: 0,
-              transform: "translateX(-8px)",
-              width: 0,
-              marginLeft: 0,
-              overflow: "hidden",
-            },
-            "&:hover .btn-book": {
-              opacity: 0,
-              transform: "translateX(-8px)",
-              width: 0,
-              marginRight: 0,
-            },
-            "&:hover .btn-arrow": {
-              opacity: 1,
-              transform: "translateX(0)",
-              width: 20,
-              marginLeft: 0,
-            },
-          }}
-        >
-          <span className="btn-book"><RiBook2Line size={20} /></span>
-          Go to Documentation
-          <span className="btn-arrow"><RiArrowRightLine size={20} /></span>
-        </Button>
-
-        {/* How to Use */}
-        <Box
-          sx={{
-            mt: 6,
-            width: "100%",
-            maxWidth: 560,
-            mx: "auto",
-            bgcolor: "rgba(255, 255, 255, 0.05)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRadius: "lg",
-            p: 3,
-          }}
-        >
-          <Typography
+        <Box sx={{ display: "flex", gap: 1.5, justifyContent: "center", flexWrap: "wrap" }}>
+          <Button
+            component={Link}
+            href="/docs"
+            variant="solid"
+            color="primary"
+            size="lg"
             sx={{
-              color: "rgba(187, 218, 255, 0.5)",
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: 1,
-              mb: 2.5,
-              textAlign: "center",
+              position: "relative",
+              overflow: "hidden",
+              gap: "8px",
+              "& .btn-book": {
+                display: "inline-flex",
+                transition: "opacity 0.3s, transform 0.3s, width 0.3s, margin 0.3s",
+                opacity: 1,
+                transform: "translateX(0)",
+                width: 20,
+                marginRight: 0,
+              },
+              "& .btn-arrow": {
+                display: "inline-flex",
+                transition: "opacity 0.3s, transform 0.3s, width 0.3s, margin 0.3s",
+                opacity: 0,
+                transform: "translateX(-8px)",
+                width: 0,
+                marginLeft: 0,
+                overflow: "hidden",
+              },
+              "&:hover .btn-book": {
+                opacity: 0,
+                transform: "translateX(-8px)",
+                width: 0,
+                marginRight: 0,
+              },
+              "&:hover .btn-arrow": {
+                opacity: 1,
+                transform: "translateX(0)",
+                width: 20,
+                marginLeft: 0,
+              },
             }}
           >
-            How to use
-          </Typography>
-          <Box sx={{ display: "flex", gap: 2 }}>
-            {[
-              { step: "1", label: "Copy the joyui package into your project" },
-              { step: "2", label: "Wrap your app with WeaverProvider" },
-              { step: "3", label: "Add the Figma MCP hook to .claude/settings.json" },
-              { step: "4", label: "Use Joy UI components — they're already themed" },
-            ].map(({ step, label }) => (
-              <Box
-                key={step}
-                sx={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 1,
-                  textAlign: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: "50%",
-                    bgcolor: "rgba(255, 255, 255, 0.08)",
-                    border: "1px solid rgba(255, 255, 255, 0.12)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#5B97FF",
-                    fontWeight: 700,
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  {step}
-                </Box>
-                <Typography
-                  sx={{
-                    color: "rgba(187, 218, 255, 0.7)",
-                    fontSize: "0.8125rem",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {label}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
+            <span className="btn-book"><RiBook2Line size={20} /></span>
+            Go to Documentation
+            <span className="btn-arrow"><RiArrowRightLine size={20} /></span>
+          </Button>
+          <Button
+            component="a"
+            href="https://github.com/fastfishio/weaver"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outlined"
+            color="neutral"
+            size="lg"
+            startDecorator={<RiGithubFill size={20} />}
+            sx={{
+              gap: "8px",
+              color: "rgba(255, 255, 255, 0.85)",
+              borderColor: "rgba(255, 255, 255, 0.2)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                borderColor: "rgba(255, 255, 255, 0.3)",
+                color: "#fff",
+              },
+            }}
+          >
+            View on GitHub
+          </Button>
         </Box>
       </Box>
+
+      {/* Footnote */}
+      <Typography
+        sx={{
+          position: "absolute",
+          bottom: 24,
+          left: 0,
+          right: 0,
+          zIndex: 1,
+          textAlign: "center",
+          px: 3,
+          color: "rgba(187, 218, 255, 0.4)",
+          fontSize: "0.8125rem",
+          lineHeight: 1.6,
+        }}
+      >
+        Designed by Ahmed Galal. Implemented by Khaled Ashraf with the help of
+        Nuwan Dharmpala, Omar ElZawawi, and Salah ElWahsh.
+      </Typography>
     </Box>
   );
 }

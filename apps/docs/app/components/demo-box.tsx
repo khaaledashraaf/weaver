@@ -28,7 +28,6 @@ export function DemoBox({
       variant="outlined"
       sx={{
         borderRadius: "12px",
-        overflow: "hidden",
       }}
     >
       {/* Preview area */}
@@ -42,6 +41,12 @@ export function DemoBox({
           gap: 2,
           bgcolor: "rgba(245, 248, 250, 0.5)",
           minHeight: 120,
+          borderTopLeftRadius: "12px",
+          borderTopRightRadius: "12px",
+          ...(!code && {
+            borderBottomLeftRadius: "12px",
+            borderBottomRightRadius: "12px",
+          }),
         }}
       >
         {children}
@@ -59,6 +64,10 @@ export function DemoBox({
             py: 0.75,
             borderTop: "1px solid",
             borderColor: "divider",
+            ...(!showCode && {
+              borderBottomLeftRadius: "12px",
+              borderBottomRightRadius: "12px",
+            }),
           }}
         >
           <IconButton
@@ -94,6 +103,8 @@ export function DemoBox({
             p: 2.5,
             overflow: "auto",
             maxHeight: 400,
+            borderBottomLeftRadius: "12px",
+            borderBottomRightRadius: "12px",
             "& pre": {
               m: 0,
               fontSize: "0.8125rem",
